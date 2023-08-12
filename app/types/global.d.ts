@@ -1,6 +1,6 @@
 // global.d.ts
 declare global {
-  var prisma: unknown
+  var prisma: any
 }
 
 export {}
