@@ -1,9 +1,10 @@
-import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import SignOutButton from '@/components/auth/SignOutButton'
 import { cookies } from 'next/headers'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { redirect } from 'next/navigation'
+
+export const dynamic = 'force-dynamic'
 
 export default async function Home() {
   const supabase = createServerComponentClient({ cookies })
