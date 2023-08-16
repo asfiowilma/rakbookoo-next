@@ -1,4 +1,7 @@
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+
 import { BiBookHeart } from 'react-icons/bi'
+import { ImInfo } from 'react-icons/im'
 import Link from 'next/link'
 import LoginForm from '@/components/auth/LoginForm'
 import React from 'react'
@@ -8,8 +11,16 @@ import { redirect } from 'next/navigation'
 
 export const dynamic = 'force-dynamic'
 
-const LoginPage = async () => {
+const LoginPage = async ({
+  searchParams,
+}: {
+  searchParams: {
+    [key: string]: string | string[] | undefined
+  }
+}) => {
   const supabase = createServerComponentClient({ cookies })
+  const isShowAlertVerifyEmail =
+    (searchParams?.['require-email-verification'] as string) === 'true'
 
   const {
     data: { session },
@@ -30,7 +41,7 @@ const LoginPage = async () => {
       </header>
 
       <div className="flex flex-col gap-3">
-        <div className="mt-8 flex w-full flex-col items-center text-center">
+        <div className="mt-8 flex w-full flex-col gap-4 items-center text-center">
           <p>
             Belum punya akun?{' '}
             <Link
@@ -40,6 +51,18 @@ const LoginPage = async () => {
               Daftar di sini~
             </Link>
           </p>
+          {isShowAlertVerifyEmail && (
+            <Alert className="max-w-md">
+              <ImInfo className="h-5 w-5 text-info" />
+              <div>
+                <AlertTitle>Kamu berhasil mendaftar!</AlertTitle>
+                <AlertDescription>
+                  Silakan cek email kamu untuk verifikasi akun supaya bisa login
+                  ke Rakbookoo~
+                </AlertDescription>
+              </div>
+            </Alert>
+          )}
           <LoginForm />
         </div>
       </div>

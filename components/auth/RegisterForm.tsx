@@ -6,6 +6,7 @@ import React, { useState } from 'react'
 
 import { Button } from '../ui/button'
 import type { Database } from '@/types/database'
+import { FaUserCircle } from 'react-icons/fa'
 import { Form } from '../ui/form'
 import Link from 'next/link'
 import { MdEmail } from 'react-icons/md'
@@ -19,10 +20,21 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 const loginSchema = z.object({
   email: z.string().email({ message: 'Harap masukkan email yang valid' }),
-  password: z.string(),
+  username: z
+    .string()
+    .min(2, {
+      message: 'Username terlalu pendek, harap masukkan minimal 2 karakter.',
+    })
+    .max(20, {
+      message: 'Username terlalu panjang, harap masukkan maksimal 20 karakter',
+    })
+    .trim(),
+  password: z.string().max(72, {
+    message: 'Password terlalu panjang, harap masukkan maksimal 72 karakter.',
+  }),
 })
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const supabase = createClientComponentClient<Database>()
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
@@ -32,12 +44,22 @@ const LoginForm = () => {
   })
 
   const onSubmit = async (data: z.infer<typeof loginSchema>) => {
-    const response = await supabase.auth.signInWithPassword(data)
+    setIsLoading(true)
+    const { email, password, username } = data
+    const response = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { username },
+        emailRedirectTo: `${location.origin}/auth/callback`,
+      },
+    })
+
     if (response?.error) {
       toast.error('Email atau password tidak valid')
     } else {
-      toast.success('Berhasil login!')
-      router.push('/')
+      toast.success('Berhasil mendaftar!')
+      router.push('/auth/login?require-email-verification=true')
     }
     setIsLoading(false)
   }
@@ -47,7 +69,7 @@ const LoginForm = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="form-control w-full max-w-md gap-3"
+          className="form-control mt-3 w-full max-w-md gap-3"
         >
           <TextInput
             form={form}
@@ -56,6 +78,16 @@ const LoginForm = () => {
             leftAdornment={
               <span>
                 <MdEmail />
+              </span>
+            }
+          />
+          <TextInput
+            form={form}
+            name="username"
+            placeholder="Masukkan username"
+            leftAdornment={
+              <span>
+                <FaUserCircle />
               </span>
             }
           />
@@ -75,12 +107,6 @@ const LoginForm = () => {
               'masuk'
             )}
           </Button>
-
-          <div className="self-end text-sm">
-            <Link href="/auth/forgot-password" className="link link-hover">
-              Lupa password?
-            </Link>
-          </div>
         </form>
       </Form>
       {/* <ThirdPartyProvider {...{ loading }} /> */}
@@ -88,4 +114,4 @@ const LoginForm = () => {
   )
 }
 
-export default LoginForm
+export default RegisterForm
