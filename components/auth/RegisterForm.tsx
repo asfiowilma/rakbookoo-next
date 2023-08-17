@@ -14,6 +14,7 @@ import { PasswordInput } from '../ui/password-input'
 import { TextInput } from '../ui/text-input'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { toast } from 'react-hot-toast'
+import { urlBuilder } from '@/lib/utils'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -59,7 +60,12 @@ const RegisterForm = () => {
       toast.error('Email atau password tidak valid')
     } else {
       toast.success('Berhasil mendaftar!')
-      router.push('/auth/login?require-email-verification=true')
+      router.push(
+        urlBuilder('/auth/login', {
+          'require-email-verification': true,
+          email,
+        })
+      )
     }
     setIsLoading(false)
   }

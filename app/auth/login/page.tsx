@@ -5,6 +5,7 @@ import { ImInfo } from 'react-icons/im'
 import Link from 'next/link'
 import LoginForm from '@/components/auth/LoginForm'
 import React from 'react'
+import ResendEmail from '@/components/auth/ResendEmail'
 import { cookies } from 'next/headers'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { redirect } from 'next/navigation'
@@ -21,6 +22,7 @@ const LoginPage = async ({
   const supabase = createServerComponentClient({ cookies })
   const isShowAlertVerifyEmail =
     (searchParams?.['require-email-verification'] as string) === 'true'
+  const email = searchParams?.['email'] as string
 
   const {
     data: { session },
@@ -59,6 +61,7 @@ const LoginPage = async ({
                 <AlertDescription>
                   Silakan cek email kamu untuk verifikasi akun supaya bisa login
                   ke Rakbookoo~
+                  {email && <ResendEmail email={email} />}
                 </AlertDescription>
               </div>
             </Alert>
