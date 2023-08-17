@@ -11,6 +11,7 @@ import Link from 'next/link'
 import { MdEmail } from 'react-icons/md'
 import { PasswordInput } from '../ui/password-input'
 import { TextInput } from '../ui/text-input'
+import ThirdPartyProviders from './ThirdPartyProviders'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { toast } from 'react-hot-toast'
 import { useForm } from 'react-hook-form'
@@ -84,7 +85,7 @@ const LoginForm = () => {
           </div>
         </form>
       </Form>
-      {/* <ThirdPartyProvider {...{ loading }} /> */}
+      <ThirdPartyProviders />
     </>
   )
 }

@@ -12,6 +12,7 @@ import Link from 'next/link'
 import { MdEmail } from 'react-icons/md'
 import { PasswordInput } from '../ui/password-input'
 import { TextInput } from '../ui/text-input'
+import ThirdPartyProviders from './ThirdPartyProviders'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { toast } from 'react-hot-toast'
 import { urlBuilder } from '@/lib/utils'
@@ -115,7 +116,7 @@ const RegisterForm = () => {
           </Button>
         </form>
       </Form>
-      {/* <ThirdPartyProvider {...{ loading }} /> */}
+      <ThirdPartyProviders />
     </>
   )
 }
