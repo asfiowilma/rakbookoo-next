@@ -32,6 +32,7 @@ const LoginForm = () => {
   })
 
   const onSubmit = async (data: z.infer<typeof loginSchema>) => {
+    setIsLoading(true)
     const response = await supabase.auth.signInWithPassword(data)
     if (response?.error) {
       toast.error('Email atau password tidak valid')
