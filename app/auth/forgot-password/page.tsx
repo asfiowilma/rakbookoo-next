@@ -4,7 +4,7 @@ import React from 'react'
 
 const ForgotPasswordPage = () => {
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-screen-sm flex-col justify-center py-16">
+    <>
       <header>
         <h1 className="text-h2 text-center">Lupa password?</h1>{' '}
         <p className="mx-auto max-w-md py-2 text-center">
@@ -22,7 +22,7 @@ const ForgotPasswordPage = () => {
         </div>
         <ForgotPasswordForm />
       </div>
-    </main>
+    </>
   )
 }
 

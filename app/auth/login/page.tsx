@@ -31,7 +31,7 @@ const LoginPage = async ({
   if (session) redirect('/')
 
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-screen-sm flex-col justify-center py-16">
+    <>
       <header>
         <h1 className="text-h1 text-center">
           Selamat Datang di
@@ -69,7 +69,7 @@ const LoginPage = async ({
           <LoginForm />
         </div>
       </div>
-    </main>
+    </>
   )
 }
 
