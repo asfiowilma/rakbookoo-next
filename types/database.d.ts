@@ -220,14 +220,17 @@ export interface Database {
       }
       User: {
         Row: {
+          avatar_url: string | null
           name: string | null
           uid: string
         }
         Insert: {
+          avatar_url?: string | null
           name?: string | null
           uid: string
         }
         Update: {
+          avatar_url?: string | null
           name?: string | null
           uid?: string
         }

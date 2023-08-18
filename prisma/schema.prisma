@@ -3,14 +3,15 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Author {
   id   Int    @id @default(autoincrement())
   name String
-  Book Book[]
+  Book Book[] @relation("AuthorToBook")
 }
 
 model Book {
@@ -23,8 +24,8 @@ model Book {
   shelfId    Int
   Shelf      Shelf    @relation(fields: [shelfId], references: [id])
   Note       Note[]
-  Author     Author[]
-  Tag        Tag[]
+  Author     Author[] @relation("AuthorToBook")
+  Tag        Tag[]    @relation("BookToTag")
 }
 
 model Note {
@@ -38,7 +39,7 @@ model Note {
 model Shelf {
   id      Int    @id @default(autoincrement())
   name    String
-  userUid String
+  userUid String @db.Uuid
   Book    Book[]
   User    User   @relation(fields: [userUid], references: [uid])
 }
@@ -46,11 +47,12 @@ model Shelf {
 model Tag {
   id   Int    @id @default(autoincrement())
   name String
-  Book Book[]
+  Book Book[] @relation("BookToTag")
 }
 
 model User {
-  uid   String  @id @unique
-  name  String?
-  Shelf Shelf[]
+  uid        String  @id @unique @db.Uuid
+  name       String?
+  avatar_url String?
+  Shelf      Shelf[]
 }
