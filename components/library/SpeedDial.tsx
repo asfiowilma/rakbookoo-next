@@ -1,6 +1,7 @@
 import { BiPlus } from 'react-icons/bi'
 import Link from 'next/link'
 import React from 'react'
+import { routes } from '@/lib/routes'
 
 type Props = {}
 
@@ -18,13 +19,13 @@ const SpeedDial = (props: Props) => {
           className="dropdown-content menu rounded-box w-48 bg-base-200 p-2 shadow"
         >
           <li>
-            <Link href="/library/shelves/new">
+            <Link href={routes.newShelf}>
               <BiPlus className="h-5 w-5" />
               Rak Baru
             </Link>
           </li>
           <li>
-            <Link href="/library/books/new">
+            <Link href={routes.newBook}>
               <BiPlus className="h-5 w-5" />
               Buku Baru
             </Link>

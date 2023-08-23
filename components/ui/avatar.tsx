@@ -49,7 +49,7 @@ const AvatarFallback = React.forwardRef<
       name={props.children as string}
       square
       variant="beam"
-      colors={['#6419E6', '#732DFA', '#A083FF', '#BFB0FF', '#EBE7FF']}
+      colors={['641ae6', 'd6fff6', '4dccbd', 'ff8484', 'ffdde2']}
     />
   </AvatarPrimitive.Fallback>
 ))

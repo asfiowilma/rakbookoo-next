@@ -2,16 +2,13 @@ import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 
 import React from 'react'
 import SignOutButton from './auth/SignOutButton'
-import { cookies } from 'next/headers'
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import getUserId from '@/services/getUserId'
 import prisma from '@/services/prisma'
 import { redirect } from 'next/navigation'
 import { toast } from 'react-hot-toast'
 
 const Navbar = async () => {
-  const supabase = createServerComponentClient({ cookies })
-  const { data: sessionData, error } = await supabase.auth.getSession()
-
+  const { data: sessionData, error } = await getUserId()
   if (error) {
     toast.error('Silakan login terlebih dahulu~')
     redirect('/auth/login')
@@ -23,7 +20,6 @@ const Navbar = async () => {
       select: { name: true, avatar_url: true },
     })
     .catch((res) => console.error(res))
-  console.log('🚀 ~ file: Navbar.tsx:22 ~ Navbar ~ user:', user)
 
   return (
     <div className="navbar navbar-end w-full px-6">
