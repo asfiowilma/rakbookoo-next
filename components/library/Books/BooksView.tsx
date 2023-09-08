@@ -1,6 +1,7 @@
 import type { Author, Book } from '@prisma/client'
 
 import BookListItem from './BookListItem'
+import BookTable from './BookTable'
 import BookThumbnail from './BookThumbnail'
 import { LibraryView } from '@/lib/enums'
 import React from 'react'
@@ -13,7 +14,7 @@ export type BookViewProps = {
   book: BookWithAuthor
 }
 
-type BooksViewProps = {
+export type BooksViewProps = {
   view: LibraryView
   books: BookWithAuthor[]
 }
@@ -28,6 +29,8 @@ const BooksView = ({ view, books }: BooksViewProps) => {
           ))}
         </div>
       )
+    case LibraryView.table:
+      return <BookTable books={books} />
     case LibraryView.thumbnail:
     default:
       return (
