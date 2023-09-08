@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  images: {
+    domains: ['placehold.co', 'storage.googleapis.com'],
+  },
+}
 
 nextConfig.webpack = (config, context) => {
   config.module.rules.push({

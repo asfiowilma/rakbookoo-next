@@ -2,6 +2,7 @@
 
 import { BiBookHeart } from 'react-icons/bi'
 import { BookViewProps } from './BooksView'
+import Image from 'next/image'
 import React from 'react'
 import { truncate } from '@/lib/utils'
 
@@ -22,7 +23,9 @@ const BookThumbnail = ({ book }: BookViewProps) => {
       className="flex flex-col text-left"
     >
       {book.coverImage ? (
-        <img
+        <Image
+          height={192}
+          width={120}
           src={book.coverImage}
           alt={book.title}
           className="aspect-[5/8] w-full rounded-lg bg-base-300 object-cover"

@@ -1,13 +1,10 @@
 'use client'
 
-import { HiTable, HiViewGrid } from 'react-icons/hi'
 import React, { useEffect } from 'react'
 import { cn, urlBuilder } from '@/lib/utils'
 import { usePathname, useRouter } from 'next/navigation'
 
 import { Button } from '../ui/button'
-import { LibraryView } from '@/lib/enums'
-import { MdViewList } from 'react-icons/md'
 import { useLibraryView } from '@/lib/hooks/useLibraryView'
 import { views as viewButtons } from '@/lib/constants/libraryViews'
 
@@ -26,6 +23,7 @@ const LibraryViewSelect = () => {
     <div className="join">
       {viewButtons.map((button) => (
         <Button
+          key={button.view}
           size="sm"
           shape="square"
           state={view === button.view ? 'active' : 'default'}

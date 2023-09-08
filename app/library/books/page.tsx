@@ -1,6 +1,7 @@
 import BooksView, { BookWithAuthor } from '@/components/library/Books/BooksView'
 
 import { BiPlus } from 'react-icons/bi'
+import BooksViewOptions from '@/components/library/Books/BooksViewOptions'
 import Breadcrumbs from '@/components/library/Breadcrumbs'
 import { LibraryView } from '@/lib/enums'
 import LibraryViewSelect from '@/components/library/LibraryViewSelect'
@@ -48,6 +49,7 @@ const BooksPage = async ({ searchParams }: PageProps) => {
       </div>
       <div className="w-full flex justify-end my-4">
         <LibraryViewSelect />
+        <BooksViewOptions />
       </div>
       <BooksView view={view} books={books as BookWithAuthor[]} />
     </>

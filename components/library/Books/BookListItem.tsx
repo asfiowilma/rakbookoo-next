@@ -1,12 +1,15 @@
 import { BiBookHeart } from 'react-icons/bi'
 import { BookViewProps } from './BooksView'
+import Image from 'next/image'
 import React from 'react'
 
 const BookListItem = ({ book }: BookViewProps) => {
   return (
     <div className="flex items-center gap-2">
       {book.coverImage ? (
-        <img
+        <Image
+          width={32}
+          height={48}
           src={book.coverImage}
           alt={book.title}
           className="flex-none aspect-[5/8] w-8 rounded-lg bg-base-300 object-cover"

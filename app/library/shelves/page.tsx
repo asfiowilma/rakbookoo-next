@@ -31,7 +31,7 @@ const ShelvesPage = async () => {
   return (
     <>
       <div className="flex w-full justify-between">
-        <Breadcrumbs />
+        <Breadcrumbs /> <LibraryViewToggle />
       </div>
       <div className="flex w-full justify-between">
         <h1 className="text-h1 mb-8">Rak Saya</h1>

@@ -17,6 +17,7 @@ import {
 } from '@tanstack/react-table'
 
 import { BiBookHeart } from 'react-icons/bi'
+import Image from 'next/image'
 import React from 'react'
 
 const columnHelper = createColumnHelper<BookWithAuthor>()
@@ -26,7 +27,9 @@ const columns = [
     header: () => <div className="text-center">Cover</div>,
     cell: (props) =>
       !!props.getValue() ? (
-        <img
+        <Image
+          width={5 * 10}
+          height={8 * 10}
           src={props.getValue() ?? ''}
           alt="Cover"
           className="flex-none aspect-[5/8] w-8 rounded-md bg-base-300 object-cover mx-auto"

@@ -11,6 +11,7 @@ import { urlBuilder } from '@/lib/utils'
 import Breadcrumbs from '@/components/library/Breadcrumbs'
 import { type Shelf } from '@prisma/client'
 import { redirect } from 'next/navigation'
+import BooksViewOptions from '@/components/library/Books/BooksViewOptions'
 
 export const dynamic = 'force-dynamic'
 
@@ -44,7 +45,6 @@ const ShelfPage = async ({ params, searchParams }: PageProps) => {
 
   return (
     <>
-      <pre>{JSON.stringify(shelf, null, 2)}</pre>
       <div className="flex w-full justify-between">
         <Breadcrumbs shelf={shelf as Shelf} />
       </div>
@@ -60,6 +60,7 @@ const ShelfPage = async ({ params, searchParams }: PageProps) => {
       </div>
       <div className="w-full flex justify-end my-4">
         <LibraryViewSelect />
+        <BooksViewOptions />
       </div>
       <BooksView view={view} books={shelf?.Book as BookWithAuthor[]} />
     </>
