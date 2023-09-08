@@ -18,12 +18,20 @@ const buttonVariants = cva('btn', {
       default: 'btn-md',
       sm: 'btn-sm',
       lg: 'btn-lg',
-      icon: 'btn-square',
+    },
+    shape: {
+      square: 'btn-square',
+      circle: 'btn-circle',
+    },
+    state: {
+      default: '',
+      active: 'btn-active',
     },
   },
   defaultVariants: {
     variant: 'default',
     size: 'default',
+    state: 'default',
   },
 })
 
@@ -34,12 +42,15 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  (
+    { className, variant, size, shape, state, asChild = false, ...props },
+    ref
+  ) => {
     const Comp = asChild ? Slot : 'button'
     return (
       <Comp
         className={cn(
-          buttonVariants({ variant, size, className }),
+          buttonVariants({ variant, size, shape, state, className }),
           props?.disabled ? 'btn-disabled' : ''
         )}
         ref={ref}

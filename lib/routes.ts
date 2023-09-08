@@ -1,4 +1,7 @@
 export const routes = {
+  login: '/auth/login',
+  register: '/auth/register',
+
   library: '/library',
   books: '/library/books',
   newBook: '/library/books/new',

@@ -3,7 +3,8 @@
 import * as AvatarPrimitive from '@radix-ui/react-avatar'
 import * as React from 'react'
 
-import BoringAvatar from 'boring-avatars'
+import BoringAvatar, { AvatarProps } from 'boring-avatars'
+
 import { cn } from '@/lib/utils'
 
 const Avatar = React.forwardRef<
@@ -12,10 +13,7 @@ const Avatar = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AvatarPrimitive.Root
     ref={ref}
-    className={cn(
-      'relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full',
-      className
-    )}
+    className={cn('relative flex shrink-0 overflow-hidden', className)}
     {...props}
   />
 ))
@@ -27,7 +25,7 @@ const AvatarImage = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AvatarPrimitive.Image
     ref={ref}
-    className={cn('aspect-square h-full w-full', className)}
+    className={cn('aspect-square', className)}
     {...props}
   />
 ))
@@ -35,21 +33,20 @@ AvatarImage.displayName = AvatarPrimitive.Image.displayName
 
 const AvatarFallback = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Fallback>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback> & AvatarProps
 >(({ className, ...props }, ref) => (
   <AvatarPrimitive.Fallback
+    asChild
     ref={ref}
-    className={cn(
-      'flex h-full w-full items-center justify-center rounded-full bg-muted',
-      className
-    )}
+    className={cn('h-full w-full', className)}
     {...props}
   >
     <BoringAvatar
-      name={props.children as string}
+      name={(props.children as string) || props.name}
       square
-      variant="beam"
-      colors={['641ae6', 'd6fff6', '4dccbd', 'ff8484', 'ffdde2']}
+      size={props?.size}
+      variant={props?.variant ?? 'beam'}
+      colors={['#641ae6', '#d6fff6', '#4dccbd', '#ff8484', '#ffdde2']}
     />
   </AvatarPrimitive.Fallback>
 ))

@@ -3,9 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 import { routes } from '@/lib/routes'
 
-type Props = {}
-
-const SpeedDial = (props: Props) => {
+const SpeedDial = () => {
   return (
     <div className=" fixed bottom-6 right-6">
       <div className="dropdown-end dropdown dropdown-top">

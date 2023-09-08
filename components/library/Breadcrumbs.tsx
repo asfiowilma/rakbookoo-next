@@ -18,12 +18,12 @@ const Breadcrumbs = ({ book, shelf }: { book?: Book; shelf?: Shelf }) => {
           </Link>
         </li>
         {pathname === routes.books && <li>Buku Saya</li>}
-        {book?.shelfId && (
+        {shelf && (
           <li>
-            <Link href={routes.shelf(book.shelfId)}>{shelf?.name}</Link>
+            <Link href={routes.shelf(shelf?.id)}>{shelf?.name}</Link>
           </li>
         )}
-        {book?.id && (
+        {book && (
           <li>
             <Link href={routes.book(book.id)}>{book.title}</Link>
           </li>
