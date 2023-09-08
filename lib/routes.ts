@@ -12,3 +12,7 @@ export const routes = {
   shelf: (shelfId?: number) => `/library/shelves/${shelfId}`,
   editShelf: (shelfId?: number) => `/library/shelves/${shelfId}/edit`,
 }
+
+export const api = {
+  getBooks: '/api/library/books',
+}

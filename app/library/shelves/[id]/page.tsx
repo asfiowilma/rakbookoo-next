@@ -1,18 +1,19 @@
-import BooksView, { BookWithAuthor } from '@/components/library/Books/BooksView'
+import BooksView from '@/components/library/Books/BooksView'
 
 import { BiPlus } from 'react-icons/bi'
 import { LibraryView } from '@/lib/enums'
 import LibraryViewSelect from '@/components/library/LibraryViewSelect'
 import Link from 'next/link'
 import React from 'react'
-import getUserId from '@/services/getUserId'
+import { getUserId } from '@/services/getUserId'
 import { routes } from '@/lib/routes'
 import { urlBuilder } from '@/lib/utils'
 import Breadcrumbs from '@/components/library/Breadcrumbs'
 import { type Shelf } from '@prisma/client'
 import { redirect } from 'next/navigation'
 import BooksViewOptions from '@/components/library/Books/BooksViewOptions'
-
+import type { BookWithAuthor } from '@/types/books'
+import prisma from '@/services/prisma'
 export const dynamic = 'force-dynamic'
 
 const ShelfPage = async ({ params, searchParams }: PageProps) => {

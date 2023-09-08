@@ -1,6 +1,6 @@
 'use client'
 
-import { BookWithAuthor, BooksViewProps } from './BooksView'
+import type { BookWithAuthor, BooksViewProps } from '@/types/books'
 import {
   Table,
   TableBody,
@@ -57,7 +57,7 @@ const columns = [
   }),
 ]
 
-const BookTable = ({ books }: Pick<BooksViewProps, 'books'>) => {
+const BookTable = ({ books }: BooksViewProps) => {
   const table = useReactTable({
     data: books,
     columns,

@@ -7,12 +7,7 @@ interface LibraryViewState {
   setView: (to: LibraryView) => void
 }
 
-export const useLibraryView = create<LibraryViewState>()(
-  persist(
-    (set, _) => ({
-      view: LibraryView.thumbnail,
-      setView: (to: LibraryView) => set({ view: to }),
-    }),
-    { name: 'library-view' }
-  )
-)
+export const useLibraryView = create<LibraryViewState>()((set, _) => ({
+  view: LibraryView.thumbnail,
+  setView: (to: LibraryView) => set({ view: to }),
+}))

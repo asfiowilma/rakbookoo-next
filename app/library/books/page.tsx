@@ -1,6 +1,6 @@
-import BooksView, { BookWithAuthor } from '@/components/library/Books/BooksView'
-
 import { BiPlus } from 'react-icons/bi'
+import type { BookWithAuthor } from '@/types/books'
+import BooksView from '@/components/library/Books/BooksView'
 import BooksViewOptions from '@/components/library/Books/BooksViewOptions'
 import Breadcrumbs from '@/components/library/Breadcrumbs'
 import { LibraryView } from '@/lib/enums'
@@ -8,7 +8,8 @@ import LibraryViewSelect from '@/components/library/LibraryViewSelect'
 import LibraryViewToggle from '@/components/library/LibraryViewToggle'
 import Link from 'next/link'
 import React from 'react'
-import getUserId from '@/services/getUserId'
+import { getUserId } from '@/services/getUserId'
+import prisma from '@/services/prisma'
 import { routes } from '@/lib/routes'
 
 export const dynamic = 'force-dynamic'
@@ -47,9 +48,9 @@ const BooksPage = async ({ searchParams }: PageProps) => {
           Buku Baru
         </Link>
       </div>
-      <div className="w-full flex justify-end my-4">
+      <div className="w-full flex justify-end my-4 gap-1">
         <LibraryViewSelect />
-        <BooksViewOptions />
+        {view !== LibraryView.thumbnail && <BooksViewOptions />}
       </div>
       <BooksView view={view} books={books as BookWithAuthor[]} />
     </>

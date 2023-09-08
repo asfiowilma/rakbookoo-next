@@ -2,22 +2,27 @@
 
 import React, { useEffect } from 'react'
 import { cn, urlBuilder } from '@/lib/utils'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 import { Button } from '../ui/button'
+import { LibraryView } from '@/lib/enums'
 import { useLibraryView } from '@/lib/hooks/useLibraryView'
+import { useQueryClient } from '@tanstack/react-query'
 import { views as viewButtons } from '@/lib/constants/libraryViews'
 
 const LibraryViewSelect = () => {
   const router = useRouter()
   const pathname = usePathname()
+  const params = useSearchParams()
   const { view, setView } = useLibraryView()
+  const queryClient = useQueryClient()
 
   useEffect(() => {
-    if (view) {
+    if (view && (params.get('view') as LibraryView) !== view) {
       router.replace(urlBuilder(pathname, { view }))
+      queryClient.invalidateQueries({ queryKey: ['books'] })
     }
-  }, [view])
+  }, [view, params])
 
   return (
     <div className="join">

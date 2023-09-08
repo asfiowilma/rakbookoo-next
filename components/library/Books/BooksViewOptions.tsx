@@ -8,9 +8,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { FaEllipsisH, FaEllipsisV } from 'react-icons/fa'
 
 import { Button } from '@/components/ui/button'
-import { FaEllipsisV } from 'react-icons/fa'
 import React from 'react'
 import { useBooksViewOptionsStore } from '@/lib/hooks/useBooksViewOption'
 
@@ -41,7 +41,7 @@ const BooksViewOptions = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button size="sm" shape="square" variant="ghost">
-          <FaEllipsisV className="w-5 h-5" />{' '}
+          <FaEllipsisV className="w-5 h-5" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">

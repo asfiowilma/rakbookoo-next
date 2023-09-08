@@ -9,7 +9,7 @@ const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <RakQueryClientProvider>
       {children}
-      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+      <ReactQueryDevtools initialIsOpen={false} />
       <Toaster toastOptions={{ position: 'bottom-center' }} />
     </RakQueryClientProvider>
   )

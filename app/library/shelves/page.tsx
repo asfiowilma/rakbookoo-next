@@ -4,7 +4,7 @@ import LibraryViewToggle from '@/components/library/LibraryViewToggle'
 import Link from 'next/link'
 import React from 'react'
 import ShelfComponent from '@/components/library/Shelves/Shelf'
-import getUserId from '@/services/getUserId'
+import { getUserId } from '@/services/getUserId'
 import prisma from '@/services/prisma'
 import { routes } from '@/lib/routes'
 
