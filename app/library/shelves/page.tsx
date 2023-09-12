@@ -12,23 +12,21 @@ export const dynamic = 'force-dynamic'
 
 const ShelvesPage = async () => {
   const sessionData = await getUserId()
-  const shelves = await prisma.shelf
-    .findMany({
-      select: {
-        id: true,
-        name: true,
-        Book: {
-          take: 4,
-          select: {
-            id: true,
-            coverImage: true,
-            title: true,
-          },
+  const shelves = await prisma.shelf.findMany({
+    select: {
+      id: true,
+      name: true,
+      Book: {
+        take: 4,
+        select: {
+          id: true,
+          coverImage: true,
+          title: true,
         },
       },
-      where: { userUid: sessionData?.session?.user.id },
-    })
-    .catch((res) => console.error(res))
+    },
+    where: { userUid: sessionData?.session?.user.id },
+  })
 
   return (
     <>

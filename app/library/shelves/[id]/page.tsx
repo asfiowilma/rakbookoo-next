@@ -22,26 +22,24 @@ const ShelfPage = async ({ params, searchParams }: PageProps) => {
   const id = Number(params?.['id'] as string)
   const view = searchParams?.['view'] as LibraryView
 
-  const shelf = await prisma.shelf
-    .findFirst({
-      where: {
-        userUid: sessionData?.session?.user.id,
-        id: id,
-      },
-      include: {
-        Book: {
-          include: {
-            Author: {
-              take: view === LibraryView.thumbnail ? 1 : undefined,
-              select: {
-                name: true,
-              },
+  const shelf = await prisma.shelf.findFirst({
+    where: {
+      userUid: sessionData?.session?.user.id,
+      id: id,
+    },
+    include: {
+      Book: {
+        include: {
+          Author: {
+            take: view === LibraryView.thumbnail ? 1 : undefined,
+            select: {
+              name: true,
             },
           },
         },
       },
-    })
-    .catch((res) => console.error(res))
+    },
+  })
 
   if (!shelf) redirect('/not-found')
 

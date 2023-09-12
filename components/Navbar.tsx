@@ -15,11 +15,9 @@ const Navbar = async () => {
     redirect('/auth/login')
   }
 
-  const user = await prisma.user
-    .findUnique({
-      where: { uid: sessionData.session?.user.id },
-    })
-    .catch((res) => console.error(res))
+  const user = await prisma.user.findUnique({
+    where: { uid: sessionData.session?.user.id },
+  })
 
   return (
     <div className="navbar navbar-end w-full px-6">
