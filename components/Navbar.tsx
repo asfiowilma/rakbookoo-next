@@ -18,7 +18,6 @@ const Navbar = async () => {
   const user = await prisma.user
     .findUnique({
       where: { uid: sessionData.session?.user.id },
-      select: { name: true, avatar_url: true },
     })
     .catch((res) => console.error(res))
 
