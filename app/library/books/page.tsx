@@ -15,7 +15,7 @@ import { routes } from '@/lib/routes'
 export const dynamic = 'force-dynamic'
 
 const BooksPage = async ({ searchParams }: PageProps) => {
-  const { data: sessionData } = await getUserId()
+  const sessionData = await getUserId()
   const view = searchParams?.['view'] as LibraryView
 
   const books = await prisma.book
@@ -30,7 +30,7 @@ const BooksPage = async ({ searchParams }: PageProps) => {
       },
       where: {
         Shelf: {
-          userUid: sessionData.session?.user.id,
+          userUid: sessionData?.session?.user.id,
         },
       },
     })

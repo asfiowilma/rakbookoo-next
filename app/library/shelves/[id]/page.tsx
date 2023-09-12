@@ -14,17 +14,18 @@ import { redirect } from 'next/navigation'
 import BooksViewOptions from '@/components/library/Books/BooksViewOptions'
 import type { BookWithAuthor } from '@/types/books'
 import prisma from '@/services/prisma'
+
 export const dynamic = 'force-dynamic'
 
 const ShelfPage = async ({ params, searchParams }: PageProps) => {
-  const { data: sessionData } = await getUserId()
+  const sessionData = await getUserId()
   const id = Number(params?.['id'] as string)
   const view = searchParams?.['view'] as LibraryView
 
   const shelf = await prisma.shelf
     .findFirst({
       where: {
-        userUid: sessionData.session?.user.id,
+        userUid: sessionData?.session?.user.id,
         id: id,
       },
       include: {

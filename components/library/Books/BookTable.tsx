@@ -32,7 +32,7 @@ const columns = [
           height={8 * 10}
           src={props.getValue() ?? ''}
           alt="Cover"
-          className="flex-none aspect-[5/8] w-8 rounded-md bg-base-300 object-cover mx-auto"
+          className="flex-none aspect-[5/8] w-8 h-auto rounded-md bg-base-300 object-cover mx-auto"
         />
       ) : (
         <div className="flex flex-none aspect-[5/8] w-8 flex-col items-center justify-center rounded-md bg-neutral text-center text-neutral-content shadow mx-auto">

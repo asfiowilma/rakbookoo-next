@@ -1,7 +1,7 @@
 'use client'
 
 import { BiBookHeart } from 'react-icons/bi'
-import { BookViewProps } from './BooksView'
+import type { BookViewProps } from '@/types/books'
 import Image from 'next/image'
 import React from 'react'
 import { truncate } from '@/lib/utils'
@@ -28,7 +28,7 @@ const BookThumbnail = ({ book }: BookViewProps) => {
           width={120}
           src={book.coverImage}
           alt={book.title}
-          className="aspect-[5/8] w-full rounded-lg bg-base-300 object-cover"
+          className="aspect-[5/8] w-full h-auto rounded-lg bg-base-300 object-cover"
         />
       ) : (
         <div className="flex aspect-[5/8] w-full flex-col items-center justify-center rounded-md bg-neutral text-center text-neutral-content shadow">

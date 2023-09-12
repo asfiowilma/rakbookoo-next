@@ -10,8 +10,8 @@ import { redirect } from 'next/navigation'
 import { routes } from '@/lib/routes'
 
 const Navbar = async () => {
-  const { data: sessionData, error } = await getUserId()
-  if (error) {
+  const sessionData = await getUserId()
+  if (!sessionData) {
     redirect('/auth/login')
   }
 

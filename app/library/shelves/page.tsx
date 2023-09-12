@@ -8,8 +8,10 @@ import { getUserId } from '@/services/getUserId'
 import prisma from '@/services/prisma'
 import { routes } from '@/lib/routes'
 
+export const dynamic = 'force-dynamic'
+
 const ShelvesPage = async () => {
-  const { data: sessionData } = await getUserId()
+  const sessionData = await getUserId()
   const shelves = await prisma.shelf
     .findMany({
       select: {
@@ -24,7 +26,7 @@ const ShelvesPage = async () => {
           },
         },
       },
-      where: { userUid: sessionData.session?.user.id },
+      where: { userUid: sessionData?.session?.user.id },
     })
     .catch((res) => console.error(res))
 

@@ -13,8 +13,8 @@ const BookList = ({ books: initBooks }: BooksViewProps) => {
     <div className="w-full grid grid-cols-1 gap-y-2">
       {Array.from({ length: 5 }).map((_, i) => (
         <div key={`sk-l-${i}`} className="flex items-center gap-2">
-          <Skeleton className="aspect-[5/8] w-8" />
-          <Skeleton className="w-30 h-4"></Skeleton>
+          <Skeleton className="aspect-[5/8] w-8 h-auto" />
+          <Skeleton className="w-full max-w-lg h-12"></Skeleton>
         </div>
       ))}
     </div>

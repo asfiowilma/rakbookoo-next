@@ -13,6 +13,7 @@ import { FaEllipsisH, FaEllipsisV } from 'react-icons/fa'
 import { Button } from '@/components/ui/button'
 import React from 'react'
 import { useBooksViewOptionsStore } from '@/lib/hooks/useBooksViewOption'
+import { useQueryClient } from '@tanstack/react-query'
 
 const BooksViewOptions = () => {
   const {
@@ -25,6 +26,7 @@ const BooksViewOptions = () => {
     showTags,
     setShowTags,
   } = useBooksViewOptionsStore()
+  const queryClient = useQueryClient()
 
   const options = {
     author: { label: 'Penulis', checked: showAuthor, onChange: setShowAuthor },
@@ -35,6 +37,14 @@ const BooksViewOptions = () => {
     },
     rating: { label: 'Rating', checked: showRating, onChange: setShowRating },
     tags: { label: 'Tags', checked: showTags, onChange: setShowTags },
+  }
+
+  const onCheckedChange = (
+    checked: boolean,
+    onChange: (to: boolean) => void
+  ) => {
+    onChange(checked)
+    queryClient.refetchQueries({ queryKey: ['books'] })
   }
 
   return (

@@ -3,6 +3,8 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { redirect } from 'next/navigation'
 import { routes } from '@/lib/routes'
 
+export const dynamic = 'force-dynamic'
+
 const LibraryPage = async () => {
   const supabase = createServerComponentClient({ cookies })
   const {

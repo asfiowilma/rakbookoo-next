@@ -3,6 +3,9 @@ const nextConfig = {
   images: {
     domains: ['placehold.co', 'storage.googleapis.com'],
   },
+  experimental: {
+    serverActions: true,
+  },
 }
 
 nextConfig.webpack = (config, context) => {
