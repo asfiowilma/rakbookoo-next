@@ -2,6 +2,12 @@
 const nextConfig = {
   images: {
     domains: ['placehold.co', 'storage.googleapis.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.tulalyth.com',
+      },
+    ],
   },
   experimental: {
     serverActions: true,
