@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Author {
+  id   Int    @id @default(autoincrement())
+  name String
+  Book Book[] @relation("AuthorToBook")
+}
+
+model Book {
+  id         Int      @id @default(autoincrement())
+  isbn       String?
+  title      String
+  coverImage String?
+  blurb      String?
+  rating     Int
+  shelfId    Int
+  Shelf      Shelf    @relation(fields: [shelfId], references: [id])
+  Note       Note[]
+  Author     Author[] @relation("AuthorToBook")
+  Tag        Tag[]    @relation("BookToTag")
+}
+
+model Note {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  content   String
+  bookId    Int
+  Book      Book     @relation(fields: [bookId], references: [id])
+}
+
+model Shelf {
+  id      Int    @id @default(autoincrement())
+  name    String
+  userUid String @db.Uuid
+  Book    Book[]
+  User    User   @relation(fields: [userUid], references: [uid])
+}
+
+model Tag {
+  id   Int    @id @default(autoincrement())
+  name String
+  Book Book[] @relation("BookToTag")
+}
+
+model User {
+  uid        String  @id @unique @db.Uuid
+  name       String?
+  avatar_url String?
+  Shelf      Shelf[]
+}
