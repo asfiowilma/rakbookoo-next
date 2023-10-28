@@ -14,7 +14,11 @@ const SignOutButton = () => {
     router.push('/auth/login')
   }
 
-  return <Button onClick={handleSignOut}>Sign out</Button>
+  return (
+    <Button variant="ghost" onClick={handleSignOut}>
+      Sign out
+    </Button>
+  )
 }
 
 export default SignOutButton

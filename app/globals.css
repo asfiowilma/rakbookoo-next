@@ -73,6 +73,14 @@
   .text-h2 {
     @apply text-3xl font-bold leading-snug;
   }
+
+  .text-h3 {
+    @apply text-2xl font-bold leading-snug;
+  }
+
+  .text-h4 {
+    @apply text-xl font-bold leading-snug;
+  }
 }
 
 @layer utilities {

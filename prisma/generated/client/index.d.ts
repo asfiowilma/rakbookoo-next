@@ -1299,15 +1299,15 @@ export namespace Prisma {
    */
 
   export type BookCountOutputType = {
-    Note: number
-    Author: number
-    Tag: number
+    notes: number
+    authors: number
+    tags: number
   }
 
   export type BookCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    Note?: boolean | BookCountOutputTypeCountNoteArgs
-    Author?: boolean | BookCountOutputTypeCountAuthorArgs
-    Tag?: boolean | BookCountOutputTypeCountTagArgs
+    notes?: boolean | BookCountOutputTypeCountNotesArgs
+    authors?: boolean | BookCountOutputTypeCountAuthorsArgs
+    tags?: boolean | BookCountOutputTypeCountTagsArgs
   }
 
   // Custom InputTypes
@@ -1326,7 +1326,7 @@ export namespace Prisma {
   /**
    * BookCountOutputType without action
    */
-  export type BookCountOutputTypeCountNoteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type BookCountOutputTypeCountNotesArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: NoteWhereInput
   }
 
@@ -1334,7 +1334,7 @@ export namespace Prisma {
   /**
    * BookCountOutputType without action
    */
-  export type BookCountOutputTypeCountAuthorArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type BookCountOutputTypeCountAuthorsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: AuthorWhereInput
   }
 
@@ -1342,7 +1342,7 @@ export namespace Prisma {
   /**
    * BookCountOutputType without action
    */
-  export type BookCountOutputTypeCountTagArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type BookCountOutputTypeCountTagsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: TagWhereInput
   }
 
@@ -1353,11 +1353,11 @@ export namespace Prisma {
    */
 
   export type ShelfCountOutputType = {
-    Book: number
+    books: number
   }
 
   export type ShelfCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    Book?: boolean | ShelfCountOutputTypeCountBookArgs
+    books?: boolean | ShelfCountOutputTypeCountBooksArgs
   }
 
   // Custom InputTypes
@@ -1376,7 +1376,7 @@ export namespace Prisma {
   /**
    * ShelfCountOutputType without action
    */
-  export type ShelfCountOutputTypeCountBookArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ShelfCountOutputTypeCountBooksArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: BookWhereInput
   }
 
@@ -1387,11 +1387,11 @@ export namespace Prisma {
    */
 
   export type TagCountOutputType = {
-    Book: number
+    book: number
   }
 
   export type TagCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    Book?: boolean | TagCountOutputTypeCountBookArgs
+    book?: boolean | TagCountOutputTypeCountBookArgs
   }
 
   // Custom InputTypes
@@ -1421,11 +1421,13 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    Shelf: number
+    shelves: number
+    books: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    Shelf?: boolean | UserCountOutputTypeCountShelfArgs
+    shelves?: boolean | UserCountOutputTypeCountShelvesArgs
+    books?: boolean | UserCountOutputTypeCountBooksArgs
   }
 
   // Custom InputTypes
@@ -1444,8 +1446,16 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountShelfArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountShelvesArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: ShelfWhereInput
+  }
+
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountBooksArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: BookWhereInput
   }
 
 
@@ -2409,35 +2419,35 @@ export namespace Prisma {
   }
 
   export type BookAvgAggregateOutputType = {
-    id: number | null
     rating: number | null
     shelfId: number | null
   }
 
   export type BookSumAggregateOutputType = {
-    id: number | null
     rating: number | null
     shelfId: number | null
   }
 
   export type BookMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     isbn: string | null
     title: string | null
     coverImage: string | null
     blurb: string | null
     rating: number | null
     shelfId: number | null
+    ownerId: string | null
   }
 
   export type BookMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     isbn: string | null
     title: string | null
     coverImage: string | null
     blurb: string | null
     rating: number | null
     shelfId: number | null
+    ownerId: string | null
   }
 
   export type BookCountAggregateOutputType = {
@@ -2448,18 +2458,17 @@ export namespace Prisma {
     blurb: number
     rating: number
     shelfId: number
+    ownerId: number
     _all: number
   }
 
 
   export type BookAvgAggregateInputType = {
-    id?: true
     rating?: true
     shelfId?: true
   }
 
   export type BookSumAggregateInputType = {
-    id?: true
     rating?: true
     shelfId?: true
   }
@@ -2472,6 +2481,7 @@ export namespace Prisma {
     blurb?: true
     rating?: true
     shelfId?: true
+    ownerId?: true
   }
 
   export type BookMaxAggregateInputType = {
@@ -2482,6 +2492,7 @@ export namespace Prisma {
     blurb?: true
     rating?: true
     shelfId?: true
+    ownerId?: true
   }
 
   export type BookCountAggregateInputType = {
@@ -2492,6 +2503,7 @@ export namespace Prisma {
     blurb?: true
     rating?: true
     shelfId?: true
+    ownerId?: true
     _all?: true
   }
 
@@ -2582,13 +2594,14 @@ export namespace Prisma {
   }
 
   export type BookGroupByOutputType = {
-    id: number
+    id: string
     isbn: string | null
     title: string
     coverImage: string | null
     blurb: string | null
     rating: number
     shelfId: number
+    ownerId: string
     _count: BookCountAggregateOutputType | null
     _avg: BookAvgAggregateOutputType | null
     _sum: BookSumAggregateOutputType | null
@@ -2618,10 +2631,12 @@ export namespace Prisma {
     blurb?: boolean
     rating?: boolean
     shelfId?: boolean
-    Shelf?: boolean | ShelfDefaultArgs<ExtArgs>
-    Note?: boolean | Book$NoteArgs<ExtArgs>
-    Author?: boolean | Book$AuthorArgs<ExtArgs>
-    Tag?: boolean | Book$TagArgs<ExtArgs>
+    ownerId?: boolean
+    shelf?: boolean | ShelfDefaultArgs<ExtArgs>
+    notes?: boolean | Book$notesArgs<ExtArgs>
+    authors?: boolean | Book$authorsArgs<ExtArgs>
+    tags?: boolean | Book$tagsArgs<ExtArgs>
+    owner?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | BookCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["book"]>
 
@@ -2633,13 +2648,15 @@ export namespace Prisma {
     blurb?: boolean
     rating?: boolean
     shelfId?: boolean
+    ownerId?: boolean
   }
 
   export type BookInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    Shelf?: boolean | ShelfDefaultArgs<ExtArgs>
-    Note?: boolean | Book$NoteArgs<ExtArgs>
-    Author?: boolean | Book$AuthorArgs<ExtArgs>
-    Tag?: boolean | Book$TagArgs<ExtArgs>
+    shelf?: boolean | ShelfDefaultArgs<ExtArgs>
+    notes?: boolean | Book$notesArgs<ExtArgs>
+    authors?: boolean | Book$authorsArgs<ExtArgs>
+    tags?: boolean | Book$tagsArgs<ExtArgs>
+    owner?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | BookCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -2647,19 +2664,21 @@ export namespace Prisma {
   export type $BookPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     name: "Book"
     objects: {
-      Shelf: Prisma.$ShelfPayload<ExtArgs>
-      Note: Prisma.$NotePayload<ExtArgs>[]
-      Author: Prisma.$AuthorPayload<ExtArgs>[]
-      Tag: Prisma.$TagPayload<ExtArgs>[]
+      shelf: Prisma.$ShelfPayload<ExtArgs>
+      notes: Prisma.$NotePayload<ExtArgs>[]
+      authors: Prisma.$AuthorPayload<ExtArgs>[]
+      tags: Prisma.$TagPayload<ExtArgs>[]
+      owner: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetResult<{
-      id: number
+      id: string
       isbn: string | null
       title: string
       coverImage: string | null
       blurb: string | null
       rating: number
       shelfId: number
+      ownerId: string
     }, ExtArgs["result"]["book"]>
     composites: {}
   }
@@ -3025,13 +3044,15 @@ export namespace Prisma {
   export interface Prisma__BookClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    Shelf<T extends ShelfDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ShelfDefaultArgs<ExtArgs>>): Prisma__ShelfClient<$Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+    shelf<T extends ShelfDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ShelfDefaultArgs<ExtArgs>>): Prisma__ShelfClient<$Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
-    Note<T extends Book$NoteArgs<ExtArgs> = {}>(args?: Subset<T, Book$NoteArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, 'findMany'> | Null>;
+    notes<T extends Book$notesArgs<ExtArgs> = {}>(args?: Subset<T, Book$notesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    Author<T extends Book$AuthorArgs<ExtArgs> = {}>(args?: Subset<T, Book$AuthorArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, 'findMany'> | Null>;
+    authors<T extends Book$authorsArgs<ExtArgs> = {}>(args?: Subset<T, Book$authorsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    Tag<T extends Book$TagArgs<ExtArgs> = {}>(args?: Subset<T, Book$TagArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findMany'> | Null>;
+    tags<T extends Book$tagsArgs<ExtArgs> = {}>(args?: Subset<T, Book$tagsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    owner<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3061,13 +3082,14 @@ export namespace Prisma {
    * Fields of the Book model
    */ 
   interface BookFieldRefs {
-    readonly id: FieldRef<"Book", 'Int'>
+    readonly id: FieldRef<"Book", 'String'>
     readonly isbn: FieldRef<"Book", 'String'>
     readonly title: FieldRef<"Book", 'String'>
     readonly coverImage: FieldRef<"Book", 'String'>
     readonly blurb: FieldRef<"Book", 'String'>
     readonly rating: FieldRef<"Book", 'Int'>
     readonly shelfId: FieldRef<"Book", 'Int'>
+    readonly ownerId: FieldRef<"Book", 'String'>
   }
     
 
@@ -3380,9 +3402,9 @@ export namespace Prisma {
 
 
   /**
-   * Book.Note
+   * Book.notes
    */
-  export type Book$NoteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type Book$notesArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Note
      */
@@ -3401,9 +3423,9 @@ export namespace Prisma {
 
 
   /**
-   * Book.Author
+   * Book.authors
    */
-  export type Book$AuthorArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type Book$authorsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Author
      */
@@ -3422,9 +3444,9 @@ export namespace Prisma {
 
 
   /**
-   * Book.Tag
+   * Book.tags
    */
-  export type Book$TagArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type Book$tagsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Tag
      */
@@ -3472,26 +3494,24 @@ export namespace Prisma {
 
   export type NoteAvgAggregateOutputType = {
     id: number | null
-    bookId: number | null
   }
 
   export type NoteSumAggregateOutputType = {
     id: number | null
-    bookId: number | null
   }
 
   export type NoteMinAggregateOutputType = {
     id: number | null
     createdAt: Date | null
     content: string | null
-    bookId: number | null
+    bookId: string | null
   }
 
   export type NoteMaxAggregateOutputType = {
     id: number | null
     createdAt: Date | null
     content: string | null
-    bookId: number | null
+    bookId: string | null
   }
 
   export type NoteCountAggregateOutputType = {
@@ -3505,12 +3525,10 @@ export namespace Prisma {
 
   export type NoteAvgAggregateInputType = {
     id?: true
-    bookId?: true
   }
 
   export type NoteSumAggregateInputType = {
     id?: true
-    bookId?: true
   }
 
   export type NoteMinAggregateInputType = {
@@ -3625,7 +3643,7 @@ export namespace Prisma {
     id: number
     createdAt: Date
     content: string
-    bookId: number
+    bookId: string
     _count: NoteCountAggregateOutputType | null
     _avg: NoteAvgAggregateOutputType | null
     _sum: NoteSumAggregateOutputType | null
@@ -3652,7 +3670,7 @@ export namespace Prisma {
     createdAt?: boolean
     content?: boolean
     bookId?: boolean
-    Book?: boolean | BookDefaultArgs<ExtArgs>
+    book?: boolean | BookDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["note"]>
 
   export type NoteSelectScalar = {
@@ -3663,20 +3681,20 @@ export namespace Prisma {
   }
 
   export type NoteInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    Book?: boolean | BookDefaultArgs<ExtArgs>
+    book?: boolean | BookDefaultArgs<ExtArgs>
   }
 
 
   export type $NotePayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     name: "Note"
     objects: {
-      Book: Prisma.$BookPayload<ExtArgs>
+      book: Prisma.$BookPayload<ExtArgs>
     }
     scalars: $Extensions.GetResult<{
       id: number
       createdAt: Date
       content: string
-      bookId: number
+      bookId: string
     }, ExtArgs["result"]["note"]>
     composites: {}
   }
@@ -4042,7 +4060,7 @@ export namespace Prisma {
   export interface Prisma__NoteClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    Book<T extends BookDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BookDefaultArgs<ExtArgs>>): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+    book<T extends BookDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BookDefaultArgs<ExtArgs>>): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -4075,7 +4093,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Note", 'Int'>
     readonly createdAt: FieldRef<"Note", 'DateTime'>
     readonly content: FieldRef<"Note", 'String'>
-    readonly bookId: FieldRef<"Note", 'Int'>
+    readonly bookId: FieldRef<"Note", 'String'>
   }
     
 
@@ -4585,8 +4603,8 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     userUid?: boolean
-    Book?: boolean | Shelf$BookArgs<ExtArgs>
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    books?: boolean | Shelf$booksArgs<ExtArgs>
+    owner?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | ShelfCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["shelf"]>
 
@@ -4597,8 +4615,8 @@ export namespace Prisma {
   }
 
   export type ShelfInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    Book?: boolean | Shelf$BookArgs<ExtArgs>
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    books?: boolean | Shelf$booksArgs<ExtArgs>
+    owner?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | ShelfCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -4606,8 +4624,8 @@ export namespace Prisma {
   export type $ShelfPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     name: "Shelf"
     objects: {
-      Book: Prisma.$BookPayload<ExtArgs>[]
-      User: Prisma.$UserPayload<ExtArgs>
+      books: Prisma.$BookPayload<ExtArgs>[]
+      owner: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetResult<{
       id: number
@@ -4978,9 +4996,9 @@ export namespace Prisma {
   export interface Prisma__ShelfClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    Book<T extends Shelf$BookArgs<ExtArgs> = {}>(args?: Subset<T, Shelf$BookArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findMany'> | Null>;
+    books<T extends Shelf$booksArgs<ExtArgs> = {}>(args?: Subset<T, Shelf$booksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    User<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+    owner<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5325,9 +5343,9 @@ export namespace Prisma {
 
 
   /**
-   * Shelf.Book
+   * Shelf.books
    */
-  export type Shelf$BookArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type Shelf$booksArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Book
      */
@@ -5535,7 +5553,7 @@ export namespace Prisma {
   export type TagSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    Book?: boolean | Tag$BookArgs<ExtArgs>
+    book?: boolean | Tag$bookArgs<ExtArgs>
     _count?: boolean | TagCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tag"]>
 
@@ -5545,7 +5563,7 @@ export namespace Prisma {
   }
 
   export type TagInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    Book?: boolean | Tag$BookArgs<ExtArgs>
+    book?: boolean | Tag$bookArgs<ExtArgs>
     _count?: boolean | TagCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -5553,7 +5571,7 @@ export namespace Prisma {
   export type $TagPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     name: "Tag"
     objects: {
-      Book: Prisma.$BookPayload<ExtArgs>[]
+      book: Prisma.$BookPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetResult<{
       id: number
@@ -5923,7 +5941,7 @@ export namespace Prisma {
   export interface Prisma__TagClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    Book<T extends Tag$BookArgs<ExtArgs> = {}>(args?: Subset<T, Tag$BookArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findMany'> | Null>;
+    book<T extends Tag$bookArgs<ExtArgs> = {}>(args?: Subset<T, Tag$bookArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -6267,9 +6285,9 @@ export namespace Prisma {
 
 
   /**
-   * Tag.Book
+   * Tag.book
    */
-  export type Tag$BookArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type Tag$bookArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Book
      */
@@ -6451,7 +6469,8 @@ export namespace Prisma {
     uid?: boolean
     name?: boolean
     avatar_url?: boolean
-    Shelf?: boolean | User$ShelfArgs<ExtArgs>
+    shelves?: boolean | User$shelvesArgs<ExtArgs>
+    books?: boolean | User$booksArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -6462,7 +6481,8 @@ export namespace Prisma {
   }
 
   export type UserInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    Shelf?: boolean | User$ShelfArgs<ExtArgs>
+    shelves?: boolean | User$shelvesArgs<ExtArgs>
+    books?: boolean | User$booksArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -6470,7 +6490,8 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      Shelf: Prisma.$ShelfPayload<ExtArgs>[]
+      shelves: Prisma.$ShelfPayload<ExtArgs>[]
+      books: Prisma.$BookPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetResult<{
       uid: string
@@ -6841,7 +6862,9 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    Shelf<T extends User$ShelfArgs<ExtArgs> = {}>(args?: Subset<T, User$ShelfArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'findMany'> | Null>;
+    shelves<T extends User$shelvesArgs<ExtArgs> = {}>(args?: Subset<T, User$shelvesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    books<T extends User$booksArgs<ExtArgs> = {}>(args?: Subset<T, User$booksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -7186,9 +7209,9 @@ export namespace Prisma {
 
 
   /**
-   * User.Shelf
+   * User.shelves
    */
-  export type User$ShelfArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type User$shelvesArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Shelf
      */
@@ -7203,6 +7226,27 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ShelfScalarFieldEnum | ShelfScalarFieldEnum[]
+  }
+
+
+  /**
+   * User.books
+   */
+  export type User$booksArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: BookInclude<ExtArgs> | null
+    where?: BookWhereInput
+    orderBy?: BookOrderByWithRelationInput | BookOrderByWithRelationInput[]
+    cursor?: BookWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BookScalarFieldEnum | BookScalarFieldEnum[]
   }
 
 
@@ -7251,7 +7295,8 @@ export namespace Prisma {
     coverImage: 'coverImage',
     blurb: 'blurb',
     rating: 'rating',
-    shelfId: 'shelfId'
+    shelfId: 'shelfId',
+    ownerId: 'ownerId'
   };
 
   export type BookScalarFieldEnum = (typeof BookScalarFieldEnum)[keyof typeof BookScalarFieldEnum]
@@ -7427,17 +7472,19 @@ export namespace Prisma {
     AND?: BookWhereInput | BookWhereInput[]
     OR?: BookWhereInput[]
     NOT?: BookWhereInput | BookWhereInput[]
-    id?: IntFilter<"Book"> | number
+    id?: UuidFilter<"Book"> | string
     isbn?: StringNullableFilter<"Book"> | string | null
     title?: StringFilter<"Book"> | string
     coverImage?: StringNullableFilter<"Book"> | string | null
     blurb?: StringNullableFilter<"Book"> | string | null
     rating?: IntFilter<"Book"> | number
     shelfId?: IntFilter<"Book"> | number
-    Shelf?: XOR<ShelfRelationFilter, ShelfWhereInput>
-    Note?: NoteListRelationFilter
-    Author?: AuthorListRelationFilter
-    Tag?: TagListRelationFilter
+    ownerId?: UuidFilter<"Book"> | string
+    shelf?: XOR<ShelfRelationFilter, ShelfWhereInput>
+    notes?: NoteListRelationFilter
+    authors?: AuthorListRelationFilter
+    tags?: TagListRelationFilter
+    owner?: XOR<UserRelationFilter, UserWhereInput>
   }
 
   export type BookOrderByWithRelationInput = {
@@ -7448,14 +7495,16 @@ export namespace Prisma {
     blurb?: SortOrderInput | SortOrder
     rating?: SortOrder
     shelfId?: SortOrder
-    Shelf?: ShelfOrderByWithRelationInput
-    Note?: NoteOrderByRelationAggregateInput
-    Author?: AuthorOrderByRelationAggregateInput
-    Tag?: TagOrderByRelationAggregateInput
+    ownerId?: SortOrder
+    shelf?: ShelfOrderByWithRelationInput
+    notes?: NoteOrderByRelationAggregateInput
+    authors?: AuthorOrderByRelationAggregateInput
+    tags?: TagOrderByRelationAggregateInput
+    owner?: UserOrderByWithRelationInput
   }
 
   export type BookWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     AND?: BookWhereInput | BookWhereInput[]
     OR?: BookWhereInput[]
     NOT?: BookWhereInput | BookWhereInput[]
@@ -7465,11 +7514,13 @@ export namespace Prisma {
     blurb?: StringNullableFilter<"Book"> | string | null
     rating?: IntFilter<"Book"> | number
     shelfId?: IntFilter<"Book"> | number
-    Shelf?: XOR<ShelfRelationFilter, ShelfWhereInput>
-    Note?: NoteListRelationFilter
-    Author?: AuthorListRelationFilter
-    Tag?: TagListRelationFilter
-  }, "id">
+    ownerId?: UuidFilter<"Book"> | string
+    shelf?: XOR<ShelfRelationFilter, ShelfWhereInput>
+    notes?: NoteListRelationFilter
+    authors?: AuthorListRelationFilter
+    tags?: TagListRelationFilter
+    owner?: XOR<UserRelationFilter, UserWhereInput>
+  }, "id" | "id">
 
   export type BookOrderByWithAggregationInput = {
     id?: SortOrder
@@ -7479,6 +7530,7 @@ export namespace Prisma {
     blurb?: SortOrderInput | SortOrder
     rating?: SortOrder
     shelfId?: SortOrder
+    ownerId?: SortOrder
     _count?: BookCountOrderByAggregateInput
     _avg?: BookAvgOrderByAggregateInput
     _max?: BookMaxOrderByAggregateInput
@@ -7490,13 +7542,14 @@ export namespace Prisma {
     AND?: BookScalarWhereWithAggregatesInput | BookScalarWhereWithAggregatesInput[]
     OR?: BookScalarWhereWithAggregatesInput[]
     NOT?: BookScalarWhereWithAggregatesInput | BookScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Book"> | number
+    id?: UuidWithAggregatesFilter<"Book"> | string
     isbn?: StringNullableWithAggregatesFilter<"Book"> | string | null
     title?: StringWithAggregatesFilter<"Book"> | string
     coverImage?: StringNullableWithAggregatesFilter<"Book"> | string | null
     blurb?: StringNullableWithAggregatesFilter<"Book"> | string | null
     rating?: IntWithAggregatesFilter<"Book"> | number
     shelfId?: IntWithAggregatesFilter<"Book"> | number
+    ownerId?: UuidWithAggregatesFilter<"Book"> | string
   }
 
   export type NoteWhereInput = {
@@ -7506,8 +7559,8 @@ export namespace Prisma {
     id?: IntFilter<"Note"> | number
     createdAt?: DateTimeFilter<"Note"> | Date | string
     content?: StringFilter<"Note"> | string
-    bookId?: IntFilter<"Note"> | number
-    Book?: XOR<BookRelationFilter, BookWhereInput>
+    bookId?: UuidFilter<"Note"> | string
+    book?: XOR<BookRelationFilter, BookWhereInput>
   }
 
   export type NoteOrderByWithRelationInput = {
@@ -7515,7 +7568,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     content?: SortOrder
     bookId?: SortOrder
-    Book?: BookOrderByWithRelationInput
+    book?: BookOrderByWithRelationInput
   }
 
   export type NoteWhereUniqueInput = Prisma.AtLeast<{
@@ -7525,8 +7578,8 @@ export namespace Prisma {
     NOT?: NoteWhereInput | NoteWhereInput[]
     createdAt?: DateTimeFilter<"Note"> | Date | string
     content?: StringFilter<"Note"> | string
-    bookId?: IntFilter<"Note"> | number
-    Book?: XOR<BookRelationFilter, BookWhereInput>
+    bookId?: UuidFilter<"Note"> | string
+    book?: XOR<BookRelationFilter, BookWhereInput>
   }, "id">
 
   export type NoteOrderByWithAggregationInput = {
@@ -7548,7 +7601,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Note"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Note"> | Date | string
     content?: StringWithAggregatesFilter<"Note"> | string
-    bookId?: IntWithAggregatesFilter<"Note"> | number
+    bookId?: UuidWithAggregatesFilter<"Note"> | string
   }
 
   export type ShelfWhereInput = {
@@ -7558,16 +7611,16 @@ export namespace Prisma {
     id?: IntFilter<"Shelf"> | number
     name?: StringFilter<"Shelf"> | string
     userUid?: UuidFilter<"Shelf"> | string
-    Book?: BookListRelationFilter
-    User?: XOR<UserRelationFilter, UserWhereInput>
+    books?: BookListRelationFilter
+    owner?: XOR<UserRelationFilter, UserWhereInput>
   }
 
   export type ShelfOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     userUid?: SortOrder
-    Book?: BookOrderByRelationAggregateInput
-    User?: UserOrderByWithRelationInput
+    books?: BookOrderByRelationAggregateInput
+    owner?: UserOrderByWithRelationInput
   }
 
   export type ShelfWhereUniqueInput = Prisma.AtLeast<{
@@ -7577,8 +7630,8 @@ export namespace Prisma {
     NOT?: ShelfWhereInput | ShelfWhereInput[]
     name?: StringFilter<"Shelf"> | string
     userUid?: UuidFilter<"Shelf"> | string
-    Book?: BookListRelationFilter
-    User?: XOR<UserRelationFilter, UserWhereInput>
+    books?: BookListRelationFilter
+    owner?: XOR<UserRelationFilter, UserWhereInput>
   }, "id">
 
   export type ShelfOrderByWithAggregationInput = {
@@ -7607,13 +7660,13 @@ export namespace Prisma {
     NOT?: TagWhereInput | TagWhereInput[]
     id?: IntFilter<"Tag"> | number
     name?: StringFilter<"Tag"> | string
-    Book?: BookListRelationFilter
+    book?: BookListRelationFilter
   }
 
   export type TagOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    Book?: BookOrderByRelationAggregateInput
+    book?: BookOrderByRelationAggregateInput
   }
 
   export type TagWhereUniqueInput = Prisma.AtLeast<{
@@ -7622,7 +7675,7 @@ export namespace Prisma {
     OR?: TagWhereInput[]
     NOT?: TagWhereInput | TagWhereInput[]
     name?: StringFilter<"Tag"> | string
-    Book?: BookListRelationFilter
+    book?: BookListRelationFilter
   }, "id">
 
   export type TagOrderByWithAggregationInput = {
@@ -7650,14 +7703,16 @@ export namespace Prisma {
     uid?: UuidFilter<"User"> | string
     name?: StringNullableFilter<"User"> | string | null
     avatar_url?: StringNullableFilter<"User"> | string | null
-    Shelf?: ShelfListRelationFilter
+    shelves?: ShelfListRelationFilter
+    books?: BookListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
     uid?: SortOrder
     name?: SortOrderInput | SortOrder
     avatar_url?: SortOrderInput | SortOrder
-    Shelf?: ShelfOrderByRelationAggregateInput
+    shelves?: ShelfOrderByRelationAggregateInput
+    books?: BookOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -7667,7 +7722,8 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringNullableFilter<"User"> | string | null
     avatar_url?: StringNullableFilter<"User"> | string | null
-    Shelf?: ShelfListRelationFilter
+    shelves?: ShelfListRelationFilter
+    books?: BookListRelationFilter
   }, "uid" | "uid">
 
   export type UserOrderByWithAggregationInput = {
@@ -7690,24 +7746,24 @@ export namespace Prisma {
 
   export type AuthorCreateInput = {
     name: string
-    Book?: BookCreateNestedManyWithoutAuthorInput
+    Book?: BookCreateNestedManyWithoutAuthorsInput
   }
 
   export type AuthorUncheckedCreateInput = {
     id?: number
     name: string
-    Book?: BookUncheckedCreateNestedManyWithoutAuthorInput
+    Book?: BookUncheckedCreateNestedManyWithoutAuthorsInput
   }
 
   export type AuthorUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    Book?: BookUpdateManyWithoutAuthorNestedInput
+    Book?: BookUpdateManyWithoutAuthorsNestedInput
   }
 
   export type AuthorUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    Book?: BookUncheckedUpdateManyWithoutAuthorNestedInput
+    Book?: BookUncheckedUpdateManyWithoutAuthorsNestedInput
   }
 
   export type AuthorCreateManyInput = {
@@ -7725,66 +7781,74 @@ export namespace Prisma {
   }
 
   export type BookCreateInput = {
+    id?: string
     isbn?: string | null
     title: string
     coverImage?: string | null
     blurb?: string | null
     rating: number
-    Shelf: ShelfCreateNestedOneWithoutBookInput
-    Note?: NoteCreateNestedManyWithoutBookInput
-    Author?: AuthorCreateNestedManyWithoutBookInput
-    Tag?: TagCreateNestedManyWithoutBookInput
+    shelf: ShelfCreateNestedOneWithoutBooksInput
+    notes?: NoteCreateNestedManyWithoutBookInput
+    authors?: AuthorCreateNestedManyWithoutBookInput
+    tags?: TagCreateNestedManyWithoutBookInput
+    owner: UserCreateNestedOneWithoutBooksInput
   }
 
   export type BookUncheckedCreateInput = {
-    id?: number
+    id?: string
     isbn?: string | null
     title: string
     coverImage?: string | null
     blurb?: string | null
     rating: number
     shelfId: number
-    Note?: NoteUncheckedCreateNestedManyWithoutBookInput
-    Author?: AuthorUncheckedCreateNestedManyWithoutBookInput
-    Tag?: TagUncheckedCreateNestedManyWithoutBookInput
+    ownerId: string
+    notes?: NoteUncheckedCreateNestedManyWithoutBookInput
+    authors?: AuthorUncheckedCreateNestedManyWithoutBookInput
+    tags?: TagUncheckedCreateNestedManyWithoutBookInput
   }
 
   export type BookUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     blurb?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
-    Shelf?: ShelfUpdateOneRequiredWithoutBookNestedInput
-    Note?: NoteUpdateManyWithoutBookNestedInput
-    Author?: AuthorUpdateManyWithoutBookNestedInput
-    Tag?: TagUpdateManyWithoutBookNestedInput
+    shelf?: ShelfUpdateOneRequiredWithoutBooksNestedInput
+    notes?: NoteUpdateManyWithoutBookNestedInput
+    authors?: AuthorUpdateManyWithoutBookNestedInput
+    tags?: TagUpdateManyWithoutBookNestedInput
+    owner?: UserUpdateOneRequiredWithoutBooksNestedInput
   }
 
   export type BookUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     blurb?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     shelfId?: IntFieldUpdateOperationsInput | number
-    Note?: NoteUncheckedUpdateManyWithoutBookNestedInput
-    Author?: AuthorUncheckedUpdateManyWithoutBookNestedInput
-    Tag?: TagUncheckedUpdateManyWithoutBookNestedInput
+    ownerId?: StringFieldUpdateOperationsInput | string
+    notes?: NoteUncheckedUpdateManyWithoutBookNestedInput
+    authors?: AuthorUncheckedUpdateManyWithoutBookNestedInput
+    tags?: TagUncheckedUpdateManyWithoutBookNestedInput
   }
 
   export type BookCreateManyInput = {
-    id?: number
+    id?: string
     isbn?: string | null
     title: string
     coverImage?: string | null
     blurb?: string | null
     rating: number
     shelfId: number
+    ownerId: string
   }
 
   export type BookUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     coverImage?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7793,46 +7857,47 @@ export namespace Prisma {
   }
 
   export type BookUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     blurb?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     shelfId?: IntFieldUpdateOperationsInput | number
+    ownerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type NoteCreateInput = {
     createdAt?: Date | string
     content: string
-    Book: BookCreateNestedOneWithoutNoteInput
+    book: BookCreateNestedOneWithoutNotesInput
   }
 
   export type NoteUncheckedCreateInput = {
     id?: number
     createdAt?: Date | string
     content: string
-    bookId: number
+    bookId: string
   }
 
   export type NoteUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     content?: StringFieldUpdateOperationsInput | string
-    Book?: BookUpdateOneRequiredWithoutNoteNestedInput
+    book?: BookUpdateOneRequiredWithoutNotesNestedInput
   }
 
   export type NoteUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     content?: StringFieldUpdateOperationsInput | string
-    bookId?: IntFieldUpdateOperationsInput | number
+    bookId?: StringFieldUpdateOperationsInput | string
   }
 
   export type NoteCreateManyInput = {
     id?: number
     createdAt?: Date | string
     content: string
-    bookId: number
+    bookId: string
   }
 
   export type NoteUpdateManyMutationInput = {
@@ -7844,33 +7909,33 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     content?: StringFieldUpdateOperationsInput | string
-    bookId?: IntFieldUpdateOperationsInput | number
+    bookId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ShelfCreateInput = {
     name: string
-    Book?: BookCreateNestedManyWithoutShelfInput
-    User: UserCreateNestedOneWithoutShelfInput
+    books?: BookCreateNestedManyWithoutShelfInput
+    owner: UserCreateNestedOneWithoutShelvesInput
   }
 
   export type ShelfUncheckedCreateInput = {
     id?: number
     name: string
     userUid: string
-    Book?: BookUncheckedCreateNestedManyWithoutShelfInput
+    books?: BookUncheckedCreateNestedManyWithoutShelfInput
   }
 
   export type ShelfUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    Book?: BookUpdateManyWithoutShelfNestedInput
-    User?: UserUpdateOneRequiredWithoutShelfNestedInput
+    books?: BookUpdateManyWithoutShelfNestedInput
+    owner?: UserUpdateOneRequiredWithoutShelvesNestedInput
   }
 
   export type ShelfUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     userUid?: StringFieldUpdateOperationsInput | string
-    Book?: BookUncheckedUpdateManyWithoutShelfNestedInput
+    books?: BookUncheckedUpdateManyWithoutShelfNestedInput
   }
 
   export type ShelfCreateManyInput = {
@@ -7891,24 +7956,24 @@ export namespace Prisma {
 
   export type TagCreateInput = {
     name: string
-    Book?: BookCreateNestedManyWithoutTagInput
+    book?: BookCreateNestedManyWithoutTagsInput
   }
 
   export type TagUncheckedCreateInput = {
     id?: number
     name: string
-    Book?: BookUncheckedCreateNestedManyWithoutTagInput
+    book?: BookUncheckedCreateNestedManyWithoutTagsInput
   }
 
   export type TagUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    Book?: BookUpdateManyWithoutTagNestedInput
+    book?: BookUpdateManyWithoutTagsNestedInput
   }
 
   export type TagUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    Book?: BookUncheckedUpdateManyWithoutTagNestedInput
+    book?: BookUncheckedUpdateManyWithoutTagsNestedInput
   }
 
   export type TagCreateManyInput = {
@@ -7929,28 +7994,32 @@ export namespace Prisma {
     uid: string
     name?: string | null
     avatar_url?: string | null
-    Shelf?: ShelfCreateNestedManyWithoutUserInput
+    shelves?: ShelfCreateNestedManyWithoutOwnerInput
+    books?: BookCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateInput = {
     uid: string
     name?: string | null
     avatar_url?: string | null
-    Shelf?: ShelfUncheckedCreateNestedManyWithoutUserInput
+    shelves?: ShelfUncheckedCreateNestedManyWithoutOwnerInput
+    books?: BookUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUpdateInput = {
     uid?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
-    Shelf?: ShelfUpdateManyWithoutUserNestedInput
+    shelves?: ShelfUpdateManyWithoutOwnerNestedInput
+    books?: BookUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
     uid?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
-    Shelf?: ShelfUncheckedUpdateManyWithoutUserNestedInput
+    shelves?: ShelfUncheckedUpdateManyWithoutOwnerNestedInput
+    books?: BookUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -8064,6 +8133,18 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type UuidFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidFilter<$PrismaModel> | string
+  }
+
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -8102,6 +8183,11 @@ export namespace Prisma {
     none?: TagWhereInput
   }
 
+  export type UserRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -8127,10 +8213,10 @@ export namespace Prisma {
     blurb?: SortOrder
     rating?: SortOrder
     shelfId?: SortOrder
+    ownerId?: SortOrder
   }
 
   export type BookAvgOrderByAggregateInput = {
-    id?: SortOrder
     rating?: SortOrder
     shelfId?: SortOrder
   }
@@ -8143,6 +8229,7 @@ export namespace Prisma {
     blurb?: SortOrder
     rating?: SortOrder
     shelfId?: SortOrder
+    ownerId?: SortOrder
   }
 
   export type BookMinOrderByAggregateInput = {
@@ -8153,12 +8240,27 @@ export namespace Prisma {
     blurb?: SortOrder
     rating?: SortOrder
     shelfId?: SortOrder
+    ownerId?: SortOrder
   }
 
   export type BookSumOrderByAggregateInput = {
-    id?: SortOrder
     rating?: SortOrder
     shelfId?: SortOrder
+  }
+
+  export type UuidWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -8204,7 +8306,6 @@ export namespace Prisma {
 
   export type NoteAvgOrderByAggregateInput = {
     id?: SortOrder
-    bookId?: SortOrder
   }
 
   export type NoteMaxOrderByAggregateInput = {
@@ -8223,7 +8324,6 @@ export namespace Prisma {
 
   export type NoteSumOrderByAggregateInput = {
     id?: SortOrder
-    bookId?: SortOrder
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -8238,23 +8338,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type UuidFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedUuidFilter<$PrismaModel> | string
-  }
-
-  export type UserRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
   }
 
   export type ShelfCountOrderByAggregateInput = {
@@ -8281,21 +8364,6 @@ export namespace Prisma {
 
   export type ShelfSumOrderByAggregateInput = {
     id?: SortOrder
-  }
-
-  export type UuidWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
   }
 
   export type TagCountOrderByAggregateInput = {
@@ -8349,15 +8417,15 @@ export namespace Prisma {
     avatar_url?: SortOrder
   }
 
-  export type BookCreateNestedManyWithoutAuthorInput = {
-    create?: XOR<BookCreateWithoutAuthorInput, BookUncheckedCreateWithoutAuthorInput> | BookCreateWithoutAuthorInput[] | BookUncheckedCreateWithoutAuthorInput[]
-    connectOrCreate?: BookCreateOrConnectWithoutAuthorInput | BookCreateOrConnectWithoutAuthorInput[]
+  export type BookCreateNestedManyWithoutAuthorsInput = {
+    create?: XOR<BookCreateWithoutAuthorsInput, BookUncheckedCreateWithoutAuthorsInput> | BookCreateWithoutAuthorsInput[] | BookUncheckedCreateWithoutAuthorsInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutAuthorsInput | BookCreateOrConnectWithoutAuthorsInput[]
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
   }
 
-  export type BookUncheckedCreateNestedManyWithoutAuthorInput = {
-    create?: XOR<BookCreateWithoutAuthorInput, BookUncheckedCreateWithoutAuthorInput> | BookCreateWithoutAuthorInput[] | BookUncheckedCreateWithoutAuthorInput[]
-    connectOrCreate?: BookCreateOrConnectWithoutAuthorInput | BookCreateOrConnectWithoutAuthorInput[]
+  export type BookUncheckedCreateNestedManyWithoutAuthorsInput = {
+    create?: XOR<BookCreateWithoutAuthorsInput, BookUncheckedCreateWithoutAuthorsInput> | BookCreateWithoutAuthorsInput[] | BookUncheckedCreateWithoutAuthorsInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutAuthorsInput | BookCreateOrConnectWithoutAuthorsInput[]
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
   }
 
@@ -8365,16 +8433,16 @@ export namespace Prisma {
     set?: string
   }
 
-  export type BookUpdateManyWithoutAuthorNestedInput = {
-    create?: XOR<BookCreateWithoutAuthorInput, BookUncheckedCreateWithoutAuthorInput> | BookCreateWithoutAuthorInput[] | BookUncheckedCreateWithoutAuthorInput[]
-    connectOrCreate?: BookCreateOrConnectWithoutAuthorInput | BookCreateOrConnectWithoutAuthorInput[]
-    upsert?: BookUpsertWithWhereUniqueWithoutAuthorInput | BookUpsertWithWhereUniqueWithoutAuthorInput[]
+  export type BookUpdateManyWithoutAuthorsNestedInput = {
+    create?: XOR<BookCreateWithoutAuthorsInput, BookUncheckedCreateWithoutAuthorsInput> | BookCreateWithoutAuthorsInput[] | BookUncheckedCreateWithoutAuthorsInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutAuthorsInput | BookCreateOrConnectWithoutAuthorsInput[]
+    upsert?: BookUpsertWithWhereUniqueWithoutAuthorsInput | BookUpsertWithWhereUniqueWithoutAuthorsInput[]
     set?: BookWhereUniqueInput | BookWhereUniqueInput[]
     disconnect?: BookWhereUniqueInput | BookWhereUniqueInput[]
     delete?: BookWhereUniqueInput | BookWhereUniqueInput[]
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
-    update?: BookUpdateWithWhereUniqueWithoutAuthorInput | BookUpdateWithWhereUniqueWithoutAuthorInput[]
-    updateMany?: BookUpdateManyWithWhereWithoutAuthorInput | BookUpdateManyWithWhereWithoutAuthorInput[]
+    update?: BookUpdateWithWhereUniqueWithoutAuthorsInput | BookUpdateWithWhereUniqueWithoutAuthorsInput[]
+    updateMany?: BookUpdateManyWithWhereWithoutAuthorsInput | BookUpdateManyWithWhereWithoutAuthorsInput[]
     deleteMany?: BookScalarWhereInput | BookScalarWhereInput[]
   }
 
@@ -8386,22 +8454,22 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type BookUncheckedUpdateManyWithoutAuthorNestedInput = {
-    create?: XOR<BookCreateWithoutAuthorInput, BookUncheckedCreateWithoutAuthorInput> | BookCreateWithoutAuthorInput[] | BookUncheckedCreateWithoutAuthorInput[]
-    connectOrCreate?: BookCreateOrConnectWithoutAuthorInput | BookCreateOrConnectWithoutAuthorInput[]
-    upsert?: BookUpsertWithWhereUniqueWithoutAuthorInput | BookUpsertWithWhereUniqueWithoutAuthorInput[]
+  export type BookUncheckedUpdateManyWithoutAuthorsNestedInput = {
+    create?: XOR<BookCreateWithoutAuthorsInput, BookUncheckedCreateWithoutAuthorsInput> | BookCreateWithoutAuthorsInput[] | BookUncheckedCreateWithoutAuthorsInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutAuthorsInput | BookCreateOrConnectWithoutAuthorsInput[]
+    upsert?: BookUpsertWithWhereUniqueWithoutAuthorsInput | BookUpsertWithWhereUniqueWithoutAuthorsInput[]
     set?: BookWhereUniqueInput | BookWhereUniqueInput[]
     disconnect?: BookWhereUniqueInput | BookWhereUniqueInput[]
     delete?: BookWhereUniqueInput | BookWhereUniqueInput[]
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
-    update?: BookUpdateWithWhereUniqueWithoutAuthorInput | BookUpdateWithWhereUniqueWithoutAuthorInput[]
-    updateMany?: BookUpdateManyWithWhereWithoutAuthorInput | BookUpdateManyWithWhereWithoutAuthorInput[]
+    update?: BookUpdateWithWhereUniqueWithoutAuthorsInput | BookUpdateWithWhereUniqueWithoutAuthorsInput[]
+    updateMany?: BookUpdateManyWithWhereWithoutAuthorsInput | BookUpdateManyWithWhereWithoutAuthorsInput[]
     deleteMany?: BookScalarWhereInput | BookScalarWhereInput[]
   }
 
-  export type ShelfCreateNestedOneWithoutBookInput = {
-    create?: XOR<ShelfCreateWithoutBookInput, ShelfUncheckedCreateWithoutBookInput>
-    connectOrCreate?: ShelfCreateOrConnectWithoutBookInput
+  export type ShelfCreateNestedOneWithoutBooksInput = {
+    create?: XOR<ShelfCreateWithoutBooksInput, ShelfUncheckedCreateWithoutBooksInput>
+    connectOrCreate?: ShelfCreateOrConnectWithoutBooksInput
     connect?: ShelfWhereUniqueInput
   }
 
@@ -8422,6 +8490,12 @@ export namespace Prisma {
     create?: XOR<TagCreateWithoutBookInput, TagUncheckedCreateWithoutBookInput> | TagCreateWithoutBookInput[] | TagUncheckedCreateWithoutBookInput[]
     connectOrCreate?: TagCreateOrConnectWithoutBookInput | TagCreateOrConnectWithoutBookInput[]
     connect?: TagWhereUniqueInput | TagWhereUniqueInput[]
+  }
+
+  export type UserCreateNestedOneWithoutBooksInput = {
+    create?: XOR<UserCreateWithoutBooksInput, UserUncheckedCreateWithoutBooksInput>
+    connectOrCreate?: UserCreateOrConnectWithoutBooksInput
+    connect?: UserWhereUniqueInput
   }
 
   export type NoteUncheckedCreateNestedManyWithoutBookInput = {
@@ -8447,12 +8521,12 @@ export namespace Prisma {
     set?: string | null
   }
 
-  export type ShelfUpdateOneRequiredWithoutBookNestedInput = {
-    create?: XOR<ShelfCreateWithoutBookInput, ShelfUncheckedCreateWithoutBookInput>
-    connectOrCreate?: ShelfCreateOrConnectWithoutBookInput
-    upsert?: ShelfUpsertWithoutBookInput
+  export type ShelfUpdateOneRequiredWithoutBooksNestedInput = {
+    create?: XOR<ShelfCreateWithoutBooksInput, ShelfUncheckedCreateWithoutBooksInput>
+    connectOrCreate?: ShelfCreateOrConnectWithoutBooksInput
+    upsert?: ShelfUpsertWithoutBooksInput
     connect?: ShelfWhereUniqueInput
-    update?: XOR<XOR<ShelfUpdateToOneWithWhereWithoutBookInput, ShelfUpdateWithoutBookInput>, ShelfUncheckedUpdateWithoutBookInput>
+    update?: XOR<XOR<ShelfUpdateToOneWithWhereWithoutBooksInput, ShelfUpdateWithoutBooksInput>, ShelfUncheckedUpdateWithoutBooksInput>
   }
 
   export type NoteUpdateManyWithoutBookNestedInput = {
@@ -8495,6 +8569,14 @@ export namespace Prisma {
     deleteMany?: TagScalarWhereInput | TagScalarWhereInput[]
   }
 
+  export type UserUpdateOneRequiredWithoutBooksNestedInput = {
+    create?: XOR<UserCreateWithoutBooksInput, UserUncheckedCreateWithoutBooksInput>
+    connectOrCreate?: UserCreateOrConnectWithoutBooksInput
+    upsert?: UserUpsertWithoutBooksInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBooksInput, UserUpdateWithoutBooksInput>, UserUncheckedUpdateWithoutBooksInput>
+  }
+
   export type NoteUncheckedUpdateManyWithoutBookNestedInput = {
     create?: XOR<NoteCreateWithoutBookInput, NoteUncheckedCreateWithoutBookInput> | NoteCreateWithoutBookInput[] | NoteUncheckedCreateWithoutBookInput[]
     connectOrCreate?: NoteCreateOrConnectWithoutBookInput | NoteCreateOrConnectWithoutBookInput[]
@@ -8535,9 +8617,9 @@ export namespace Prisma {
     deleteMany?: TagScalarWhereInput | TagScalarWhereInput[]
   }
 
-  export type BookCreateNestedOneWithoutNoteInput = {
-    create?: XOR<BookCreateWithoutNoteInput, BookUncheckedCreateWithoutNoteInput>
-    connectOrCreate?: BookCreateOrConnectWithoutNoteInput
+  export type BookCreateNestedOneWithoutNotesInput = {
+    create?: XOR<BookCreateWithoutNotesInput, BookUncheckedCreateWithoutNotesInput>
+    connectOrCreate?: BookCreateOrConnectWithoutNotesInput
     connect?: BookWhereUniqueInput
   }
 
@@ -8545,12 +8627,12 @@ export namespace Prisma {
     set?: Date | string
   }
 
-  export type BookUpdateOneRequiredWithoutNoteNestedInput = {
-    create?: XOR<BookCreateWithoutNoteInput, BookUncheckedCreateWithoutNoteInput>
-    connectOrCreate?: BookCreateOrConnectWithoutNoteInput
-    upsert?: BookUpsertWithoutNoteInput
+  export type BookUpdateOneRequiredWithoutNotesNestedInput = {
+    create?: XOR<BookCreateWithoutNotesInput, BookUncheckedCreateWithoutNotesInput>
+    connectOrCreate?: BookCreateOrConnectWithoutNotesInput
+    upsert?: BookUpsertWithoutNotesInput
     connect?: BookWhereUniqueInput
-    update?: XOR<XOR<BookUpdateToOneWithWhereWithoutNoteInput, BookUpdateWithoutNoteInput>, BookUncheckedUpdateWithoutNoteInput>
+    update?: XOR<XOR<BookUpdateToOneWithWhereWithoutNotesInput, BookUpdateWithoutNotesInput>, BookUncheckedUpdateWithoutNotesInput>
   }
 
   export type BookCreateNestedManyWithoutShelfInput = {
@@ -8560,9 +8642,9 @@ export namespace Prisma {
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
   }
 
-  export type UserCreateNestedOneWithoutShelfInput = {
-    create?: XOR<UserCreateWithoutShelfInput, UserUncheckedCreateWithoutShelfInput>
-    connectOrCreate?: UserCreateOrConnectWithoutShelfInput
+  export type UserCreateNestedOneWithoutShelvesInput = {
+    create?: XOR<UserCreateWithoutShelvesInput, UserUncheckedCreateWithoutShelvesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutShelvesInput
     connect?: UserWhereUniqueInput
   }
 
@@ -8587,12 +8669,12 @@ export namespace Prisma {
     deleteMany?: BookScalarWhereInput | BookScalarWhereInput[]
   }
 
-  export type UserUpdateOneRequiredWithoutShelfNestedInput = {
-    create?: XOR<UserCreateWithoutShelfInput, UserUncheckedCreateWithoutShelfInput>
-    connectOrCreate?: UserCreateOrConnectWithoutShelfInput
-    upsert?: UserUpsertWithoutShelfInput
+  export type UserUpdateOneRequiredWithoutShelvesNestedInput = {
+    create?: XOR<UserCreateWithoutShelvesInput, UserUncheckedCreateWithoutShelvesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutShelvesInput
+    upsert?: UserUpsertWithoutShelvesInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutShelfInput, UserUpdateWithoutShelfInput>, UserUncheckedUpdateWithoutShelfInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutShelvesInput, UserUpdateWithoutShelvesInput>, UserUncheckedUpdateWithoutShelvesInput>
   }
 
   export type BookUncheckedUpdateManyWithoutShelfNestedInput = {
@@ -8609,84 +8691,126 @@ export namespace Prisma {
     deleteMany?: BookScalarWhereInput | BookScalarWhereInput[]
   }
 
-  export type BookCreateNestedManyWithoutTagInput = {
-    create?: XOR<BookCreateWithoutTagInput, BookUncheckedCreateWithoutTagInput> | BookCreateWithoutTagInput[] | BookUncheckedCreateWithoutTagInput[]
-    connectOrCreate?: BookCreateOrConnectWithoutTagInput | BookCreateOrConnectWithoutTagInput[]
+  export type BookCreateNestedManyWithoutTagsInput = {
+    create?: XOR<BookCreateWithoutTagsInput, BookUncheckedCreateWithoutTagsInput> | BookCreateWithoutTagsInput[] | BookUncheckedCreateWithoutTagsInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutTagsInput | BookCreateOrConnectWithoutTagsInput[]
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
   }
 
-  export type BookUncheckedCreateNestedManyWithoutTagInput = {
-    create?: XOR<BookCreateWithoutTagInput, BookUncheckedCreateWithoutTagInput> | BookCreateWithoutTagInput[] | BookUncheckedCreateWithoutTagInput[]
-    connectOrCreate?: BookCreateOrConnectWithoutTagInput | BookCreateOrConnectWithoutTagInput[]
+  export type BookUncheckedCreateNestedManyWithoutTagsInput = {
+    create?: XOR<BookCreateWithoutTagsInput, BookUncheckedCreateWithoutTagsInput> | BookCreateWithoutTagsInput[] | BookUncheckedCreateWithoutTagsInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutTagsInput | BookCreateOrConnectWithoutTagsInput[]
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
   }
 
-  export type BookUpdateManyWithoutTagNestedInput = {
-    create?: XOR<BookCreateWithoutTagInput, BookUncheckedCreateWithoutTagInput> | BookCreateWithoutTagInput[] | BookUncheckedCreateWithoutTagInput[]
-    connectOrCreate?: BookCreateOrConnectWithoutTagInput | BookCreateOrConnectWithoutTagInput[]
-    upsert?: BookUpsertWithWhereUniqueWithoutTagInput | BookUpsertWithWhereUniqueWithoutTagInput[]
+  export type BookUpdateManyWithoutTagsNestedInput = {
+    create?: XOR<BookCreateWithoutTagsInput, BookUncheckedCreateWithoutTagsInput> | BookCreateWithoutTagsInput[] | BookUncheckedCreateWithoutTagsInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutTagsInput | BookCreateOrConnectWithoutTagsInput[]
+    upsert?: BookUpsertWithWhereUniqueWithoutTagsInput | BookUpsertWithWhereUniqueWithoutTagsInput[]
     set?: BookWhereUniqueInput | BookWhereUniqueInput[]
     disconnect?: BookWhereUniqueInput | BookWhereUniqueInput[]
     delete?: BookWhereUniqueInput | BookWhereUniqueInput[]
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
-    update?: BookUpdateWithWhereUniqueWithoutTagInput | BookUpdateWithWhereUniqueWithoutTagInput[]
-    updateMany?: BookUpdateManyWithWhereWithoutTagInput | BookUpdateManyWithWhereWithoutTagInput[]
+    update?: BookUpdateWithWhereUniqueWithoutTagsInput | BookUpdateWithWhereUniqueWithoutTagsInput[]
+    updateMany?: BookUpdateManyWithWhereWithoutTagsInput | BookUpdateManyWithWhereWithoutTagsInput[]
     deleteMany?: BookScalarWhereInput | BookScalarWhereInput[]
   }
 
-  export type BookUncheckedUpdateManyWithoutTagNestedInput = {
-    create?: XOR<BookCreateWithoutTagInput, BookUncheckedCreateWithoutTagInput> | BookCreateWithoutTagInput[] | BookUncheckedCreateWithoutTagInput[]
-    connectOrCreate?: BookCreateOrConnectWithoutTagInput | BookCreateOrConnectWithoutTagInput[]
-    upsert?: BookUpsertWithWhereUniqueWithoutTagInput | BookUpsertWithWhereUniqueWithoutTagInput[]
+  export type BookUncheckedUpdateManyWithoutTagsNestedInput = {
+    create?: XOR<BookCreateWithoutTagsInput, BookUncheckedCreateWithoutTagsInput> | BookCreateWithoutTagsInput[] | BookUncheckedCreateWithoutTagsInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutTagsInput | BookCreateOrConnectWithoutTagsInput[]
+    upsert?: BookUpsertWithWhereUniqueWithoutTagsInput | BookUpsertWithWhereUniqueWithoutTagsInput[]
     set?: BookWhereUniqueInput | BookWhereUniqueInput[]
     disconnect?: BookWhereUniqueInput | BookWhereUniqueInput[]
     delete?: BookWhereUniqueInput | BookWhereUniqueInput[]
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
-    update?: BookUpdateWithWhereUniqueWithoutTagInput | BookUpdateWithWhereUniqueWithoutTagInput[]
-    updateMany?: BookUpdateManyWithWhereWithoutTagInput | BookUpdateManyWithWhereWithoutTagInput[]
+    update?: BookUpdateWithWhereUniqueWithoutTagsInput | BookUpdateWithWhereUniqueWithoutTagsInput[]
+    updateMany?: BookUpdateManyWithWhereWithoutTagsInput | BookUpdateManyWithWhereWithoutTagsInput[]
     deleteMany?: BookScalarWhereInput | BookScalarWhereInput[]
   }
 
-  export type ShelfCreateNestedManyWithoutUserInput = {
-    create?: XOR<ShelfCreateWithoutUserInput, ShelfUncheckedCreateWithoutUserInput> | ShelfCreateWithoutUserInput[] | ShelfUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ShelfCreateOrConnectWithoutUserInput | ShelfCreateOrConnectWithoutUserInput[]
-    createMany?: ShelfCreateManyUserInputEnvelope
+  export type ShelfCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<ShelfCreateWithoutOwnerInput, ShelfUncheckedCreateWithoutOwnerInput> | ShelfCreateWithoutOwnerInput[] | ShelfUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: ShelfCreateOrConnectWithoutOwnerInput | ShelfCreateOrConnectWithoutOwnerInput[]
+    createMany?: ShelfCreateManyOwnerInputEnvelope
     connect?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
   }
 
-  export type ShelfUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<ShelfCreateWithoutUserInput, ShelfUncheckedCreateWithoutUserInput> | ShelfCreateWithoutUserInput[] | ShelfUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ShelfCreateOrConnectWithoutUserInput | ShelfCreateOrConnectWithoutUserInput[]
-    createMany?: ShelfCreateManyUserInputEnvelope
+  export type BookCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<BookCreateWithoutOwnerInput, BookUncheckedCreateWithoutOwnerInput> | BookCreateWithoutOwnerInput[] | BookUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutOwnerInput | BookCreateOrConnectWithoutOwnerInput[]
+    createMany?: BookCreateManyOwnerInputEnvelope
+    connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
+  }
+
+  export type ShelfUncheckedCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<ShelfCreateWithoutOwnerInput, ShelfUncheckedCreateWithoutOwnerInput> | ShelfCreateWithoutOwnerInput[] | ShelfUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: ShelfCreateOrConnectWithoutOwnerInput | ShelfCreateOrConnectWithoutOwnerInput[]
+    createMany?: ShelfCreateManyOwnerInputEnvelope
     connect?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
   }
 
-  export type ShelfUpdateManyWithoutUserNestedInput = {
-    create?: XOR<ShelfCreateWithoutUserInput, ShelfUncheckedCreateWithoutUserInput> | ShelfCreateWithoutUserInput[] | ShelfUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ShelfCreateOrConnectWithoutUserInput | ShelfCreateOrConnectWithoutUserInput[]
-    upsert?: ShelfUpsertWithWhereUniqueWithoutUserInput | ShelfUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: ShelfCreateManyUserInputEnvelope
+  export type BookUncheckedCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<BookCreateWithoutOwnerInput, BookUncheckedCreateWithoutOwnerInput> | BookCreateWithoutOwnerInput[] | BookUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutOwnerInput | BookCreateOrConnectWithoutOwnerInput[]
+    createMany?: BookCreateManyOwnerInputEnvelope
+    connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
+  }
+
+  export type ShelfUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<ShelfCreateWithoutOwnerInput, ShelfUncheckedCreateWithoutOwnerInput> | ShelfCreateWithoutOwnerInput[] | ShelfUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: ShelfCreateOrConnectWithoutOwnerInput | ShelfCreateOrConnectWithoutOwnerInput[]
+    upsert?: ShelfUpsertWithWhereUniqueWithoutOwnerInput | ShelfUpsertWithWhereUniqueWithoutOwnerInput[]
+    createMany?: ShelfCreateManyOwnerInputEnvelope
     set?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
     disconnect?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
     delete?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
     connect?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
-    update?: ShelfUpdateWithWhereUniqueWithoutUserInput | ShelfUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: ShelfUpdateManyWithWhereWithoutUserInput | ShelfUpdateManyWithWhereWithoutUserInput[]
+    update?: ShelfUpdateWithWhereUniqueWithoutOwnerInput | ShelfUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: ShelfUpdateManyWithWhereWithoutOwnerInput | ShelfUpdateManyWithWhereWithoutOwnerInput[]
     deleteMany?: ShelfScalarWhereInput | ShelfScalarWhereInput[]
   }
 
-  export type ShelfUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<ShelfCreateWithoutUserInput, ShelfUncheckedCreateWithoutUserInput> | ShelfCreateWithoutUserInput[] | ShelfUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ShelfCreateOrConnectWithoutUserInput | ShelfCreateOrConnectWithoutUserInput[]
-    upsert?: ShelfUpsertWithWhereUniqueWithoutUserInput | ShelfUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: ShelfCreateManyUserInputEnvelope
+  export type BookUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<BookCreateWithoutOwnerInput, BookUncheckedCreateWithoutOwnerInput> | BookCreateWithoutOwnerInput[] | BookUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutOwnerInput | BookCreateOrConnectWithoutOwnerInput[]
+    upsert?: BookUpsertWithWhereUniqueWithoutOwnerInput | BookUpsertWithWhereUniqueWithoutOwnerInput[]
+    createMany?: BookCreateManyOwnerInputEnvelope
+    set?: BookWhereUniqueInput | BookWhereUniqueInput[]
+    disconnect?: BookWhereUniqueInput | BookWhereUniqueInput[]
+    delete?: BookWhereUniqueInput | BookWhereUniqueInput[]
+    connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
+    update?: BookUpdateWithWhereUniqueWithoutOwnerInput | BookUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: BookUpdateManyWithWhereWithoutOwnerInput | BookUpdateManyWithWhereWithoutOwnerInput[]
+    deleteMany?: BookScalarWhereInput | BookScalarWhereInput[]
+  }
+
+  export type ShelfUncheckedUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<ShelfCreateWithoutOwnerInput, ShelfUncheckedCreateWithoutOwnerInput> | ShelfCreateWithoutOwnerInput[] | ShelfUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: ShelfCreateOrConnectWithoutOwnerInput | ShelfCreateOrConnectWithoutOwnerInput[]
+    upsert?: ShelfUpsertWithWhereUniqueWithoutOwnerInput | ShelfUpsertWithWhereUniqueWithoutOwnerInput[]
+    createMany?: ShelfCreateManyOwnerInputEnvelope
     set?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
     disconnect?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
     delete?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
     connect?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
-    update?: ShelfUpdateWithWhereUniqueWithoutUserInput | ShelfUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: ShelfUpdateManyWithWhereWithoutUserInput | ShelfUpdateManyWithWhereWithoutUserInput[]
+    update?: ShelfUpdateWithWhereUniqueWithoutOwnerInput | ShelfUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: ShelfUpdateManyWithWhereWithoutOwnerInput | ShelfUpdateManyWithWhereWithoutOwnerInput[]
     deleteMany?: ShelfScalarWhereInput | ShelfScalarWhereInput[]
+  }
+
+  export type BookUncheckedUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<BookCreateWithoutOwnerInput, BookUncheckedCreateWithoutOwnerInput> | BookCreateWithoutOwnerInput[] | BookUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutOwnerInput | BookCreateOrConnectWithoutOwnerInput[]
+    upsert?: BookUpsertWithWhereUniqueWithoutOwnerInput | BookUpsertWithWhereUniqueWithoutOwnerInput[]
+    createMany?: BookCreateManyOwnerInputEnvelope
+    set?: BookWhereUniqueInput | BookWhereUniqueInput[]
+    disconnect?: BookWhereUniqueInput | BookWhereUniqueInput[]
+    delete?: BookWhereUniqueInput | BookWhereUniqueInput[]
+    connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
+    update?: BookUpdateWithWhereUniqueWithoutOwnerInput | BookUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: BookUpdateManyWithWhereWithoutOwnerInput | BookUpdateManyWithWhereWithoutOwnerInput[]
+    deleteMany?: BookScalarWhereInput | BookScalarWhereInput[]
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -8758,6 +8882,17 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type NestedUuidFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedUuidFilter<$PrismaModel> | string
+  }
+
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -8770,6 +8905,20 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedUuidWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -8825,102 +8974,81 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type NestedUuidFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedUuidFilter<$PrismaModel> | string
-  }
-
-  export type NestedUuidWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type BookCreateWithoutAuthorInput = {
+  export type BookCreateWithoutAuthorsInput = {
+    id?: string
     isbn?: string | null
     title: string
     coverImage?: string | null
     blurb?: string | null
     rating: number
-    Shelf: ShelfCreateNestedOneWithoutBookInput
-    Note?: NoteCreateNestedManyWithoutBookInput
-    Tag?: TagCreateNestedManyWithoutBookInput
+    shelf: ShelfCreateNestedOneWithoutBooksInput
+    notes?: NoteCreateNestedManyWithoutBookInput
+    tags?: TagCreateNestedManyWithoutBookInput
+    owner: UserCreateNestedOneWithoutBooksInput
   }
 
-  export type BookUncheckedCreateWithoutAuthorInput = {
-    id?: number
+  export type BookUncheckedCreateWithoutAuthorsInput = {
+    id?: string
     isbn?: string | null
     title: string
     coverImage?: string | null
     blurb?: string | null
     rating: number
     shelfId: number
-    Note?: NoteUncheckedCreateNestedManyWithoutBookInput
-    Tag?: TagUncheckedCreateNestedManyWithoutBookInput
+    ownerId: string
+    notes?: NoteUncheckedCreateNestedManyWithoutBookInput
+    tags?: TagUncheckedCreateNestedManyWithoutBookInput
   }
 
-  export type BookCreateOrConnectWithoutAuthorInput = {
+  export type BookCreateOrConnectWithoutAuthorsInput = {
     where: BookWhereUniqueInput
-    create: XOR<BookCreateWithoutAuthorInput, BookUncheckedCreateWithoutAuthorInput>
+    create: XOR<BookCreateWithoutAuthorsInput, BookUncheckedCreateWithoutAuthorsInput>
   }
 
-  export type BookUpsertWithWhereUniqueWithoutAuthorInput = {
+  export type BookUpsertWithWhereUniqueWithoutAuthorsInput = {
     where: BookWhereUniqueInput
-    update: XOR<BookUpdateWithoutAuthorInput, BookUncheckedUpdateWithoutAuthorInput>
-    create: XOR<BookCreateWithoutAuthorInput, BookUncheckedCreateWithoutAuthorInput>
+    update: XOR<BookUpdateWithoutAuthorsInput, BookUncheckedUpdateWithoutAuthorsInput>
+    create: XOR<BookCreateWithoutAuthorsInput, BookUncheckedCreateWithoutAuthorsInput>
   }
 
-  export type BookUpdateWithWhereUniqueWithoutAuthorInput = {
+  export type BookUpdateWithWhereUniqueWithoutAuthorsInput = {
     where: BookWhereUniqueInput
-    data: XOR<BookUpdateWithoutAuthorInput, BookUncheckedUpdateWithoutAuthorInput>
+    data: XOR<BookUpdateWithoutAuthorsInput, BookUncheckedUpdateWithoutAuthorsInput>
   }
 
-  export type BookUpdateManyWithWhereWithoutAuthorInput = {
+  export type BookUpdateManyWithWhereWithoutAuthorsInput = {
     where: BookScalarWhereInput
-    data: XOR<BookUpdateManyMutationInput, BookUncheckedUpdateManyWithoutAuthorInput>
+    data: XOR<BookUpdateManyMutationInput, BookUncheckedUpdateManyWithoutAuthorsInput>
   }
 
   export type BookScalarWhereInput = {
     AND?: BookScalarWhereInput | BookScalarWhereInput[]
     OR?: BookScalarWhereInput[]
     NOT?: BookScalarWhereInput | BookScalarWhereInput[]
-    id?: IntFilter<"Book"> | number
+    id?: UuidFilter<"Book"> | string
     isbn?: StringNullableFilter<"Book"> | string | null
     title?: StringFilter<"Book"> | string
     coverImage?: StringNullableFilter<"Book"> | string | null
     blurb?: StringNullableFilter<"Book"> | string | null
     rating?: IntFilter<"Book"> | number
     shelfId?: IntFilter<"Book"> | number
+    ownerId?: UuidFilter<"Book"> | string
   }
 
-  export type ShelfCreateWithoutBookInput = {
+  export type ShelfCreateWithoutBooksInput = {
     name: string
-    User: UserCreateNestedOneWithoutShelfInput
+    owner: UserCreateNestedOneWithoutShelvesInput
   }
 
-  export type ShelfUncheckedCreateWithoutBookInput = {
+  export type ShelfUncheckedCreateWithoutBooksInput = {
     id?: number
     name: string
     userUid: string
   }
 
-  export type ShelfCreateOrConnectWithoutBookInput = {
+  export type ShelfCreateOrConnectWithoutBooksInput = {
     where: ShelfWhereUniqueInput
-    create: XOR<ShelfCreateWithoutBookInput, ShelfUncheckedCreateWithoutBookInput>
+    create: XOR<ShelfCreateWithoutBooksInput, ShelfUncheckedCreateWithoutBooksInput>
   }
 
   export type NoteCreateWithoutBookInput = {
@@ -8972,23 +9100,42 @@ export namespace Prisma {
     create: XOR<TagCreateWithoutBookInput, TagUncheckedCreateWithoutBookInput>
   }
 
-  export type ShelfUpsertWithoutBookInput = {
-    update: XOR<ShelfUpdateWithoutBookInput, ShelfUncheckedUpdateWithoutBookInput>
-    create: XOR<ShelfCreateWithoutBookInput, ShelfUncheckedCreateWithoutBookInput>
+  export type UserCreateWithoutBooksInput = {
+    uid: string
+    name?: string | null
+    avatar_url?: string | null
+    shelves?: ShelfCreateNestedManyWithoutOwnerInput
+  }
+
+  export type UserUncheckedCreateWithoutBooksInput = {
+    uid: string
+    name?: string | null
+    avatar_url?: string | null
+    shelves?: ShelfUncheckedCreateNestedManyWithoutOwnerInput
+  }
+
+  export type UserCreateOrConnectWithoutBooksInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutBooksInput, UserUncheckedCreateWithoutBooksInput>
+  }
+
+  export type ShelfUpsertWithoutBooksInput = {
+    update: XOR<ShelfUpdateWithoutBooksInput, ShelfUncheckedUpdateWithoutBooksInput>
+    create: XOR<ShelfCreateWithoutBooksInput, ShelfUncheckedCreateWithoutBooksInput>
     where?: ShelfWhereInput
   }
 
-  export type ShelfUpdateToOneWithWhereWithoutBookInput = {
+  export type ShelfUpdateToOneWithWhereWithoutBooksInput = {
     where?: ShelfWhereInput
-    data: XOR<ShelfUpdateWithoutBookInput, ShelfUncheckedUpdateWithoutBookInput>
+    data: XOR<ShelfUpdateWithoutBooksInput, ShelfUncheckedUpdateWithoutBooksInput>
   }
 
-  export type ShelfUpdateWithoutBookInput = {
+  export type ShelfUpdateWithoutBooksInput = {
     name?: StringFieldUpdateOperationsInput | string
-    User?: UserUpdateOneRequiredWithoutShelfNestedInput
+    owner?: UserUpdateOneRequiredWithoutShelvesNestedInput
   }
 
-  export type ShelfUncheckedUpdateWithoutBookInput = {
+  export type ShelfUncheckedUpdateWithoutBooksInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     userUid?: StringFieldUpdateOperationsInput | string
@@ -9017,7 +9164,7 @@ export namespace Prisma {
     id?: IntFilter<"Note"> | number
     createdAt?: DateTimeFilter<"Note"> | Date | string
     content?: StringFilter<"Note"> | string
-    bookId?: IntFilter<"Note"> | number
+    bookId?: UuidFilter<"Note"> | string
   }
 
   export type AuthorUpsertWithWhereUniqueWithoutBookInput = {
@@ -9068,89 +9215,123 @@ export namespace Prisma {
     name?: StringFilter<"Tag"> | string
   }
 
-  export type BookCreateWithoutNoteInput = {
+  export type UserUpsertWithoutBooksInput = {
+    update: XOR<UserUpdateWithoutBooksInput, UserUncheckedUpdateWithoutBooksInput>
+    create: XOR<UserCreateWithoutBooksInput, UserUncheckedCreateWithoutBooksInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutBooksInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutBooksInput, UserUncheckedUpdateWithoutBooksInput>
+  }
+
+  export type UserUpdateWithoutBooksInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    shelves?: ShelfUpdateManyWithoutOwnerNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutBooksInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    shelves?: ShelfUncheckedUpdateManyWithoutOwnerNestedInput
+  }
+
+  export type BookCreateWithoutNotesInput = {
+    id?: string
     isbn?: string | null
     title: string
     coverImage?: string | null
     blurb?: string | null
     rating: number
-    Shelf: ShelfCreateNestedOneWithoutBookInput
-    Author?: AuthorCreateNestedManyWithoutBookInput
-    Tag?: TagCreateNestedManyWithoutBookInput
+    shelf: ShelfCreateNestedOneWithoutBooksInput
+    authors?: AuthorCreateNestedManyWithoutBookInput
+    tags?: TagCreateNestedManyWithoutBookInput
+    owner: UserCreateNestedOneWithoutBooksInput
   }
 
-  export type BookUncheckedCreateWithoutNoteInput = {
-    id?: number
+  export type BookUncheckedCreateWithoutNotesInput = {
+    id?: string
     isbn?: string | null
     title: string
     coverImage?: string | null
     blurb?: string | null
     rating: number
     shelfId: number
-    Author?: AuthorUncheckedCreateNestedManyWithoutBookInput
-    Tag?: TagUncheckedCreateNestedManyWithoutBookInput
+    ownerId: string
+    authors?: AuthorUncheckedCreateNestedManyWithoutBookInput
+    tags?: TagUncheckedCreateNestedManyWithoutBookInput
   }
 
-  export type BookCreateOrConnectWithoutNoteInput = {
+  export type BookCreateOrConnectWithoutNotesInput = {
     where: BookWhereUniqueInput
-    create: XOR<BookCreateWithoutNoteInput, BookUncheckedCreateWithoutNoteInput>
+    create: XOR<BookCreateWithoutNotesInput, BookUncheckedCreateWithoutNotesInput>
   }
 
-  export type BookUpsertWithoutNoteInput = {
-    update: XOR<BookUpdateWithoutNoteInput, BookUncheckedUpdateWithoutNoteInput>
-    create: XOR<BookCreateWithoutNoteInput, BookUncheckedCreateWithoutNoteInput>
+  export type BookUpsertWithoutNotesInput = {
+    update: XOR<BookUpdateWithoutNotesInput, BookUncheckedUpdateWithoutNotesInput>
+    create: XOR<BookCreateWithoutNotesInput, BookUncheckedCreateWithoutNotesInput>
     where?: BookWhereInput
   }
 
-  export type BookUpdateToOneWithWhereWithoutNoteInput = {
+  export type BookUpdateToOneWithWhereWithoutNotesInput = {
     where?: BookWhereInput
-    data: XOR<BookUpdateWithoutNoteInput, BookUncheckedUpdateWithoutNoteInput>
+    data: XOR<BookUpdateWithoutNotesInput, BookUncheckedUpdateWithoutNotesInput>
   }
 
-  export type BookUpdateWithoutNoteInput = {
+  export type BookUpdateWithoutNotesInput = {
+    id?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     blurb?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
-    Shelf?: ShelfUpdateOneRequiredWithoutBookNestedInput
-    Author?: AuthorUpdateManyWithoutBookNestedInput
-    Tag?: TagUpdateManyWithoutBookNestedInput
+    shelf?: ShelfUpdateOneRequiredWithoutBooksNestedInput
+    authors?: AuthorUpdateManyWithoutBookNestedInput
+    tags?: TagUpdateManyWithoutBookNestedInput
+    owner?: UserUpdateOneRequiredWithoutBooksNestedInput
   }
 
-  export type BookUncheckedUpdateWithoutNoteInput = {
-    id?: IntFieldUpdateOperationsInput | number
+  export type BookUncheckedUpdateWithoutNotesInput = {
+    id?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     blurb?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     shelfId?: IntFieldUpdateOperationsInput | number
-    Author?: AuthorUncheckedUpdateManyWithoutBookNestedInput
-    Tag?: TagUncheckedUpdateManyWithoutBookNestedInput
+    ownerId?: StringFieldUpdateOperationsInput | string
+    authors?: AuthorUncheckedUpdateManyWithoutBookNestedInput
+    tags?: TagUncheckedUpdateManyWithoutBookNestedInput
   }
 
   export type BookCreateWithoutShelfInput = {
+    id?: string
     isbn?: string | null
     title: string
     coverImage?: string | null
     blurb?: string | null
     rating: number
-    Note?: NoteCreateNestedManyWithoutBookInput
-    Author?: AuthorCreateNestedManyWithoutBookInput
-    Tag?: TagCreateNestedManyWithoutBookInput
+    notes?: NoteCreateNestedManyWithoutBookInput
+    authors?: AuthorCreateNestedManyWithoutBookInput
+    tags?: TagCreateNestedManyWithoutBookInput
+    owner: UserCreateNestedOneWithoutBooksInput
   }
 
   export type BookUncheckedCreateWithoutShelfInput = {
-    id?: number
+    id?: string
     isbn?: string | null
     title: string
     coverImage?: string | null
     blurb?: string | null
     rating: number
-    Note?: NoteUncheckedCreateNestedManyWithoutBookInput
-    Author?: AuthorUncheckedCreateNestedManyWithoutBookInput
-    Tag?: TagUncheckedCreateNestedManyWithoutBookInput
+    ownerId: string
+    notes?: NoteUncheckedCreateNestedManyWithoutBookInput
+    authors?: AuthorUncheckedCreateNestedManyWithoutBookInput
+    tags?: TagUncheckedCreateNestedManyWithoutBookInput
   }
 
   export type BookCreateOrConnectWithoutShelfInput = {
@@ -9163,21 +9344,23 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type UserCreateWithoutShelfInput = {
+  export type UserCreateWithoutShelvesInput = {
     uid: string
     name?: string | null
     avatar_url?: string | null
+    books?: BookCreateNestedManyWithoutOwnerInput
   }
 
-  export type UserUncheckedCreateWithoutShelfInput = {
+  export type UserUncheckedCreateWithoutShelvesInput = {
     uid: string
     name?: string | null
     avatar_url?: string | null
+    books?: BookUncheckedCreateNestedManyWithoutOwnerInput
   }
 
-  export type UserCreateOrConnectWithoutShelfInput = {
+  export type UserCreateOrConnectWithoutShelvesInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutShelfInput, UserUncheckedCreateWithoutShelfInput>
+    create: XOR<UserCreateWithoutShelvesInput, UserUncheckedCreateWithoutShelvesInput>
   }
 
   export type BookUpsertWithWhereUniqueWithoutShelfInput = {
@@ -9196,108 +9379,149 @@ export namespace Prisma {
     data: XOR<BookUpdateManyMutationInput, BookUncheckedUpdateManyWithoutShelfInput>
   }
 
-  export type UserUpsertWithoutShelfInput = {
-    update: XOR<UserUpdateWithoutShelfInput, UserUncheckedUpdateWithoutShelfInput>
-    create: XOR<UserCreateWithoutShelfInput, UserUncheckedCreateWithoutShelfInput>
+  export type UserUpsertWithoutShelvesInput = {
+    update: XOR<UserUpdateWithoutShelvesInput, UserUncheckedUpdateWithoutShelvesInput>
+    create: XOR<UserCreateWithoutShelvesInput, UserUncheckedCreateWithoutShelvesInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutShelfInput = {
+  export type UserUpdateToOneWithWhereWithoutShelvesInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutShelfInput, UserUncheckedUpdateWithoutShelfInput>
+    data: XOR<UserUpdateWithoutShelvesInput, UserUncheckedUpdateWithoutShelvesInput>
   }
 
-  export type UserUpdateWithoutShelfInput = {
+  export type UserUpdateWithoutShelvesInput = {
     uid?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    books?: BookUpdateManyWithoutOwnerNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutShelfInput = {
+  export type UserUncheckedUpdateWithoutShelvesInput = {
     uid?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    books?: BookUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
-  export type BookCreateWithoutTagInput = {
+  export type BookCreateWithoutTagsInput = {
+    id?: string
     isbn?: string | null
     title: string
     coverImage?: string | null
     blurb?: string | null
     rating: number
-    Shelf: ShelfCreateNestedOneWithoutBookInput
-    Note?: NoteCreateNestedManyWithoutBookInput
-    Author?: AuthorCreateNestedManyWithoutBookInput
+    shelf: ShelfCreateNestedOneWithoutBooksInput
+    notes?: NoteCreateNestedManyWithoutBookInput
+    authors?: AuthorCreateNestedManyWithoutBookInput
+    owner: UserCreateNestedOneWithoutBooksInput
   }
 
-  export type BookUncheckedCreateWithoutTagInput = {
-    id?: number
+  export type BookUncheckedCreateWithoutTagsInput = {
+    id?: string
     isbn?: string | null
     title: string
     coverImage?: string | null
     blurb?: string | null
     rating: number
     shelfId: number
-    Note?: NoteUncheckedCreateNestedManyWithoutBookInput
-    Author?: AuthorUncheckedCreateNestedManyWithoutBookInput
+    ownerId: string
+    notes?: NoteUncheckedCreateNestedManyWithoutBookInput
+    authors?: AuthorUncheckedCreateNestedManyWithoutBookInput
   }
 
-  export type BookCreateOrConnectWithoutTagInput = {
+  export type BookCreateOrConnectWithoutTagsInput = {
     where: BookWhereUniqueInput
-    create: XOR<BookCreateWithoutTagInput, BookUncheckedCreateWithoutTagInput>
+    create: XOR<BookCreateWithoutTagsInput, BookUncheckedCreateWithoutTagsInput>
   }
 
-  export type BookUpsertWithWhereUniqueWithoutTagInput = {
+  export type BookUpsertWithWhereUniqueWithoutTagsInput = {
     where: BookWhereUniqueInput
-    update: XOR<BookUpdateWithoutTagInput, BookUncheckedUpdateWithoutTagInput>
-    create: XOR<BookCreateWithoutTagInput, BookUncheckedCreateWithoutTagInput>
+    update: XOR<BookUpdateWithoutTagsInput, BookUncheckedUpdateWithoutTagsInput>
+    create: XOR<BookCreateWithoutTagsInput, BookUncheckedCreateWithoutTagsInput>
   }
 
-  export type BookUpdateWithWhereUniqueWithoutTagInput = {
+  export type BookUpdateWithWhereUniqueWithoutTagsInput = {
     where: BookWhereUniqueInput
-    data: XOR<BookUpdateWithoutTagInput, BookUncheckedUpdateWithoutTagInput>
+    data: XOR<BookUpdateWithoutTagsInput, BookUncheckedUpdateWithoutTagsInput>
   }
 
-  export type BookUpdateManyWithWhereWithoutTagInput = {
+  export type BookUpdateManyWithWhereWithoutTagsInput = {
     where: BookScalarWhereInput
-    data: XOR<BookUpdateManyMutationInput, BookUncheckedUpdateManyWithoutTagInput>
+    data: XOR<BookUpdateManyMutationInput, BookUncheckedUpdateManyWithoutTagsInput>
   }
 
-  export type ShelfCreateWithoutUserInput = {
+  export type ShelfCreateWithoutOwnerInput = {
     name: string
-    Book?: BookCreateNestedManyWithoutShelfInput
+    books?: BookCreateNestedManyWithoutShelfInput
   }
 
-  export type ShelfUncheckedCreateWithoutUserInput = {
+  export type ShelfUncheckedCreateWithoutOwnerInput = {
     id?: number
     name: string
-    Book?: BookUncheckedCreateNestedManyWithoutShelfInput
+    books?: BookUncheckedCreateNestedManyWithoutShelfInput
   }
 
-  export type ShelfCreateOrConnectWithoutUserInput = {
+  export type ShelfCreateOrConnectWithoutOwnerInput = {
     where: ShelfWhereUniqueInput
-    create: XOR<ShelfCreateWithoutUserInput, ShelfUncheckedCreateWithoutUserInput>
+    create: XOR<ShelfCreateWithoutOwnerInput, ShelfUncheckedCreateWithoutOwnerInput>
   }
 
-  export type ShelfCreateManyUserInputEnvelope = {
-    data: ShelfCreateManyUserInput | ShelfCreateManyUserInput[]
+  export type ShelfCreateManyOwnerInputEnvelope = {
+    data: ShelfCreateManyOwnerInput | ShelfCreateManyOwnerInput[]
     skipDuplicates?: boolean
   }
 
-  export type ShelfUpsertWithWhereUniqueWithoutUserInput = {
-    where: ShelfWhereUniqueInput
-    update: XOR<ShelfUpdateWithoutUserInput, ShelfUncheckedUpdateWithoutUserInput>
-    create: XOR<ShelfCreateWithoutUserInput, ShelfUncheckedCreateWithoutUserInput>
+  export type BookCreateWithoutOwnerInput = {
+    id?: string
+    isbn?: string | null
+    title: string
+    coverImage?: string | null
+    blurb?: string | null
+    rating: number
+    shelf: ShelfCreateNestedOneWithoutBooksInput
+    notes?: NoteCreateNestedManyWithoutBookInput
+    authors?: AuthorCreateNestedManyWithoutBookInput
+    tags?: TagCreateNestedManyWithoutBookInput
   }
 
-  export type ShelfUpdateWithWhereUniqueWithoutUserInput = {
-    where: ShelfWhereUniqueInput
-    data: XOR<ShelfUpdateWithoutUserInput, ShelfUncheckedUpdateWithoutUserInput>
+  export type BookUncheckedCreateWithoutOwnerInput = {
+    id?: string
+    isbn?: string | null
+    title: string
+    coverImage?: string | null
+    blurb?: string | null
+    rating: number
+    shelfId: number
+    notes?: NoteUncheckedCreateNestedManyWithoutBookInput
+    authors?: AuthorUncheckedCreateNestedManyWithoutBookInput
+    tags?: TagUncheckedCreateNestedManyWithoutBookInput
   }
 
-  export type ShelfUpdateManyWithWhereWithoutUserInput = {
+  export type BookCreateOrConnectWithoutOwnerInput = {
+    where: BookWhereUniqueInput
+    create: XOR<BookCreateWithoutOwnerInput, BookUncheckedCreateWithoutOwnerInput>
+  }
+
+  export type BookCreateManyOwnerInputEnvelope = {
+    data: BookCreateManyOwnerInput | BookCreateManyOwnerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ShelfUpsertWithWhereUniqueWithoutOwnerInput = {
+    where: ShelfWhereUniqueInput
+    update: XOR<ShelfUpdateWithoutOwnerInput, ShelfUncheckedUpdateWithoutOwnerInput>
+    create: XOR<ShelfCreateWithoutOwnerInput, ShelfUncheckedCreateWithoutOwnerInput>
+  }
+
+  export type ShelfUpdateWithWhereUniqueWithoutOwnerInput = {
+    where: ShelfWhereUniqueInput
+    data: XOR<ShelfUpdateWithoutOwnerInput, ShelfUncheckedUpdateWithoutOwnerInput>
+  }
+
+  export type ShelfUpdateManyWithWhereWithoutOwnerInput = {
     where: ShelfScalarWhereInput
-    data: XOR<ShelfUpdateManyMutationInput, ShelfUncheckedUpdateManyWithoutUserInput>
+    data: XOR<ShelfUpdateManyMutationInput, ShelfUncheckedUpdateManyWithoutOwnerInput>
   }
 
   export type ShelfScalarWhereInput = {
@@ -9309,37 +9533,57 @@ export namespace Prisma {
     userUid?: UuidFilter<"Shelf"> | string
   }
 
-  export type BookUpdateWithoutAuthorInput = {
+  export type BookUpsertWithWhereUniqueWithoutOwnerInput = {
+    where: BookWhereUniqueInput
+    update: XOR<BookUpdateWithoutOwnerInput, BookUncheckedUpdateWithoutOwnerInput>
+    create: XOR<BookCreateWithoutOwnerInput, BookUncheckedCreateWithoutOwnerInput>
+  }
+
+  export type BookUpdateWithWhereUniqueWithoutOwnerInput = {
+    where: BookWhereUniqueInput
+    data: XOR<BookUpdateWithoutOwnerInput, BookUncheckedUpdateWithoutOwnerInput>
+  }
+
+  export type BookUpdateManyWithWhereWithoutOwnerInput = {
+    where: BookScalarWhereInput
+    data: XOR<BookUpdateManyMutationInput, BookUncheckedUpdateManyWithoutOwnerInput>
+  }
+
+  export type BookUpdateWithoutAuthorsInput = {
+    id?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     blurb?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
-    Shelf?: ShelfUpdateOneRequiredWithoutBookNestedInput
-    Note?: NoteUpdateManyWithoutBookNestedInput
-    Tag?: TagUpdateManyWithoutBookNestedInput
+    shelf?: ShelfUpdateOneRequiredWithoutBooksNestedInput
+    notes?: NoteUpdateManyWithoutBookNestedInput
+    tags?: TagUpdateManyWithoutBookNestedInput
+    owner?: UserUpdateOneRequiredWithoutBooksNestedInput
   }
 
-  export type BookUncheckedUpdateWithoutAuthorInput = {
-    id?: IntFieldUpdateOperationsInput | number
+  export type BookUncheckedUpdateWithoutAuthorsInput = {
+    id?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     blurb?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     shelfId?: IntFieldUpdateOperationsInput | number
-    Note?: NoteUncheckedUpdateManyWithoutBookNestedInput
-    Tag?: TagUncheckedUpdateManyWithoutBookNestedInput
+    ownerId?: StringFieldUpdateOperationsInput | string
+    notes?: NoteUncheckedUpdateManyWithoutBookNestedInput
+    tags?: TagUncheckedUpdateManyWithoutBookNestedInput
   }
 
-  export type BookUncheckedUpdateManyWithoutAuthorInput = {
-    id?: IntFieldUpdateOperationsInput | number
+  export type BookUncheckedUpdateManyWithoutAuthorsInput = {
+    id?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     blurb?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     shelfId?: IntFieldUpdateOperationsInput | number
+    ownerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type NoteCreateManyBookInput = {
@@ -9394,98 +9638,153 @@ export namespace Prisma {
   }
 
   export type BookCreateManyShelfInput = {
-    id?: number
+    id?: string
     isbn?: string | null
     title: string
     coverImage?: string | null
     blurb?: string | null
     rating: number
+    ownerId: string
   }
 
   export type BookUpdateWithoutShelfInput = {
+    id?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     blurb?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
-    Note?: NoteUpdateManyWithoutBookNestedInput
-    Author?: AuthorUpdateManyWithoutBookNestedInput
-    Tag?: TagUpdateManyWithoutBookNestedInput
+    notes?: NoteUpdateManyWithoutBookNestedInput
+    authors?: AuthorUpdateManyWithoutBookNestedInput
+    tags?: TagUpdateManyWithoutBookNestedInput
+    owner?: UserUpdateOneRequiredWithoutBooksNestedInput
   }
 
   export type BookUncheckedUpdateWithoutShelfInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     blurb?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
-    Note?: NoteUncheckedUpdateManyWithoutBookNestedInput
-    Author?: AuthorUncheckedUpdateManyWithoutBookNestedInput
-    Tag?: TagUncheckedUpdateManyWithoutBookNestedInput
+    ownerId?: StringFieldUpdateOperationsInput | string
+    notes?: NoteUncheckedUpdateManyWithoutBookNestedInput
+    authors?: AuthorUncheckedUpdateManyWithoutBookNestedInput
+    tags?: TagUncheckedUpdateManyWithoutBookNestedInput
   }
 
   export type BookUncheckedUpdateManyWithoutShelfInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     blurb?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
+    ownerId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type BookUpdateWithoutTagInput = {
+  export type BookUpdateWithoutTagsInput = {
+    id?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     blurb?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
-    Shelf?: ShelfUpdateOneRequiredWithoutBookNestedInput
-    Note?: NoteUpdateManyWithoutBookNestedInput
-    Author?: AuthorUpdateManyWithoutBookNestedInput
+    shelf?: ShelfUpdateOneRequiredWithoutBooksNestedInput
+    notes?: NoteUpdateManyWithoutBookNestedInput
+    authors?: AuthorUpdateManyWithoutBookNestedInput
+    owner?: UserUpdateOneRequiredWithoutBooksNestedInput
   }
 
-  export type BookUncheckedUpdateWithoutTagInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    isbn?: NullableStringFieldUpdateOperationsInput | string | null
-    title?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    blurb?: NullableStringFieldUpdateOperationsInput | string | null
-    rating?: IntFieldUpdateOperationsInput | number
-    shelfId?: IntFieldUpdateOperationsInput | number
-    Note?: NoteUncheckedUpdateManyWithoutBookNestedInput
-    Author?: AuthorUncheckedUpdateManyWithoutBookNestedInput
-  }
-
-  export type BookUncheckedUpdateManyWithoutTagInput = {
-    id?: IntFieldUpdateOperationsInput | number
+  export type BookUncheckedUpdateWithoutTagsInput = {
+    id?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
     coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     blurb?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     shelfId?: IntFieldUpdateOperationsInput | number
+    ownerId?: StringFieldUpdateOperationsInput | string
+    notes?: NoteUncheckedUpdateManyWithoutBookNestedInput
+    authors?: AuthorUncheckedUpdateManyWithoutBookNestedInput
   }
 
-  export type ShelfCreateManyUserInput = {
+  export type BookUncheckedUpdateManyWithoutTagsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    isbn?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
+    blurb?: NullableStringFieldUpdateOperationsInput | string | null
+    rating?: IntFieldUpdateOperationsInput | number
+    shelfId?: IntFieldUpdateOperationsInput | number
+    ownerId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ShelfCreateManyOwnerInput = {
     id?: number
     name: string
   }
 
-  export type ShelfUpdateWithoutUserInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    Book?: BookUpdateManyWithoutShelfNestedInput
+  export type BookCreateManyOwnerInput = {
+    id?: string
+    isbn?: string | null
+    title: string
+    coverImage?: string | null
+    blurb?: string | null
+    rating: number
+    shelfId: number
   }
 
-  export type ShelfUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
+  export type ShelfUpdateWithoutOwnerInput = {
     name?: StringFieldUpdateOperationsInput | string
-    Book?: BookUncheckedUpdateManyWithoutShelfNestedInput
+    books?: BookUpdateManyWithoutShelfNestedInput
   }
 
-  export type ShelfUncheckedUpdateManyWithoutUserInput = {
+  export type ShelfUncheckedUpdateWithoutOwnerInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    books?: BookUncheckedUpdateManyWithoutShelfNestedInput
+  }
+
+  export type ShelfUncheckedUpdateManyWithoutOwnerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type BookUpdateWithoutOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    isbn?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
+    blurb?: NullableStringFieldUpdateOperationsInput | string | null
+    rating?: IntFieldUpdateOperationsInput | number
+    shelf?: ShelfUpdateOneRequiredWithoutBooksNestedInput
+    notes?: NoteUpdateManyWithoutBookNestedInput
+    authors?: AuthorUpdateManyWithoutBookNestedInput
+    tags?: TagUpdateManyWithoutBookNestedInput
+  }
+
+  export type BookUncheckedUpdateWithoutOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    isbn?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
+    blurb?: NullableStringFieldUpdateOperationsInput | string | null
+    rating?: IntFieldUpdateOperationsInput | number
+    shelfId?: IntFieldUpdateOperationsInput | number
+    notes?: NoteUncheckedUpdateManyWithoutBookNestedInput
+    authors?: AuthorUncheckedUpdateManyWithoutBookNestedInput
+    tags?: TagUncheckedUpdateManyWithoutBookNestedInput
+  }
+
+  export type BookUncheckedUpdateManyWithoutOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    isbn?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
+    blurb?: NullableStringFieldUpdateOperationsInput | string | null
+    rating?: IntFieldUpdateOperationsInput | number
+    shelfId?: IntFieldUpdateOperationsInput | number
   }
 
 

@@ -8,13 +8,14 @@ CREATE TABLE "Author" (
 
 -- CreateTable
 CREATE TABLE "Book" (
-    "id" SERIAL NOT NULL,
+    "id" UUID NOT NULL,
     "isbn" TEXT,
     "title" TEXT NOT NULL,
     "coverImage" TEXT,
     "blurb" TEXT,
     "rating" INTEGER NOT NULL,
     "shelfId" INTEGER NOT NULL,
+    "ownerId" UUID NOT NULL,
 
     CONSTRAINT "Book_pkey" PRIMARY KEY ("id")
 );
@@ -24,7 +25,7 @@ CREATE TABLE "Note" (
     "id" SERIAL NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "content" TEXT NOT NULL,
-    "bookId" INTEGER NOT NULL,
+    "bookId" UUID NOT NULL,
 
     CONSTRAINT "Note_pkey" PRIMARY KEY ("id")
 );
@@ -58,14 +59,17 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "_AuthorToBook" (
     "A" INTEGER NOT NULL,
-    "B" INTEGER NOT NULL
+    "B" UUID NOT NULL
 );
 
 -- CreateTable
 CREATE TABLE "_BookToTag" (
-    "A" INTEGER NOT NULL,
+    "A" UUID NOT NULL,
     "B" INTEGER NOT NULL
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Book_id_key" ON "Book"("id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_uid_key" ON "User"("uid");
@@ -84,6 +88,9 @@ CREATE INDEX "_BookToTag_B_index" ON "_BookToTag"("B");
 
 -- AddForeignKey
 ALTER TABLE "Book" ADD CONSTRAINT "Book_shelfId_fkey" FOREIGN KEY ("shelfId") REFERENCES "Shelf"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Book" ADD CONSTRAINT "Book_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("uid") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Note" ADD CONSTRAINT "Note_bookId_fkey" FOREIGN KEY ("bookId") REFERENCES "Book"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

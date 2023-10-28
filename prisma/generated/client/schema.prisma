@@ -16,44 +16,47 @@ model Author {
 }
 
 model Book {
-  id         Int      @id @default(autoincrement())
+  id         String   @id @unique @db.Uuid
   isbn       String?
   title      String
   coverImage String?
   blurb      String?
   rating     Int
   shelfId    Int
-  Shelf      Shelf    @relation(fields: [shelfId], references: [id])
-  Note       Note[]
-  Author     Author[] @relation("AuthorToBook")
-  Tag        Tag[]    @relation("BookToTag")
+  shelf      Shelf    @relation(fields: [shelfId], references: [id])
+  notes      Note[]
+  authors    Author[] @relation("AuthorToBook")
+  tags       Tag[]    @relation("BookToTag")
+  ownerId    String   @db.Uuid
+  owner      User     @relation(fields: [ownerId], references: [uid])
 }
 
 model Note {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   content   String
-  bookId    Int
-  Book      Book     @relation(fields: [bookId], references: [id])
+  bookId    String   @db.Uuid
+  book      Book     @relation(fields: [bookId], references: [id])
 }
 
 model Shelf {
   id      Int    @id @default(autoincrement())
   name    String
   userUid String @db.Uuid
-  Book    Book[]
-  User    User   @relation(fields: [userUid], references: [uid])
+  books   Book[]
+  owner   User   @relation(fields: [userUid], references: [uid])
 }
 
 model Tag {
   id   Int    @id @default(autoincrement())
   name String
-  Book Book[] @relation("BookToTag")
+  book Book[] @relation("BookToTag")
 }
 
 model User {
   uid        String  @id @unique @db.Uuid
   name       String?
   avatar_url String?
-  Shelf      Shelf[]
+  shelves    Shelf[]
+  books      Book[]
 }

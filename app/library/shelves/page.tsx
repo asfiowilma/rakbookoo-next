@@ -3,31 +3,12 @@ import Breadcrumbs from '@/components/library/Breadcrumbs'
 import LibraryViewToggle from '@/components/library/LibraryViewToggle'
 import Link from 'next/link'
 import React from 'react'
-import ShelfComponent from '@/components/library/Shelves/Shelf'
-import { getUserId } from '@/services/getUserId'
-import prisma from '@/services/prisma'
+import ShelvesView from '@/components/library/Shelves/ShelvesView'
 import { routes } from '@/lib/routes'
 
 export const dynamic = 'force-dynamic'
 
 const ShelvesPage = async () => {
-  const sessionData = await getUserId()
-  const shelves = await prisma.shelf.findMany({
-    select: {
-      id: true,
-      name: true,
-      Book: {
-        take: 4,
-        select: {
-          id: true,
-          coverImage: true,
-          title: true,
-        },
-      },
-    },
-    where: { userUid: sessionData?.session?.user.id },
-  })
-
   return (
     <>
       <div className="flex w-full justify-between">
@@ -40,11 +21,7 @@ const ShelvesPage = async () => {
           Rak Baru
         </Link>
       </div>
-      <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {shelves?.map((shelf) => (
-          <ShelfComponent key={shelf.id} shelf={shelf} />
-        ))}
-      </div>
+      <ShelvesView />
     </>
   )
 }
