@@ -36,8 +36,8 @@ const BookThumbnail = ({ book }: BookViewProps) => {
           {truncate(book.title, MAX_STRING_LENGTH)}
         </div>
       )}
-      <p className="font-bold line-clamp-2">{book.title}</p>
-      <p>{book.Author?.[0].name}</p>
+      <p className="mt-2 font-bold line-clamp-2">{book.title}</p>
+      <p>{book.authors?.[0].name}</p>
     </button>
   )
 }

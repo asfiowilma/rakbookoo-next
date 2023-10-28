@@ -9,7 +9,7 @@ import { Avatar, AvatarFallback } from '../../ui/avatar'
 import Image from 'next/image'
 
 interface ShelfWithBooks extends Omit<Shelf, 'userUid'> {
-  Book: Pick<Book, 'id' | 'title' | 'coverImage'>[]
+  books: Pick<Book, 'id' | 'title' | 'coverImage'>[]
 }
 
 type ShelfProps = { shelf: ShelfWithBooks }
@@ -59,7 +59,7 @@ const ShelfComponent = ({ shelf }: ShelfProps) => {
           </div>
         </div>
         <div className="absolute -bottom-6 mx-auto grid w-48 grid-cols-4 grid-rows-1 gap-3 lg:-bottom-8 lg:w-full xl:w-3/4">
-          {shelf.Book.map((book, idx) =>
+          {shelf.books.map((book, idx) =>
             book.coverImage ? (
               <Image
                 width={5 * 20}

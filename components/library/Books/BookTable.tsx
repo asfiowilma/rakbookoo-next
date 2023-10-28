@@ -44,7 +44,7 @@ const columns = [
     header: () => 'Judul Buku',
     cell: (props) => <span className="font-medium">{props.getValue()}</span>,
   }),
-  columnHelper.accessor('Author', {
+  columnHelper.accessor('authors', {
     header: () => 'Penulis',
     cell: (props) => (
       <>

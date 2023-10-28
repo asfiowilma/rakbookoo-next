@@ -64,7 +64,9 @@ const BooksViewOptions = () => {
           <DropdownMenuCheckboxItem
             key={key}
             checked={option.checked}
-            onCheckedChange={option.onChange}
+            onCheckedChange={(checked) =>
+              onCheckedChange(checked, option.onChange)
+            }
           >
             {option.label}
           </DropdownMenuCheckboxItem>

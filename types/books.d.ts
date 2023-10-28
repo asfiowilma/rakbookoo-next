@@ -1,7 +1,7 @@
 import type { Book, Author } from '@prisma/client'
 
 interface BookWithAuthor extends Book {
-  Author: Pick<Author, 'name'>[]
+  authors: Pick<Author, 'name'>[]
 }
 
 type BookViewProps = {

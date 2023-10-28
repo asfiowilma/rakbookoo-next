@@ -20,7 +20,7 @@ const BooksPage = async ({ searchParams }: PageProps) => {
 
   const books = await prisma.book.findMany({
     include: {
-      Author: {
+      authors: {
         take: view === LibraryView.thumbnail ? 1 : undefined,
         select: {
           name: true,
@@ -28,9 +28,7 @@ const BooksPage = async ({ searchParams }: PageProps) => {
       },
     },
     where: {
-      Shelf: {
-        userUid: sessionData?.session?.user.id,
-      },
+      ownerId: sessionData?.session?.user.id,
     },
   })
 

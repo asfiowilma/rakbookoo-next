@@ -1,7 +1,7 @@
 import React from 'react'
 
 type RatingProps = {
-  bookId: number
+  bookId: string
   rating: number
   readonly?: boolean
 }

@@ -19,7 +19,7 @@ const BookGrid = ({ books: initBooks }: BooksViewProps) => {
       ))}
     </div>
   ) : (
-    <div className="grid grid-cols-2 gap-x-2 gap-y-4 sm:grid-cols-4 lg:grid-cols-6">
+    <div className="grid w-full grid-cols-2 gap-x-2 gap-y-4 sm:grid-cols-4 lg:grid-cols-6">
       {books?.map((book) => (
         <BookThumbnail key={book.id} book={book} />
       ))}

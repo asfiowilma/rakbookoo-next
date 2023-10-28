@@ -28,9 +28,9 @@ const ShelfPage = async ({ params, searchParams }: PageProps) => {
       id: id,
     },
     include: {
-      Book: {
+      books: {
         include: {
-          Author: {
+          authors: {
             take: view === LibraryView.thumbnail ? 1 : undefined,
             select: {
               name: true,
@@ -62,7 +62,7 @@ const ShelfPage = async ({ params, searchParams }: PageProps) => {
         <LibraryViewSelect />
         <BooksViewOptions />
       </div>
-      <BooksView view={view} books={shelf?.Book as BookWithAuthor[]} />
+      <BooksView view={view} books={shelf?.books as BookWithAuthor[]} />
     </>
   )
 }

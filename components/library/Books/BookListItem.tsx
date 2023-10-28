@@ -24,7 +24,7 @@ const BookListItem = ({ book }: BookViewProps) => {
         <div className="inline-flex">
           <span className="font-bold flex-none">{book.title}</span>
           <span>・</span>
-          <span>{book.Author?.map((author) => author.name).join(', ')}</span>
+          <span>{book.authors?.map((author) => author.name).join(', ')}</span>
         </div>
         {book?.rating && (
           <Rating rating={book.rating} bookId={book.id} readonly />
