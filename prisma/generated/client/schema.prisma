@@ -16,7 +16,7 @@ model Author {
 }
 
 model Book {
-  id         String   @id @unique @db.Uuid
+  id         String   @id @unique @default(uuid()) @db.Uuid
   isbn       String?
   title      String
   coverImage String?
