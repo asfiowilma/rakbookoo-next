@@ -1,6 +1,5 @@
 import { LibraryView } from '../enums'
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
 
 interface LibraryViewState {
   view: LibraryView

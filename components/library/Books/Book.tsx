@@ -22,7 +22,7 @@ const Book = ({ book }: BookProps) => {
         )}
       >
         <img
-          src={book.coverImage ?? ''}
+          src={book.coverImage}
           alt={book.title}
           className="h-full w-full scale-110 bg-base-300 object-cover object-center blur"
         />

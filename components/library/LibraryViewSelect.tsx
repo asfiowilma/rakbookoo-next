@@ -19,10 +19,12 @@ const LibraryViewSelect = () => {
 
   useEffect(() => {
     if (view && (params.get('view') as LibraryView) !== view) {
-      router.replace(urlBuilder(pathname, { view }))
+      const searchParams = new URLSearchParams(params.toString())
+      searchParams.set('view', view)
+      router.replace(urlBuilder(pathname, searchParams))
       queryClient.invalidateQueries({ queryKey: ['books'] })
     }
-  }, [view, params])
+  }, [view])
 
   return (
     <div className="join">

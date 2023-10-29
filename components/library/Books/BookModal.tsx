@@ -1,50 +1,51 @@
 'use client'
 
-import { BookModalLocation, RESET_BOOK_ID } from '@/lib/constants/book'
 import React, { useEffect } from 'react'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 import Book from './Book'
+import { FaSpinner } from 'react-icons/fa'
 import Modal from '@/components/ui/modal'
-import { routes } from '@/lib/routes'
+import { RESET_BOOK_ID } from '@/lib/constants/book'
 import { urlBuilder } from '@/lib/utils'
 import { useBookStore } from '@/lib/hooks/useBookStore'
 import useGetBookDetailsQuery from '@/context/queries/book/useGetBookDetailsQuery'
-import { useRouter } from 'next/navigation'
 
 type BookModalProps = {
-  location: BookModalLocation
   shelfId?: number
 }
 
-const BookModal = ({ location, shelfId }: BookModalProps) => {
+const BookModal = ({ shelfId }: BookModalProps) => {
   const router = useRouter()
+  const pathname = usePathname()
+  const routerParams = useSearchParams()
+
   const { bookId, isBookModalOpen, setBookModalOpen, setBookId } =
     useBookStore()
   const { data: book, isLoading } = useGetBookDetailsQuery(bookId)
 
-  const getBookRoute = (withBook: boolean = true) => {
-    const book = { book: bookId }
-    if (location == BookModalLocation.library)
-      return urlBuilder(routes.library, withBook ? book : {})
-    else if (location == BookModalLocation.shelf)
-      return urlBuilder(routes.shelf(shelfId), withBook ? book : {})
-    return routes.library
+  const getBookRoute = (id?: string) => {
+    const params = new URLSearchParams(routerParams.toString())
+    if (id) params.append('book', id)
+    else params.delete('book')
+    return urlBuilder(pathname, params)
   }
 
   useEffect(() => {
-    // if (isBookModalOpen && bookId) router.replace(getBookRoute())
-    // else router.replace(getBookRoute(false))
-  }, [bookId, isBookModalOpen])
+    if (bookId) router.replace(getBookRoute(bookId))
+  }, [bookId])
 
   const setIsOpen = (to: boolean) => {
-    if (!to) setBookId(RESET_BOOK_ID)
+    if (!to) {
+      setBookId(RESET_BOOK_ID)
+      router.replace(getBookRoute())
+    }
     setBookModalOpen(to)
   }
 
-  return isLoading || !book ? (
-    <></>
-  ) : (
+  return (
     <Modal isOpen={isBookModalOpen} setIsOpen={setIsOpen}>
+      {isLoading && <FaSpinner className="animate-spin" />}
       {book && <Book book={book} />}
     </Modal>
   )

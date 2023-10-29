@@ -19,6 +19,7 @@ import {
 import { BiBookHeart } from 'react-icons/bi'
 import Image from 'next/image'
 import React from 'react'
+import { useBookStore } from '@/lib/hooks/useBookStore'
 
 const columnHelper = createColumnHelper<BookWithAuthor>()
 
@@ -58,6 +59,13 @@ const columns = [
 ]
 
 const BookTable = ({ books }: BooksViewProps) => {
+  const { setBookId, setBookModalOpen } = useBookStore()
+
+  const openBookInfo = (bookId: string) => {
+    setBookId(bookId)
+    setBookModalOpen(true)
+  }
+
   const table = useReactTable({
     data: books,
     columns,
@@ -84,7 +92,7 @@ const BookTable = ({ books }: BooksViewProps) => {
       </TableHeader>
       <TableBody>
         {table.getRowModel().rows.map((row) => (
-          <TableRow key={row.id}>
+          <TableRow key={row.id} onClick={() => openBookInfo(row.original.id)}>
             {row.getVisibleCells().map((cell) => (
               <TableCell key={cell.id}>
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}

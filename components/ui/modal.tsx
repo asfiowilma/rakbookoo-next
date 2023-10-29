@@ -6,8 +6,6 @@ const Modal = ({
   setIsOpen,
   children,
 }: ModalBaseProps & PropsWithChildren) => {
-  const closeModal = () => setIsOpen(false)
-
   return (
     <div
       aria-hidden
@@ -15,7 +13,7 @@ const Modal = ({
         'modal modal-bottom md:modal-middle',
         isOpen && 'modal-open'
       )}
-      onClick={closeModal}
+      onClick={() => setIsOpen(false)}
     >
       <div
         aria-hidden
@@ -24,7 +22,7 @@ const Modal = ({
       >
         <button
           className="btn btn-circle btn-sm absolute right-2 top-2"
-          onClick={closeModal}
+          onClick={() => setIsOpen(false)}
         >
           ✕
         </button>

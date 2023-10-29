@@ -3,10 +3,21 @@ import type { BookViewProps } from '@/types/books'
 import Image from 'next/image'
 import Rating from './Rating'
 import React from 'react'
+import { useBookStore } from '@/lib/hooks/useBookStore'
 
 const BookListItem = ({ book }: BookViewProps) => {
+  const { setBookId, setBookModalOpen } = useBookStore()
+
+  const openBookInfo = () => {
+    setBookId(book.id)
+    setBookModalOpen(true)
+  }
+
   return (
-    <div className="flex items-center gap-2">
+    <button
+      onClick={openBookInfo}
+      className="flex items-center gap-2 hover:bg-neutral-focus cursor-pointer rounded-box"
+    >
       {book.coverImage ? (
         <Image
           width={32}
@@ -30,7 +41,7 @@ const BookListItem = ({ book }: BookViewProps) => {
           <Rating rating={book.rating} bookId={book.id} readonly />
         )}
       </div>
-    </div>
+    </button>
   )
 }
 

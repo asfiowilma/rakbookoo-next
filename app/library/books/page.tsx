@@ -1,6 +1,5 @@
 import { BiPlus } from 'react-icons/bi'
 import BookModal from '@/components/library/Books/BookModal'
-import { BookModalLocation } from '@/lib/constants/book'
 import type { BookWithAuthor } from '@/types/books'
 import BooksView from '@/components/library/Books/BooksView'
 import BooksViewOptions from '@/components/library/Books/BooksViewOptions'
@@ -51,7 +50,7 @@ const BooksPage = async ({ searchParams }: PageProps) => {
         {view !== LibraryView.thumbnail && <BooksViewOptions />}
       </div>
       <BooksView view={view} books={books as BookWithAuthor[]} />
-      <BookModal location={BookModalLocation.library} />
+      <BookModal />
     </>
   )
 }
