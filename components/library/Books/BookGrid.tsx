@@ -4,7 +4,7 @@ import BookThumbnail from './BookThumbnail'
 import type { BooksViewProps } from '@/types/books'
 import React from 'react'
 import { Skeleton } from '@/components/ui/skeleton'
-import useBooks from '@/context/queries/useBooks'
+import useBooks from '@/context/queries/book/useBooks'
 
 const BookGrid = ({ books: initBooks }: BooksViewProps) => {
   const { isLoading, data: books } = useBooks(initBooks)

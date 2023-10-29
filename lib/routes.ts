@@ -15,4 +15,5 @@ export const routes = {
 
 export const api = {
   getBooks: '/api/library/books',
+  getBookDetails: (bookId: string) => `/api/library/book/${bookId}`,
 }

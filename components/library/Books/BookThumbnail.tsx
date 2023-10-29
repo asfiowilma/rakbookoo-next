@@ -5,15 +5,16 @@ import type { BookViewProps } from '@/types/books'
 import Image from 'next/image'
 import React from 'react'
 import { truncate } from '@/lib/utils'
+import { useBookStore } from '@/lib/hooks/useBookStore'
 
 const MAX_STRING_LENGTH = 32
 
 const BookThumbnail = ({ book }: BookViewProps) => {
-  // const { setBookId, setBookModalOpen } = useBookStore()
+  const { setBookId, setBookModalOpen } = useBookStore()
 
   const openBookInfo = () => {
-    // setBookId(book.id)
-    // setBookModalOpen(true)
+    setBookId(book.id)
+    setBookModalOpen(true)
   }
 
   return (
@@ -37,7 +38,7 @@ const BookThumbnail = ({ book }: BookViewProps) => {
         </div>
       )}
       <p className="mt-2 font-bold line-clamp-2">{book.title}</p>
-      <p>{book.authors?.[0].name}</p>
+      <p>{book.authors?.[0]?.name}</p>
     </button>
   )
 }

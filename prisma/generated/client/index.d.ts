@@ -1,8 +1,9 @@
+
 /**
  * Client
- **/
+**/
 
-import * as runtime from './runtime/library'
+import * as runtime from './runtime/library';
 import $Types = runtime.Types // general types
 import $Public = runtime.Types.Public
 import $Utils = runtime.Types.Utils
@@ -11,40 +12,41 @@ import $Result = runtime.Types.Result
 
 export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
+
 /**
  * Model Author
- *
+ * 
  */
 export type Author = $Result.DefaultSelection<Prisma.$AuthorPayload>
 /**
  * Model Book
- *
+ * 
  */
 export type Book = $Result.DefaultSelection<Prisma.$BookPayload>
 /**
  * Model Note
- *
+ * 
  */
 export type Note = $Result.DefaultSelection<Prisma.$NotePayload>
 /**
  * Model Shelf
- *
+ * 
  */
 export type Shelf = $Result.DefaultSelection<Prisma.$ShelfPayload>
 /**
  * Model Tag
- *
+ * 
  */
 export type Tag = $Result.DefaultSelection<Prisma.$TagPayload>
 /**
  * Model User
- *
+ * 
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 
 /**
  * ##  Prisma Client ʲˢ
- *
+ * 
  * Type-safe database client for TypeScript & Node.js
  * @example
  * ```
@@ -53,23 +55,19 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  * const authors = await prisma.author.findMany()
  * ```
  *
- *
+ * 
  * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
  */
 export class PrismaClient<
   T extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
-  U = 'log' extends keyof T
-    ? T['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition>
-      ? Prisma.GetEvents<T['log']>
-      : never
-    : never,
+  U = 'log' extends keyof T ? T['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<T['log']> : never : never,
   ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
 > {
   [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
 
-  /**
+    /**
    * ##  Prisma Client ʲˢ
-   *
+   * 
    * Type-safe database client for TypeScript & Node.js
    * @example
    * ```
@@ -78,27 +76,22 @@ export class PrismaClient<
    * const authors = await prisma.author.findMany()
    * ```
    *
-   *
+   * 
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
    */
 
-  constructor(optionsArg?: Prisma.Subset<T, Prisma.PrismaClientOptions>)
-  $on<V extends U>(
-    eventType: V,
-    callback: (
-      event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent
-    ) => void
-  ): void
+  constructor(optionsArg ?: Prisma.Subset<T, Prisma.PrismaClientOptions>);
+  $on<V extends U>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent) => void): void;
 
   /**
    * Connect with the database
    */
-  $connect(): $Utils.JsPromise<void>
+  $connect(): $Utils.JsPromise<void>;
 
   /**
    * Disconnect from the database
    */
-  $disconnect(): $Utils.JsPromise<void>
+  $disconnect(): $Utils.JsPromise<void>;
 
   /**
    * Add a middleware
@@ -107,19 +100,16 @@ export class PrismaClient<
    */
   $use(cb: Prisma.Middleware): void
 
-  /**
+/**
    * Executes a prepared raw query and returns the number of affected rows.
    * @example
    * ```
    * const result = await prisma.$executeRaw`UPDATE User SET cool = ${true} WHERE email = ${'user@email.com'};`
    * ```
-   *
+   * 
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
-  $executeRaw<T = unknown>(
-    query: TemplateStringsArray | Prisma.Sql,
-    ...values: any[]
-  ): Prisma.PrismaPromise<number>
+  $executeRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<number>;
 
   /**
    * Executes a raw query and returns the number of affected rows.
@@ -128,13 +118,10 @@ export class PrismaClient<
    * ```
    * const result = await prisma.$executeRawUnsafe('UPDATE User SET cool = $1 WHERE email = $2 ;', true, 'user@email.com')
    * ```
-   *
+   * 
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
-  $executeRawUnsafe<T = unknown>(
-    query: string,
-    ...values: any[]
-  ): Prisma.PrismaPromise<number>
+  $executeRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<number>;
 
   /**
    * Performs a prepared raw query and returns the `SELECT` data.
@@ -142,13 +129,10 @@ export class PrismaClient<
    * ```
    * const result = await prisma.$queryRaw`SELECT * FROM User WHERE id = ${1} OR email = ${'user@email.com'};`
    * ```
-   *
+   * 
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
-  $queryRaw<T = unknown>(
-    query: TemplateStringsArray | Prisma.Sql,
-    ...values: any[]
-  ): Prisma.PrismaPromise<T>
+  $queryRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<T>;
 
   /**
    * Performs a raw query and returns the `SELECT` data.
@@ -157,13 +141,10 @@ export class PrismaClient<
    * ```
    * const result = await prisma.$queryRawUnsafe('SELECT * FROM User WHERE id = $1 OR email = $2;', 1, 'user@email.com')
    * ```
-   *
+   * 
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
-  $queryRawUnsafe<T = unknown>(
-    query: string,
-    ...values: any[]
-  ): Prisma.PrismaPromise<T>
+  $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
 
   /**
    * Allows the running of a sequence of read/write operations that are guaranteed to either succeed or fail as a whole.
@@ -175,86 +156,75 @@ export class PrismaClient<
    *   prisma.user.create({ data: { name: 'Alice' } }),
    * ])
    * ```
-   *
+   * 
    * Read more in our [docs](https://www.prisma.io/docs/concepts/components/prisma-client/transactions).
    */
-  $transaction<P extends Prisma.PrismaPromise<any>[]>(
-    arg: [...P],
-    options?: { isolationLevel?: Prisma.TransactionIsolationLevel }
-  ): $Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
+  $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
 
-  $transaction<R>(
-    fn: (
-      prisma: Omit<PrismaClient, runtime.ITXClientDenyList>
-    ) => $Utils.JsPromise<R>,
-    options?: {
-      maxWait?: number
-      timeout?: number
-      isolationLevel?: Prisma.TransactionIsolationLevel
-    }
-  ): $Utils.JsPromise<R>
+  $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => $Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<R>
+
 
   $extends: $Extensions.ExtendsHook<'extends', Prisma.TypeMapCb, ExtArgs>
 
-  /**
+      /**
    * `prisma.author`: Exposes CRUD operations for the **Author** model.
-   * Example usage:
-   * ```ts
-   * // Fetch zero or more Authors
-   * const authors = await prisma.author.findMany()
-   * ```
-   */
-  get author(): Prisma.AuthorDelegate<ExtArgs>
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Authors
+    * const authors = await prisma.author.findMany()
+    * ```
+    */
+  get author(): Prisma.AuthorDelegate<ExtArgs>;
 
   /**
    * `prisma.book`: Exposes CRUD operations for the **Book** model.
-   * Example usage:
-   * ```ts
-   * // Fetch zero or more Books
-   * const books = await prisma.book.findMany()
-   * ```
-   */
-  get book(): Prisma.BookDelegate<ExtArgs>
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Books
+    * const books = await prisma.book.findMany()
+    * ```
+    */
+  get book(): Prisma.BookDelegate<ExtArgs>;
 
   /**
    * `prisma.note`: Exposes CRUD operations for the **Note** model.
-   * Example usage:
-   * ```ts
-   * // Fetch zero or more Notes
-   * const notes = await prisma.note.findMany()
-   * ```
-   */
-  get note(): Prisma.NoteDelegate<ExtArgs>
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Notes
+    * const notes = await prisma.note.findMany()
+    * ```
+    */
+  get note(): Prisma.NoteDelegate<ExtArgs>;
 
   /**
    * `prisma.shelf`: Exposes CRUD operations for the **Shelf** model.
-   * Example usage:
-   * ```ts
-   * // Fetch zero or more Shelves
-   * const shelves = await prisma.shelf.findMany()
-   * ```
-   */
-  get shelf(): Prisma.ShelfDelegate<ExtArgs>
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Shelves
+    * const shelves = await prisma.shelf.findMany()
+    * ```
+    */
+  get shelf(): Prisma.ShelfDelegate<ExtArgs>;
 
   /**
    * `prisma.tag`: Exposes CRUD operations for the **Tag** model.
-   * Example usage:
-   * ```ts
-   * // Fetch zero or more Tags
-   * const tags = await prisma.tag.findMany()
-   * ```
-   */
-  get tag(): Prisma.TagDelegate<ExtArgs>
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Tags
+    * const tags = await prisma.tag.findMany()
+    * ```
+    */
+  get tag(): Prisma.TagDelegate<ExtArgs>;
 
   /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
-   * Example usage:
-   * ```ts
-   * // Fetch zero or more Users
-   * const users = await prisma.user.findMany()
-   * ```
-   */
-  get user(): Prisma.UserDelegate<ExtArgs>
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Users
+    * const users = await prisma.user.findMany()
+    * ```
+    */
+  get user(): Prisma.UserDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -294,7 +264,7 @@ export namespace Prisma {
   export type DecimalJsLike = runtime.DecimalJsLike
 
   /**
-   * Metrics
+   * Metrics 
    */
   export type Metrics = runtime.Metrics
   export type Metric<T> = runtime.Metric<T>
@@ -302,8 +272,8 @@ export namespace Prisma {
   export type MetricHistogramBucket = runtime.MetricHistogramBucket
 
   /**
-   * Extensions
-   */
+  * Extensions
+  */
   export import Extension = $Extensions.UserArgs
   export import getExtensionContext = runtime.Extensions.getExtensionContext
   export import Args = $Public.Args
@@ -319,7 +289,7 @@ export namespace Prisma {
     client: string
   }
 
-  export const prismaVersion: PrismaVersion
+  export const prismaVersion: PrismaVersion 
 
   /**
    * Utility Types
@@ -328,9 +298,9 @@ export namespace Prisma {
   /**
    * From https://github.com/sindresorhus/type-fest/
    * Matches a JSON object.
-   * This type can be useful to enforce some input to be JSON-compatible or as a super-type to be extended from.
+   * This type can be useful to enforce some input to be JSON-compatible or as a super-type to be extended from. 
    */
-  export type JsonObject = { [Key in string]?: JsonValue }
+  export type JsonObject = {[Key in string]?: JsonValue}
 
   /**
    * From https://github.com/sindresorhus/type-fest/
@@ -342,28 +312,19 @@ export namespace Prisma {
    * From https://github.com/sindresorhus/type-fest/
    * Matches any valid JSON value.
    */
-  export type JsonValue =
-    | string
-    | number
-    | boolean
-    | JsonObject
-    | JsonArray
-    | null
+  export type JsonValue = string | number | boolean | JsonObject | JsonArray | null
 
   /**
    * Matches a JSON object.
    * Unlike `JsonObject`, this type allows undefined and read-only properties.
    */
-  export type InputJsonObject = {
-    readonly [Key in string]?: InputJsonValue | null
-  }
+  export type InputJsonObject = {readonly [Key in string]?: InputJsonValue | null}
 
   /**
    * Matches a JSON array.
    * Unlike `JsonArray`, readonly arrays are assignable to this type.
    */
-  export interface InputJsonArray
-    extends ReadonlyArray<InputJsonValue | null> {}
+  export interface InputJsonArray extends ReadonlyArray<InputJsonValue | null> {}
 
   /**
    * Matches any valid value that can be used as an input for operations like
@@ -378,51 +339,45 @@ export namespace Prisma {
    *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-by-null-values
    */
-  export type InputJsonValue =
-    | string
-    | number
-    | boolean
-    | InputJsonObject
-    | InputJsonArray
-    | { toJSON(): unknown }
+  export type InputJsonValue = string | number | boolean | InputJsonObject | InputJsonArray | { toJSON(): unknown }
 
   /**
    * Types of the values used to represent different kinds of `null` values when working with JSON fields.
-   *
+   * 
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   namespace NullTypes {
     /**
-     * Type of `Prisma.DbNull`.
-     *
-     * You cannot use other instances of this class. Please use the `Prisma.DbNull` value.
-     *
-     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
-     */
+    * Type of `Prisma.DbNull`.
+    * 
+    * You cannot use other instances of this class. Please use the `Prisma.DbNull` value.
+    * 
+    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+    */
     class DbNull {
       private DbNull: never
       private constructor()
     }
 
     /**
-     * Type of `Prisma.JsonNull`.
-     *
-     * You cannot use other instances of this class. Please use the `Prisma.JsonNull` value.
-     *
-     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
-     */
+    * Type of `Prisma.JsonNull`.
+    * 
+    * You cannot use other instances of this class. Please use the `Prisma.JsonNull` value.
+    * 
+    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+    */
     class JsonNull {
       private JsonNull: never
       private constructor()
     }
 
     /**
-     * Type of `Prisma.AnyNull`.
-     *
-     * You cannot use other instances of this class. Please use the `Prisma.AnyNull` value.
-     *
-     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
-     */
+    * Type of `Prisma.AnyNull`.
+    * 
+    * You cannot use other instances of this class. Please use the `Prisma.AnyNull` value.
+    * 
+    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+    */
     class AnyNull {
       private AnyNull: never
       private constructor()
@@ -431,21 +386,21 @@ export namespace Prisma {
 
   /**
    * Helper for filtering JSON entries that have `null` on the database (empty on the db)
-   *
+   * 
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   export const DbNull: NullTypes.DbNull
 
   /**
    * Helper for filtering JSON entries that have JSON `null` values (not empty on the db)
-   *
+   * 
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   export const JsonNull: NullTypes.JsonNull
 
   /**
    * Helper for filtering JSON entries that are `Prisma.DbNull` or `Prisma.JsonNull`
-   *
+   * 
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   export const AnyNull: NullTypes.AnyNull
@@ -458,27 +413,22 @@ export namespace Prisma {
   /**
    * Get the type of the value, that the Promise holds.
    */
-  export type PromiseType<T extends PromiseLike<any>> = T extends PromiseLike<
-    infer U
-  >
-    ? U
-    : T
+  export type PromiseType<T extends PromiseLike<any>> = T extends PromiseLike<infer U> ? U : T;
 
   /**
    * Get the return type of a function which returns a Promise.
    */
-  export type PromiseReturnType<
-    T extends (...args: any) => $Utils.JsPromise<any>
-  > = PromiseType<ReturnType<T>>
+  export type PromiseReturnType<T extends (...args: any) => $Utils.JsPromise<any>> = PromiseType<ReturnType<T>>
 
   /**
    * From T, pick a set of properties whose keys are in the union K
    */
   type Prisma__Pick<T, K extends keyof T> = {
-    [P in K]: T[P]
-  }
+      [P in K]: T[P];
+  };
 
-  export type Enumerable<T> = T | Array<T>
+
+  export type Enumerable<T> = T | Array<T>;
 
   export type RequiredKeys<T> = {
     [K in keyof T]-?: {} extends Prisma__Pick<T, K> ? never : K
@@ -495,8 +445,8 @@ export namespace Prisma {
    * @desc From `T` pick properties that exist in `U`. Simple version of Intersection
    */
   export type Subset<T, U> = {
-    [key in keyof T]: key extends keyof U ? T[key] : never
-  }
+    [key in keyof T]: key extends keyof U ? T[key] : never;
+  };
 
   /**
    * SelectSubset
@@ -505,9 +455,10 @@ export namespace Prisma {
    */
   export type SelectSubset<T, U> = {
     [key in keyof T]: key extends keyof U ? T[key] : never
-  } & (T extends SelectAndInclude
-    ? 'Please either choose `select` or `include`.'
-    : {})
+  } &
+    (T extends SelectAndInclude
+      ? 'Please either choose `select` or `include`.'
+      : {})
 
   /**
    * Subset + Intersection
@@ -515,34 +466,37 @@ export namespace Prisma {
    */
   export type SubsetIntersection<T, U, K> = {
     [key in keyof T]: key extends keyof U ? T[key] : never
-  } & K
+  } &
+    K
 
-  type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never }
+  type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
 
   /**
    * XOR is needed to have a real mutually exclusive union type
    * https://stackoverflow.com/questions/42123407/does-typescript-support-mutually-exclusive-types
    */
-  type XOR<T, U> = T extends object
-    ? U extends object
-      ? (Without<T, U> & U) | (Without<U, T> & T)
-      : U
-    : T
+  type XOR<T, U> =
+    T extends object ?
+    U extends object ?
+      (Without<T, U> & U) | (Without<U, T> & T)
+    : U : T
+
 
   /**
    * Is T a Record?
    */
   type IsObject<T extends any> = T extends Array<any>
-    ? False
-    : T extends Date
-    ? False
-    : T extends Uint8Array
-    ? False
-    : T extends BigInt
-    ? False
-    : T extends object
-    ? True
-    : False
+  ? False
+  : T extends Date
+  ? False
+  : T extends Uint8Array
+  ? False
+  : T extends BigInt
+  ? False
+  : T extends object
+  ? True
+  : False
+
 
   /**
    * If it's T[], return T
@@ -563,7 +517,11 @@ export namespace Prisma {
 
   type EitherLoose<O extends object, K extends Key> = ComputeRaw<__Either<O, K>>
 
-  type _Either<O extends object, K extends Key, strict extends Boolean> = {
+  type _Either<
+    O extends object,
+    K extends Key,
+    strict extends Boolean
+  > = {
     1: EitherStrict<O, K>
     0: EitherLoose<O, K>
   }[strict]
@@ -588,69 +546,50 @@ export namespace Prisma {
     : never
 
   export type Overwrite<O extends object, O1 extends object> = {
-    [K in keyof O]: K extends keyof O1 ? O1[K] : O[K]
-  } & {}
+      [K in keyof O]: K extends keyof O1 ? O1[K] : O[K];
+  } & {};
 
-  type _Merge<U extends object> = IntersectOf<
-    Overwrite<
-      U,
-      {
-        [K in keyof U]-?: At<U, K>
-      }
-    >
-  >
+  type _Merge<U extends object> = IntersectOf<Overwrite<U, {
+      [K in keyof U]-?: At<U, K>;
+  }>>;
 
-  type Key = string | number | symbol
-  type AtBasic<O extends object, K extends Key> = K extends keyof O
-    ? O[K]
-    : never
-  type AtStrict<O extends object, K extends Key> = O[K & keyof O]
-  type AtLoose<O extends object, K extends Key> = O extends unknown
-    ? AtStrict<O, K>
-    : never
-  export type At<
-    O extends object,
-    K extends Key,
-    strict extends Boolean = 1
-  > = {
-    1: AtStrict<O, K>
-    0: AtLoose<O, K>
-  }[strict]
+  type Key = string | number | symbol;
+  type AtBasic<O extends object, K extends Key> = K extends keyof O ? O[K] : never;
+  type AtStrict<O extends object, K extends Key> = O[K & keyof O];
+  type AtLoose<O extends object, K extends Key> = O extends unknown ? AtStrict<O, K> : never;
+  export type At<O extends object, K extends Key, strict extends Boolean = 1> = {
+      1: AtStrict<O, K>;
+      0: AtLoose<O, K>;
+  }[strict];
 
-  export type ComputeRaw<A extends any> = A extends Function
-    ? A
-    : {
-        [K in keyof A]: A[K]
-      } & {}
+  export type ComputeRaw<A extends any> = A extends Function ? A : {
+    [K in keyof A]: A[K];
+  } & {};
 
   export type OptionalFlat<O> = {
-    [K in keyof O]?: O[K]
-  } & {}
+    [K in keyof O]?: O[K];
+  } & {};
 
   type _Record<K extends keyof any, T> = {
-    [P in K]: T
-  }
+    [P in K]: T;
+  };
 
   // cause typescript not to expand types and preserve names
-  type NoExpand<T> = T extends unknown ? T : never
+  type NoExpand<T> = T extends unknown ? T : never;
 
   // this type assumes the passed object is entirely optional
   type AtLeast<O extends object, K extends string> = NoExpand<
     O extends unknown
-      ?
-          | (K extends keyof O ? { [P in K]: O[P] } & O : O)
-          | ({ [P in keyof O as P extends K ? K : never]-?: O[P] } & O)
-      : never
-  >
+    ? | (K extends keyof O ? { [P in K]: O[P] } & O : O)
+      | {[P in keyof O as P extends K ? K : never]-?: O[P]} & O
+    : never>;
 
-  type _Strict<U, _U = U> = U extends unknown
-    ? U & OptionalFlat<_Record<Exclude<Keys<_U>, keyof U>, never>>
-    : never
+  type _Strict<U, _U = U> = U extends unknown ? U & OptionalFlat<_Record<Exclude<Keys<_U>, keyof U>, never>> : never;
 
-  export type Strict<U extends object> = ComputeRaw<_Strict<U>>
+  export type Strict<U extends object> = ComputeRaw<_Strict<U>>;
   /** End Helper Types for "Merge" **/
 
-  export type Merge<U extends object> = ComputeRaw<_Merge<Strict<U>>>
+  export type Merge<U extends object> = ComputeRaw<_Merge<Strict<U>>>;
 
   /**
   A [[Boolean]]
@@ -695,19 +634,21 @@ export namespace Prisma {
 
   export type Keys<U extends Union> = U extends unknown ? keyof U : never
 
-  type Cast<A, B> = A extends B ? A : B
+  type Cast<A, B> = A extends B ? A : B;
 
-  export const type: unique symbol
+  export const type: unique symbol;
+
+
 
   /**
    * Used by group by
    */
 
-  export type GetScalarType<T, O> = O extends object
-    ? {
-        [P in keyof T]: P extends keyof O ? O[P] : never
-      }
-    : never
+  export type GetScalarType<T, O> = O extends object ? {
+    [P in keyof T]: P extends keyof O
+      ? O[P]
+      : never
+  } : never
 
   type FieldPaths<
     T,
@@ -723,9 +664,7 @@ export namespace Prisma {
         // based on the brilliant idea of Pierre-Antoine Mills
         // https://github.com/microsoft/TypeScript/issues/30188#issuecomment-478938437
         T[K] extends infer TK
-        ? GetHavingFields<
-            UnEnumerate<TK> extends object ? Merge<UnEnumerate<TK>> : never
-          >
+        ? GetHavingFields<UnEnumerate<TK> extends object ? Merge<UnEnumerate<TK>> : never>
         : never
       : {} extends FieldPaths<T[K]>
       ? never
@@ -742,117 +681,108 @@ export namespace Prisma {
   /**
    * Like `Pick`, but additionally can also accept an array of keys
    */
-  type PickEnumerable<
-    T,
-    K extends Enumerable<keyof T> | keyof T
-  > = Prisma__Pick<T, MaybeTupleToUnion<K>>
+  type PickEnumerable<T, K extends Enumerable<keyof T> | keyof T> = Prisma__Pick<T, MaybeTupleToUnion<K>>
 
   /**
    * Exclude all keys with underscores
    */
-  type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}`
-    ? never
-    : T
+  type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}` ? never : T
+
 
   export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>
 
-  type FieldRefInputType<Model, FieldType> = Model extends never
-    ? never
-    : FieldRef<Model, FieldType>
+  type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRef<Model, FieldType>
+
 
   export const ModelName: {
-    Author: 'Author'
-    Book: 'Book'
-    Note: 'Note'
-    Shelf: 'Shelf'
-    Tag: 'Tag'
+    Author: 'Author',
+    Book: 'Book',
+    Note: 'Note',
+    Shelf: 'Shelf',
+    Tag: 'Tag',
     User: 'User'
-  }
+  };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
+
 
   export type Datasources = {
     db?: Datasource
   }
 
-  interface TypeMapCb
-    extends $Utils.Fn<
-      { extArgs: $Extensions.Args },
-      $Utils.Record<string, any>
-    > {
+
+  interface TypeMapCb extends $Utils.Fn<{extArgs: $Extensions.Args}, $Utils.Record<string, any>> {
     returns: Prisma.TypeMap<this['params']['extArgs']>
   }
 
-  export type TypeMap<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type TypeMap<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     meta: {
       modelProps: 'author' | 'book' | 'note' | 'shelf' | 'tag' | 'user'
       txIsolationLevel: Prisma.TransactionIsolationLevel
-    }
+    },
     model: {
       Author: {
         payload: Prisma.$AuthorPayload<ExtArgs>
         fields: Prisma.AuthorFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.AuthorFindUniqueArgs<ExtArgs>
+            args: Prisma.AuthorFindUniqueArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$AuthorPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.AuthorFindUniqueOrThrowArgs<ExtArgs>
+            args: Prisma.AuthorFindUniqueOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$AuthorPayload>
           }
           findFirst: {
-            args: Prisma.AuthorFindFirstArgs<ExtArgs>
+            args: Prisma.AuthorFindFirstArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$AuthorPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.AuthorFindFirstOrThrowArgs<ExtArgs>
+            args: Prisma.AuthorFindFirstOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$AuthorPayload>
           }
           findMany: {
-            args: Prisma.AuthorFindManyArgs<ExtArgs>
+            args: Prisma.AuthorFindManyArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$AuthorPayload>[]
           }
           create: {
-            args: Prisma.AuthorCreateArgs<ExtArgs>
+            args: Prisma.AuthorCreateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$AuthorPayload>
           }
           createMany: {
-            args: Prisma.AuthorCreateManyArgs<ExtArgs>
+            args: Prisma.AuthorCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           delete: {
-            args: Prisma.AuthorDeleteArgs<ExtArgs>
+            args: Prisma.AuthorDeleteArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$AuthorPayload>
           }
           update: {
-            args: Prisma.AuthorUpdateArgs<ExtArgs>
+            args: Prisma.AuthorUpdateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$AuthorPayload>
           }
           deleteMany: {
-            args: Prisma.AuthorDeleteManyArgs<ExtArgs>
+            args: Prisma.AuthorDeleteManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.AuthorUpdateManyArgs<ExtArgs>
+            args: Prisma.AuthorUpdateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.AuthorUpsertArgs<ExtArgs>
+            args: Prisma.AuthorUpsertArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$AuthorPayload>
           }
           aggregate: {
-            args: Prisma.AuthorAggregateArgs<ExtArgs>
+            args: Prisma.AuthorAggregateArgs<ExtArgs>,
             result: $Utils.Optional<AggregateAuthor>
           }
           groupBy: {
-            args: Prisma.AuthorGroupByArgs<ExtArgs>
+            args: Prisma.AuthorGroupByArgs<ExtArgs>,
             result: $Utils.Optional<AuthorGroupByOutputType>[]
           }
           count: {
-            args: Prisma.AuthorCountArgs<ExtArgs>
+            args: Prisma.AuthorCountArgs<ExtArgs>,
             result: $Utils.Optional<AuthorCountAggregateOutputType> | number
           }
         }
@@ -862,63 +792,63 @@ export namespace Prisma {
         fields: Prisma.BookFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.BookFindUniqueArgs<ExtArgs>
+            args: Prisma.BookFindUniqueArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$BookPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.BookFindUniqueOrThrowArgs<ExtArgs>
+            args: Prisma.BookFindUniqueOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$BookPayload>
           }
           findFirst: {
-            args: Prisma.BookFindFirstArgs<ExtArgs>
+            args: Prisma.BookFindFirstArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$BookPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.BookFindFirstOrThrowArgs<ExtArgs>
+            args: Prisma.BookFindFirstOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$BookPayload>
           }
           findMany: {
-            args: Prisma.BookFindManyArgs<ExtArgs>
+            args: Prisma.BookFindManyArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$BookPayload>[]
           }
           create: {
-            args: Prisma.BookCreateArgs<ExtArgs>
+            args: Prisma.BookCreateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$BookPayload>
           }
           createMany: {
-            args: Prisma.BookCreateManyArgs<ExtArgs>
+            args: Prisma.BookCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           delete: {
-            args: Prisma.BookDeleteArgs<ExtArgs>
+            args: Prisma.BookDeleteArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$BookPayload>
           }
           update: {
-            args: Prisma.BookUpdateArgs<ExtArgs>
+            args: Prisma.BookUpdateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$BookPayload>
           }
           deleteMany: {
-            args: Prisma.BookDeleteManyArgs<ExtArgs>
+            args: Prisma.BookDeleteManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.BookUpdateManyArgs<ExtArgs>
+            args: Prisma.BookUpdateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.BookUpsertArgs<ExtArgs>
+            args: Prisma.BookUpsertArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$BookPayload>
           }
           aggregate: {
-            args: Prisma.BookAggregateArgs<ExtArgs>
+            args: Prisma.BookAggregateArgs<ExtArgs>,
             result: $Utils.Optional<AggregateBook>
           }
           groupBy: {
-            args: Prisma.BookGroupByArgs<ExtArgs>
+            args: Prisma.BookGroupByArgs<ExtArgs>,
             result: $Utils.Optional<BookGroupByOutputType>[]
           }
           count: {
-            args: Prisma.BookCountArgs<ExtArgs>
+            args: Prisma.BookCountArgs<ExtArgs>,
             result: $Utils.Optional<BookCountAggregateOutputType> | number
           }
         }
@@ -928,63 +858,63 @@ export namespace Prisma {
         fields: Prisma.NoteFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.NoteFindUniqueArgs<ExtArgs>
+            args: Prisma.NoteFindUniqueArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$NotePayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.NoteFindUniqueOrThrowArgs<ExtArgs>
+            args: Prisma.NoteFindUniqueOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$NotePayload>
           }
           findFirst: {
-            args: Prisma.NoteFindFirstArgs<ExtArgs>
+            args: Prisma.NoteFindFirstArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$NotePayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.NoteFindFirstOrThrowArgs<ExtArgs>
+            args: Prisma.NoteFindFirstOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$NotePayload>
           }
           findMany: {
-            args: Prisma.NoteFindManyArgs<ExtArgs>
+            args: Prisma.NoteFindManyArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$NotePayload>[]
           }
           create: {
-            args: Prisma.NoteCreateArgs<ExtArgs>
+            args: Prisma.NoteCreateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$NotePayload>
           }
           createMany: {
-            args: Prisma.NoteCreateManyArgs<ExtArgs>
+            args: Prisma.NoteCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           delete: {
-            args: Prisma.NoteDeleteArgs<ExtArgs>
+            args: Prisma.NoteDeleteArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$NotePayload>
           }
           update: {
-            args: Prisma.NoteUpdateArgs<ExtArgs>
+            args: Prisma.NoteUpdateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$NotePayload>
           }
           deleteMany: {
-            args: Prisma.NoteDeleteManyArgs<ExtArgs>
+            args: Prisma.NoteDeleteManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.NoteUpdateManyArgs<ExtArgs>
+            args: Prisma.NoteUpdateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.NoteUpsertArgs<ExtArgs>
+            args: Prisma.NoteUpsertArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$NotePayload>
           }
           aggregate: {
-            args: Prisma.NoteAggregateArgs<ExtArgs>
+            args: Prisma.NoteAggregateArgs<ExtArgs>,
             result: $Utils.Optional<AggregateNote>
           }
           groupBy: {
-            args: Prisma.NoteGroupByArgs<ExtArgs>
+            args: Prisma.NoteGroupByArgs<ExtArgs>,
             result: $Utils.Optional<NoteGroupByOutputType>[]
           }
           count: {
-            args: Prisma.NoteCountArgs<ExtArgs>
+            args: Prisma.NoteCountArgs<ExtArgs>,
             result: $Utils.Optional<NoteCountAggregateOutputType> | number
           }
         }
@@ -994,63 +924,63 @@ export namespace Prisma {
         fields: Prisma.ShelfFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.ShelfFindUniqueArgs<ExtArgs>
+            args: Prisma.ShelfFindUniqueArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$ShelfPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.ShelfFindUniqueOrThrowArgs<ExtArgs>
+            args: Prisma.ShelfFindUniqueOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$ShelfPayload>
           }
           findFirst: {
-            args: Prisma.ShelfFindFirstArgs<ExtArgs>
+            args: Prisma.ShelfFindFirstArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$ShelfPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.ShelfFindFirstOrThrowArgs<ExtArgs>
+            args: Prisma.ShelfFindFirstOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$ShelfPayload>
           }
           findMany: {
-            args: Prisma.ShelfFindManyArgs<ExtArgs>
+            args: Prisma.ShelfFindManyArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$ShelfPayload>[]
           }
           create: {
-            args: Prisma.ShelfCreateArgs<ExtArgs>
+            args: Prisma.ShelfCreateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$ShelfPayload>
           }
           createMany: {
-            args: Prisma.ShelfCreateManyArgs<ExtArgs>
+            args: Prisma.ShelfCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           delete: {
-            args: Prisma.ShelfDeleteArgs<ExtArgs>
+            args: Prisma.ShelfDeleteArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$ShelfPayload>
           }
           update: {
-            args: Prisma.ShelfUpdateArgs<ExtArgs>
+            args: Prisma.ShelfUpdateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$ShelfPayload>
           }
           deleteMany: {
-            args: Prisma.ShelfDeleteManyArgs<ExtArgs>
+            args: Prisma.ShelfDeleteManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.ShelfUpdateManyArgs<ExtArgs>
+            args: Prisma.ShelfUpdateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.ShelfUpsertArgs<ExtArgs>
+            args: Prisma.ShelfUpsertArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$ShelfPayload>
           }
           aggregate: {
-            args: Prisma.ShelfAggregateArgs<ExtArgs>
+            args: Prisma.ShelfAggregateArgs<ExtArgs>,
             result: $Utils.Optional<AggregateShelf>
           }
           groupBy: {
-            args: Prisma.ShelfGroupByArgs<ExtArgs>
+            args: Prisma.ShelfGroupByArgs<ExtArgs>,
             result: $Utils.Optional<ShelfGroupByOutputType>[]
           }
           count: {
-            args: Prisma.ShelfCountArgs<ExtArgs>
+            args: Prisma.ShelfCountArgs<ExtArgs>,
             result: $Utils.Optional<ShelfCountAggregateOutputType> | number
           }
         }
@@ -1060,63 +990,63 @@ export namespace Prisma {
         fields: Prisma.TagFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.TagFindUniqueArgs<ExtArgs>
+            args: Prisma.TagFindUniqueArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$TagPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.TagFindUniqueOrThrowArgs<ExtArgs>
+            args: Prisma.TagFindUniqueOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$TagPayload>
           }
           findFirst: {
-            args: Prisma.TagFindFirstArgs<ExtArgs>
+            args: Prisma.TagFindFirstArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$TagPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.TagFindFirstOrThrowArgs<ExtArgs>
+            args: Prisma.TagFindFirstOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$TagPayload>
           }
           findMany: {
-            args: Prisma.TagFindManyArgs<ExtArgs>
+            args: Prisma.TagFindManyArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$TagPayload>[]
           }
           create: {
-            args: Prisma.TagCreateArgs<ExtArgs>
+            args: Prisma.TagCreateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$TagPayload>
           }
           createMany: {
-            args: Prisma.TagCreateManyArgs<ExtArgs>
+            args: Prisma.TagCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           delete: {
-            args: Prisma.TagDeleteArgs<ExtArgs>
+            args: Prisma.TagDeleteArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$TagPayload>
           }
           update: {
-            args: Prisma.TagUpdateArgs<ExtArgs>
+            args: Prisma.TagUpdateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$TagPayload>
           }
           deleteMany: {
-            args: Prisma.TagDeleteManyArgs<ExtArgs>
+            args: Prisma.TagDeleteManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.TagUpdateManyArgs<ExtArgs>
+            args: Prisma.TagUpdateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.TagUpsertArgs<ExtArgs>
+            args: Prisma.TagUpsertArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$TagPayload>
           }
           aggregate: {
-            args: Prisma.TagAggregateArgs<ExtArgs>
+            args: Prisma.TagAggregateArgs<ExtArgs>,
             result: $Utils.Optional<AggregateTag>
           }
           groupBy: {
-            args: Prisma.TagGroupByArgs<ExtArgs>
+            args: Prisma.TagGroupByArgs<ExtArgs>,
             result: $Utils.Optional<TagGroupByOutputType>[]
           }
           count: {
-            args: Prisma.TagCountArgs<ExtArgs>
+            args: Prisma.TagCountArgs<ExtArgs>,
             result: $Utils.Optional<TagCountAggregateOutputType> | number
           }
         }
@@ -1126,63 +1056,63 @@ export namespace Prisma {
         fields: Prisma.UserFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.UserFindUniqueArgs<ExtArgs>
+            args: Prisma.UserFindUniqueArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.UserFindUniqueOrThrowArgs<ExtArgs>
+            args: Prisma.UserFindUniqueOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           findFirst: {
-            args: Prisma.UserFindFirstArgs<ExtArgs>
+            args: Prisma.UserFindFirstArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.UserFindFirstOrThrowArgs<ExtArgs>
+            args: Prisma.UserFindFirstOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           findMany: {
-            args: Prisma.UserFindManyArgs<ExtArgs>
+            args: Prisma.UserFindManyArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
           }
           create: {
-            args: Prisma.UserCreateArgs<ExtArgs>
+            args: Prisma.UserCreateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           createMany: {
-            args: Prisma.UserCreateManyArgs<ExtArgs>
+            args: Prisma.UserCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           delete: {
-            args: Prisma.UserDeleteArgs<ExtArgs>
+            args: Prisma.UserDeleteArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           update: {
-            args: Prisma.UserUpdateArgs<ExtArgs>
+            args: Prisma.UserUpdateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           deleteMany: {
-            args: Prisma.UserDeleteManyArgs<ExtArgs>
+            args: Prisma.UserDeleteManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.UserUpdateManyArgs<ExtArgs>
+            args: Prisma.UserUpdateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.UserUpsertArgs<ExtArgs>
+            args: Prisma.UserUpsertArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           aggregate: {
-            args: Prisma.UserAggregateArgs<ExtArgs>
+            args: Prisma.UserAggregateArgs<ExtArgs>,
             result: $Utils.Optional<AggregateUser>
           }
           groupBy: {
-            args: Prisma.UserGroupByArgs<ExtArgs>
+            args: Prisma.UserGroupByArgs<ExtArgs>,
             result: $Utils.Optional<UserGroupByOutputType>[]
           }
           count: {
-            args: Prisma.UserCountArgs<ExtArgs>
+            args: Prisma.UserCountArgs<ExtArgs>,
             result: $Utils.Optional<UserCountAggregateOutputType> | number
           }
         }
@@ -1193,29 +1123,25 @@ export namespace Prisma {
       payload: any
       operations: {
         $executeRawUnsafe: {
-          args: [query: string, ...values: any[]]
+          args: [query: string, ...values: any[]],
           result: any
         }
         $executeRaw: {
-          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]]
+          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
           result: any
         }
         $queryRawUnsafe: {
-          args: [query: string, ...values: any[]]
+          args: [query: string, ...values: any[]],
           result: any
         }
         $queryRaw: {
-          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]]
+          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
           result: any
         }
       }
     }
   }
-  export const defineExtension: $Extensions.ExtendsHook<
-    'define',
-    Prisma.TypeMapCb,
-    $Extensions.DefaultArgs
-  >
+  export const defineExtension: $Extensions.ExtendsHook<'define', Prisma.TypeMapCb, $Extensions.DefaultArgs>
   export type DefaultPrismaClient = PrismaClient
   export type ErrorFormat = 'pretty' | 'colorless' | 'minimal'
 
@@ -1235,7 +1161,7 @@ export namespace Prisma {
      * ```
      * // Defaults to stdout
      * log: ['query', 'info', 'warn', 'error']
-     *
+     * 
      * // Emit as events
      * log: [
      *  { emit: 'stdout', level: 'query' },
@@ -1256,16 +1182,9 @@ export namespace Prisma {
     emit: 'stdout' | 'event'
   }
 
-  export type GetLogType<T extends LogLevel | LogDefinition> =
-    T extends LogDefinition
-      ? T['emit'] extends 'event'
-        ? T['level']
-        : never
-      : never
-  export type GetEvents<T extends any> = T extends Array<
-    LogLevel | LogDefinition
-  >
-    ? GetLogType<T[0]> | GetLogType<T[1]> | GetLogType<T[2]> | GetLogType<T[3]>
+  export type GetLogType<T extends LogLevel | LogDefinition> = T extends LogDefinition ? T['emit'] extends 'event' ? T['level'] : never : never
+  export type GetEvents<T extends any> = T extends Array<LogLevel | LogDefinition> ?
+    GetLogType<T[0]> | GetLogType<T[1]> | GetLogType<T[2]> | GetLogType<T[3]>
     : never
 
   export type QueryEvent = {
@@ -1282,6 +1201,7 @@ export namespace Prisma {
     target: string
   }
   /* End Types for Logging */
+
 
   export type PrismaAction =
     | 'findUnique'
@@ -1320,21 +1240,16 @@ export namespace Prisma {
    */
   export type Middleware<T = any> = (
     params: MiddlewareParams,
-    next: (params: MiddlewareParams) => $Utils.JsPromise<T>
+    next: (params: MiddlewareParams) => $Utils.JsPromise<T>,
   ) => $Utils.JsPromise<T>
 
   // tested in getLogLevel.test.ts
-  export function getLogLevel(
-    log: Array<LogLevel | LogDefinition>
-  ): LogLevel | undefined
+  export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
 
   /**
    * `PrismaClient` proxy available in interactive transactions.
    */
-  export type TransactionClient = Omit<
-    Prisma.DefaultPrismaClient,
-    runtime.ITXClientDenyList
-  >
+  export type TransactionClient = Omit<Prisma.DefaultPrismaClient, runtime.ITXClientDenyList>
 
   export type Datasource = {
     url?: string
@@ -1344,6 +1259,7 @@ export namespace Prisma {
    * Count Types
    */
 
+
   /**
    * Count Type AuthorCountOutputType
    */
@@ -1352,9 +1268,7 @@ export namespace Prisma {
     Book: number
   }
 
-  export type AuthorCountOutputTypeSelect<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type AuthorCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     Book?: boolean | AuthorCountOutputTypeCountBookArgs
   }
 
@@ -1363,23 +1277,22 @@ export namespace Prisma {
   /**
    * AuthorCountOutputType without action
    */
-  export type AuthorCountOutputTypeDefaultArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type AuthorCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the AuthorCountOutputType
      */
     select?: AuthorCountOutputTypeSelect<ExtArgs> | null
   }
 
+
   /**
    * AuthorCountOutputType without action
    */
-  export type AuthorCountOutputTypeCountBookArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type AuthorCountOutputTypeCountBookArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: BookWhereInput
   }
+
+
 
   /**
    * Count Type BookCountOutputType
@@ -1391,9 +1304,7 @@ export namespace Prisma {
     tags: number
   }
 
-  export type BookCountOutputTypeSelect<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type BookCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     notes?: boolean | BookCountOutputTypeCountNotesArgs
     authors?: boolean | BookCountOutputTypeCountAuthorsArgs
     tags?: boolean | BookCountOutputTypeCountTagsArgs
@@ -1404,41 +1315,38 @@ export namespace Prisma {
   /**
    * BookCountOutputType without action
    */
-  export type BookCountOutputTypeDefaultArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type BookCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the BookCountOutputType
      */
     select?: BookCountOutputTypeSelect<ExtArgs> | null
   }
 
+
   /**
    * BookCountOutputType without action
    */
-  export type BookCountOutputTypeCountNotesArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type BookCountOutputTypeCountNotesArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: NoteWhereInput
   }
 
-  /**
-   * BookCountOutputType without action
-   */
-  export type BookCountOutputTypeCountAuthorsArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
-    where?: AuthorWhereInput
-  }
 
   /**
    * BookCountOutputType without action
    */
-  export type BookCountOutputTypeCountTagsArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type BookCountOutputTypeCountAuthorsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: AuthorWhereInput
+  }
+
+
+  /**
+   * BookCountOutputType without action
+   */
+  export type BookCountOutputTypeCountTagsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: TagWhereInput
   }
+
+
 
   /**
    * Count Type ShelfCountOutputType
@@ -1448,9 +1356,7 @@ export namespace Prisma {
     books: number
   }
 
-  export type ShelfCountOutputTypeSelect<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type ShelfCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     books?: boolean | ShelfCountOutputTypeCountBooksArgs
   }
 
@@ -1459,23 +1365,22 @@ export namespace Prisma {
   /**
    * ShelfCountOutputType without action
    */
-  export type ShelfCountOutputTypeDefaultArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type ShelfCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ShelfCountOutputType
      */
     select?: ShelfCountOutputTypeSelect<ExtArgs> | null
   }
 
+
   /**
    * ShelfCountOutputType without action
    */
-  export type ShelfCountOutputTypeCountBooksArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type ShelfCountOutputTypeCountBooksArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: BookWhereInput
   }
+
+
 
   /**
    * Count Type TagCountOutputType
@@ -1485,9 +1390,7 @@ export namespace Prisma {
     book: number
   }
 
-  export type TagCountOutputTypeSelect<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type TagCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     book?: boolean | TagCountOutputTypeCountBookArgs
   }
 
@@ -1496,23 +1399,22 @@ export namespace Prisma {
   /**
    * TagCountOutputType without action
    */
-  export type TagCountOutputTypeDefaultArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type TagCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the TagCountOutputType
      */
     select?: TagCountOutputTypeSelect<ExtArgs> | null
   }
 
+
   /**
    * TagCountOutputType without action
    */
-  export type TagCountOutputTypeCountBookArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type TagCountOutputTypeCountBookArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: BookWhereInput
   }
+
+
 
   /**
    * Count Type UserCountOutputType
@@ -1523,9 +1425,7 @@ export namespace Prisma {
     books: number
   }
 
-  export type UserCountOutputTypeSelect<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     shelves?: boolean | UserCountOutputTypeCountShelvesArgs
     books?: boolean | UserCountOutputTypeCountBooksArgs
   }
@@ -1535,32 +1435,30 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeDefaultArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the UserCountOutputType
      */
     select?: UserCountOutputTypeSelect<ExtArgs> | null
   }
 
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountShelvesArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
-    where?: ShelfWhereInput
-  }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountBooksArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type UserCountOutputTypeCountShelvesArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: ShelfWhereInput
+  }
+
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountBooksArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: BookWhereInput
   }
+
+
 
   /**
    * Models
@@ -1602,6 +1500,7 @@ export namespace Prisma {
     _all: number
   }
 
+
   export type AuthorAvgAggregateInputType = {
     id?: true
   }
@@ -1626,84 +1525,81 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type AuthorAggregateArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type AuthorAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Filter which Author to aggregate.
      */
     where?: AuthorWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Authors to fetch.
      */
     orderBy?: AuthorOrderByWithRelationInput | AuthorOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the start position
      */
     cursor?: AuthorWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Authors from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Authors.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Count returned Authors
-     **/
+    **/
     _count?: true | AuthorCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to average
-     **/
+    **/
     _avg?: AuthorAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to sum
-     **/
+    **/
     _sum?: AuthorSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the minimum value
-     **/
+    **/
     _min?: AuthorMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the maximum value
-     **/
+    **/
     _max?: AuthorMaxAggregateInputType
   }
 
   export type GetAuthorAggregateType<T extends AuthorAggregateArgs> = {
-    [P in keyof T & keyof AggregateAuthor]: P extends '_count' | 'count'
+        [P in keyof T & keyof AggregateAuthor]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateAuthor[P]>
       : GetScalarType<T[P], AggregateAuthor[P]>
   }
 
-  export type AuthorGroupByArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+
+
+
+  export type AuthorGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: AuthorWhereInput
-    orderBy?:
-      | AuthorOrderByWithAggregationInput
-      | AuthorOrderByWithAggregationInput[]
+    orderBy?: AuthorOrderByWithAggregationInput | AuthorOrderByWithAggregationInput[]
     by: AuthorScalarFieldEnum[] | AuthorScalarFieldEnum
     having?: AuthorScalarWhereWithAggregatesInput
     take?: number
@@ -1725,11 +1621,11 @@ export namespace Prisma {
     _max: AuthorMaxAggregateOutputType | null
   }
 
-  type GetAuthorGroupByPayload<T extends AuthorGroupByArgs> =
-    Prisma.PrismaPromise<
-      Array<
-        PickEnumerable<AuthorGroupByOutputType, T['by']> & {
-          [P in keyof T & keyof AuthorGroupByOutputType]: P extends '_count'
+  type GetAuthorGroupByPayload<T extends AuthorGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AuthorGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AuthorGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
               : GetScalarType<T[P], AuthorGroupByOutputType[P]>
@@ -1738,64 +1634,47 @@ export namespace Prisma {
       >
     >
 
-  export type AuthorSelect<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = $Extensions.GetSelect<
-    {
-      id?: boolean
-      name?: boolean
-      Book?: boolean | Author$BookArgs<ExtArgs>
-      _count?: boolean | AuthorCountOutputTypeDefaultArgs<ExtArgs>
-    },
-    ExtArgs['result']['author']
-  >
+
+  export type AuthorSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    Book?: boolean | Author$BookArgs<ExtArgs>
+    _count?: boolean | AuthorCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["author"]>
 
   export type AuthorSelectScalar = {
     id?: boolean
     name?: boolean
   }
 
-  export type AuthorInclude<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type AuthorInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     Book?: boolean | Author$BookArgs<ExtArgs>
     _count?: boolean | AuthorCountOutputTypeDefaultArgs<ExtArgs>
   }
 
-  export type $AuthorPayload<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
-    name: 'Author'
+
+  export type $AuthorPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    name: "Author"
     objects: {
       Book: Prisma.$BookPayload<ExtArgs>[]
     }
-    scalars: $Extensions.GetResult<
-      {
-        id: number
-        name: string
-      },
-      ExtArgs['result']['author']
-    >
+    scalars: $Extensions.GetResult<{
+      id: number
+      name: string
+    }, ExtArgs["result"]["author"]>
     composites: {}
   }
 
-  type AuthorGetPayload<
-    S extends boolean | null | undefined | AuthorDefaultArgs
-  > = $Result.GetResult<Prisma.$AuthorPayload, S>
 
-  type AuthorCountArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = Omit<AuthorFindManyArgs, 'select' | 'include'> & {
-    select?: AuthorCountAggregateInputType | true
-  }
+  type AuthorGetPayload<S extends boolean | null | undefined | AuthorDefaultArgs> = $Result.GetResult<Prisma.$AuthorPayload, S>
 
-  export interface AuthorDelegate<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > {
-    [K: symbol]: {
-      types: Prisma.TypeMap<ExtArgs>['model']['Author']
-      meta: { name: 'Author' }
+  type AuthorCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+    Omit<AuthorFindManyArgs, 'select' | 'include'> & {
+      select?: AuthorCountAggregateInputType | true
     }
+
+  export interface AuthorDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Author'], meta: { name: 'Author' } }
     /**
      * Find zero or one Author that matches the filter.
      * @param {AuthorFindUniqueArgs} args - Arguments to find a Author
@@ -1806,17 +1685,13 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findUnique<T extends AuthorFindUniqueArgs<ExtArgs>>(
       args: SelectSubset<T, AuthorFindUniqueArgs<ExtArgs>>
-    ): Prisma__AuthorClient<
-      $Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, 'findUnique'> | null,
-      null,
-      ExtArgs
-    >
+    ): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one Author that matches the filter or throw an error  with `error.code='P2025'`
+     * Find one Author that matches the filter or throw an error  with `error.code='P2025'` 
      *     if no matches were found.
      * @param {AuthorFindUniqueOrThrowArgs} args - Arguments to find a Author
      * @example
@@ -1826,14 +1701,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findUniqueOrThrow<T extends AuthorFindUniqueOrThrowArgs<ExtArgs>>(
       args?: SelectSubset<T, AuthorFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__AuthorClient<
-      $Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, 'findUniqueOrThrow'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
      * Find the first Author that matches the filter.
@@ -1847,14 +1718,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findFirst<T extends AuthorFindFirstArgs<ExtArgs>>(
       args?: SelectSubset<T, AuthorFindFirstArgs<ExtArgs>>
-    ): Prisma__AuthorClient<
-      $Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, 'findFirst'> | null,
-      null,
-      ExtArgs
-    >
+    ): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
      * Find the first Author that matches the filter or
@@ -1869,14 +1736,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findFirstOrThrow<T extends AuthorFindFirstOrThrowArgs<ExtArgs>>(
       args?: SelectSubset<T, AuthorFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__AuthorClient<
-      $Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, 'findFirstOrThrow'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
      * Find zero or more Authors that matches the filter.
@@ -1886,19 +1749,17 @@ export namespace Prisma {
      * @example
      * // Get all Authors
      * const authors = await prisma.author.findMany()
-     *
+     * 
      * // Get first 10 Authors
      * const authors = await prisma.author.findMany({ take: 10 })
-     *
+     * 
      * // Only select the `id`
      * const authorWithIdOnly = await prisma.author.findMany({ select: { id: true } })
-     *
-     **/
+     * 
+    **/
     findMany<T extends AuthorFindManyArgs<ExtArgs>>(
       args?: SelectSubset<T, AuthorFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<
-      $Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, 'findMany'>
-    >
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, 'findMany'>>
 
     /**
      * Create a Author.
@@ -1910,15 +1771,11 @@ export namespace Prisma {
      *     // ... data to create a Author
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     create<T extends AuthorCreateArgs<ExtArgs>>(
       args: SelectSubset<T, AuthorCreateArgs<ExtArgs>>
-    ): Prisma__AuthorClient<
-      $Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, 'create'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
      * Create many Authors.
@@ -1930,8 +1787,8 @@ export namespace Prisma {
      *         // ... provide data here
      *       }
      *     })
-     *
-     **/
+     *     
+    **/
     createMany<T extends AuthorCreateManyArgs<ExtArgs>>(
       args?: SelectSubset<T, AuthorCreateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
@@ -1946,15 +1803,11 @@ export namespace Prisma {
      *     // ... filter to delete one Author
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     delete<T extends AuthorDeleteArgs<ExtArgs>>(
       args: SelectSubset<T, AuthorDeleteArgs<ExtArgs>>
-    ): Prisma__AuthorClient<
-      $Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, 'delete'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
      * Update one Author.
@@ -1969,15 +1822,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     update<T extends AuthorUpdateArgs<ExtArgs>>(
       args: SelectSubset<T, AuthorUpdateArgs<ExtArgs>>
-    ): Prisma__AuthorClient<
-      $Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, 'update'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
      * Delete zero or more Authors.
@@ -1989,8 +1838,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     deleteMany<T extends AuthorDeleteManyArgs<ExtArgs>>(
       args?: SelectSubset<T, AuthorDeleteManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
@@ -2010,8 +1859,8 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     updateMany<T extends AuthorUpdateManyArgs<ExtArgs>>(
       args: SelectSubset<T, AuthorUpdateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
@@ -2032,14 +1881,10 @@ export namespace Prisma {
      *     // ... the filter for the Author we want to update
      *   }
      * })
-     **/
+    **/
     upsert<T extends AuthorUpsertArgs<ExtArgs>>(
       args: SelectSubset<T, AuthorUpsertArgs<ExtArgs>>
-    ): Prisma__AuthorClient<
-      $Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, 'upsert'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
      * Count the number of Authors.
@@ -2053,9 +1898,9 @@ export namespace Prisma {
      *     // ... the filter for the Authors we want to count
      *   }
      * })
-     **/
+    **/
     count<T extends AuthorCountArgs>(
-      args?: Subset<T, AuthorCountArgs>
+      args?: Subset<T, AuthorCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
@@ -2087,10 +1932,8 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-     **/
-    aggregate<T extends AuthorAggregateArgs>(
-      args: Subset<T, AuthorAggregateArgs>
-    ): Prisma.PrismaPromise<GetAuthorAggregateType<T>>
+    **/
+    aggregate<T extends AuthorAggregateArgs>(args: Subset<T, AuthorAggregateArgs>): Prisma.PrismaPromise<GetAuthorAggregateType<T>>
 
     /**
      * Group by Author.
@@ -2108,8 +1951,8 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     *
-     **/
+     * 
+    **/
     groupBy<
       T extends AuthorGroupByArgs,
       HasSelectOrTake extends Or<
@@ -2119,65 +1962,59 @@ export namespace Prisma {
       OrderByArg extends True extends HasSelectOrTake
         ? { orderBy: AuthorGroupByArgs['orderBy'] }
         : { orderBy?: AuthorGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<
-        Keys<MaybeTupleToUnion<T['orderBy']>>
-      >,
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
       HavingFields extends GetHavingFields<T['having']>,
       HavingValid extends Has<ByFields, HavingFields>,
       ByEmpty extends T['by'] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-        ? `Error: "by" must not be empty.`
-        : HavingValid extends False
-        ? {
-            [P in HavingFields]: P extends ByFields
-              ? never
-              : P extends string
-              ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-              : [
-                  Error,
-                  'Field ',
-                  P,
-                  ` in "having" needs to be provided in "by"`
-                ]
-          }[HavingFields]
-        : 'take' extends Keys<T>
-        ? 'orderBy' extends Keys<T>
-          ? ByValid extends True
-            ? {}
-            : {
-                [P in OrderFields]: P extends ByFields
-                  ? never
-                  : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-              }[OrderFields]
-          : 'Error: If you provide "take", you also need to provide "orderBy"'
-        : 'skip' extends Keys<T>
-        ? 'orderBy' extends Keys<T>
-          ? ByValid extends True
-            ? {}
-            : {
-                [P in OrderFields]: P extends ByFields
-                  ? never
-                  : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-              }[OrderFields]
-          : 'Error: If you provide "skip", you also need to provide "orderBy"'
-        : ByValid extends True
-        ? {}
-        : {
-            [P in OrderFields]: P extends ByFields
-              ? never
-              : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-          }[OrderFields]
-    >(
-      args: SubsetIntersection<T, AuthorGroupByArgs, OrderByArg> & InputErrors
-    ): {} extends InputErrors
-      ? GetAuthorGroupByPayload<T>
-      : Prisma.PrismaPromise<InputErrors>
-    /**
-     * Fields of the Author model
-     */
-    readonly fields: AuthorFieldRefs
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AuthorGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAuthorGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Author model
+   */
+  readonly fields: AuthorFieldRefs;
   }
 
   /**
@@ -2186,18 +2023,10 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__AuthorClient<
-    T,
-    Null = never,
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise'
+  export interface Prisma__AuthorClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    Book<T extends Author$BookArgs<ExtArgs> = {}>(
-      args?: Subset<T, Author$BookArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<
-      $Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findMany'> | Null
-    >
+    Book<T extends Author$BookArgs<ExtArgs> = {}>(args?: Subset<T, Author$BookArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2205,52 +2034,39 @@ export namespace Prisma {
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(
-      onfulfilled?:
-        | ((value: T) => TResult1 | PromiseLike<TResult1>)
-        | undefined
-        | null,
-      onrejected?:
-        | ((reason: any) => TResult2 | PromiseLike<TResult2>)
-        | undefined
-        | null
-    ): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(
-      onrejected?:
-        | ((reason: any) => TResult | PromiseLike<TResult>)
-        | undefined
-        | null
-    ): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
   }
+
+
 
   /**
    * Fields of the Author model
-   */
+   */ 
   interface AuthorFieldRefs {
-    readonly id: FieldRef<'Author', 'Int'>
-    readonly name: FieldRef<'Author', 'String'>
+    readonly id: FieldRef<"Author", 'Int'>
+    readonly name: FieldRef<"Author", 'String'>
   }
+    
 
   // Custom InputTypes
 
   /**
    * Author findUnique
    */
-  export type AuthorFindUniqueArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type AuthorFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Author
      */
@@ -2264,13 +2080,12 @@ export namespace Prisma {
      */
     where: AuthorWhereUniqueInput
   }
+
 
   /**
    * Author findUniqueOrThrow
    */
-  export type AuthorFindUniqueOrThrowArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type AuthorFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Author
      */
@@ -2285,12 +2100,11 @@ export namespace Prisma {
     where: AuthorWhereUniqueInput
   }
 
+
   /**
    * Author findFirst
    */
-  export type AuthorFindFirstArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type AuthorFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Author
      */
@@ -2305,42 +2119,41 @@ export namespace Prisma {
     where?: AuthorWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Authors to fetch.
      */
     orderBy?: AuthorOrderByWithRelationInput | AuthorOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Authors.
      */
     cursor?: AuthorWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Authors from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Authors.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Authors.
      */
     distinct?: AuthorScalarFieldEnum | AuthorScalarFieldEnum[]
   }
+
 
   /**
    * Author findFirstOrThrow
    */
-  export type AuthorFindFirstOrThrowArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type AuthorFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Author
      */
@@ -2355,42 +2168,41 @@ export namespace Prisma {
     where?: AuthorWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Authors to fetch.
      */
     orderBy?: AuthorOrderByWithRelationInput | AuthorOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Authors.
      */
     cursor?: AuthorWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Authors from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Authors.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Authors.
      */
     distinct?: AuthorScalarFieldEnum | AuthorScalarFieldEnum[]
   }
 
+
   /**
    * Author findMany
    */
-  export type AuthorFindManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type AuthorFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Author
      */
@@ -2405,37 +2217,36 @@ export namespace Prisma {
     where?: AuthorWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Authors to fetch.
      */
     orderBy?: AuthorOrderByWithRelationInput | AuthorOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for listing Authors.
      */
     cursor?: AuthorWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Authors from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Authors.
      */
     skip?: number
     distinct?: AuthorScalarFieldEnum | AuthorScalarFieldEnum[]
   }
 
+
   /**
    * Author create
    */
-  export type AuthorCreateArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type AuthorCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Author
      */
@@ -2450,12 +2261,11 @@ export namespace Prisma {
     data: XOR<AuthorCreateInput, AuthorUncheckedCreateInput>
   }
 
+
   /**
    * Author createMany
    */
-  export type AuthorCreateManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type AuthorCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many Authors.
      */
@@ -2463,12 +2273,11 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+
   /**
    * Author update
    */
-  export type AuthorUpdateArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type AuthorUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Author
      */
@@ -2487,12 +2296,11 @@ export namespace Prisma {
     where: AuthorWhereUniqueInput
   }
 
+
   /**
    * Author updateMany
    */
-  export type AuthorUpdateManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type AuthorUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * The data used to update Authors.
      */
@@ -2503,12 +2311,11 @@ export namespace Prisma {
     where?: AuthorWhereInput
   }
 
+
   /**
    * Author upsert
    */
-  export type AuthorUpsertArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type AuthorUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Author
      */
@@ -2531,12 +2338,11 @@ export namespace Prisma {
     update: XOR<AuthorUpdateInput, AuthorUncheckedUpdateInput>
   }
 
+
   /**
    * Author delete
    */
-  export type AuthorDeleteArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type AuthorDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Author
      */
@@ -2551,24 +2357,22 @@ export namespace Prisma {
     where: AuthorWhereUniqueInput
   }
 
+
   /**
    * Author deleteMany
    */
-  export type AuthorDeleteManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type AuthorDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Filter which Authors to delete
      */
     where?: AuthorWhereInput
   }
 
+
   /**
    * Author.Book
    */
-  export type Author$BookArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type Author$BookArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Book
      */
@@ -2585,12 +2389,11 @@ export namespace Prisma {
     distinct?: BookScalarFieldEnum | BookScalarFieldEnum[]
   }
 
+
   /**
    * Author without action
    */
-  export type AuthorDefaultArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type AuthorDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Author
      */
@@ -2600,6 +2403,8 @@ export namespace Prisma {
      */
     include?: AuthorInclude<ExtArgs> | null
   }
+
+
 
   /**
    * Model Book
@@ -2657,6 +2462,7 @@ export namespace Prisma {
     _all: number
   }
 
+
   export type BookAvgAggregateInputType = {
     rating?: true
     shelfId?: true
@@ -2701,84 +2507,81 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type BookAggregateArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type BookAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Filter which Book to aggregate.
      */
     where?: BookWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Books to fetch.
      */
     orderBy?: BookOrderByWithRelationInput | BookOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the start position
      */
     cursor?: BookWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Books from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Books.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Count returned Books
-     **/
+    **/
     _count?: true | BookCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to average
-     **/
+    **/
     _avg?: BookAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to sum
-     **/
+    **/
     _sum?: BookSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the minimum value
-     **/
+    **/
     _min?: BookMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the maximum value
-     **/
+    **/
     _max?: BookMaxAggregateInputType
   }
 
   export type GetBookAggregateType<T extends BookAggregateArgs> = {
-    [P in keyof T & keyof AggregateBook]: P extends '_count' | 'count'
+        [P in keyof T & keyof AggregateBook]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateBook[P]>
       : GetScalarType<T[P], AggregateBook[P]>
   }
 
-  export type BookGroupByArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+
+
+
+  export type BookGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: BookWhereInput
-    orderBy?:
-      | BookOrderByWithAggregationInput
-      | BookOrderByWithAggregationInput[]
+    orderBy?: BookOrderByWithAggregationInput | BookOrderByWithAggregationInput[]
     by: BookScalarFieldEnum[] | BookScalarFieldEnum
     having?: BookScalarWhereWithAggregatesInput
     take?: number
@@ -2808,37 +2611,34 @@ export namespace Prisma {
 
   type GetBookGroupByPayload<T extends BookGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<BookGroupByOutputType, T['by']> & {
-        [P in keyof T & keyof BookGroupByOutputType]: P extends '_count'
-          ? T[P] extends boolean
-            ? number
+      PickEnumerable<BookGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BookGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BookGroupByOutputType[P]>
             : GetScalarType<T[P], BookGroupByOutputType[P]>
-          : GetScalarType<T[P], BookGroupByOutputType[P]>
-      }
+        }
+      >
     >
-  >
 
-  export type BookSelect<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = $Extensions.GetSelect<
-    {
-      id?: boolean
-      isbn?: boolean
-      title?: boolean
-      coverImage?: boolean
-      blurb?: boolean
-      rating?: boolean
-      shelfId?: boolean
-      ownerId?: boolean
-      shelf?: boolean | ShelfDefaultArgs<ExtArgs>
-      notes?: boolean | Book$notesArgs<ExtArgs>
-      authors?: boolean | Book$authorsArgs<ExtArgs>
-      tags?: boolean | Book$tagsArgs<ExtArgs>
-      owner?: boolean | UserDefaultArgs<ExtArgs>
-      _count?: boolean | BookCountOutputTypeDefaultArgs<ExtArgs>
-    },
-    ExtArgs['result']['book']
-  >
+
+  export type BookSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    isbn?: boolean
+    title?: boolean
+    coverImage?: boolean
+    blurb?: boolean
+    rating?: boolean
+    shelfId?: boolean
+    ownerId?: boolean
+    shelf?: boolean | ShelfDefaultArgs<ExtArgs>
+    notes?: boolean | Book$notesArgs<ExtArgs>
+    authors?: boolean | Book$authorsArgs<ExtArgs>
+    tags?: boolean | Book$tagsArgs<ExtArgs>
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+    _count?: boolean | BookCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["book"]>
 
   export type BookSelectScalar = {
     id?: boolean
@@ -2851,9 +2651,7 @@ export namespace Prisma {
     ownerId?: boolean
   }
 
-  export type BookInclude<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type BookInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     shelf?: boolean | ShelfDefaultArgs<ExtArgs>
     notes?: boolean | Book$notesArgs<ExtArgs>
     authors?: boolean | Book$authorsArgs<ExtArgs>
@@ -2862,10 +2660,9 @@ export namespace Prisma {
     _count?: boolean | BookCountOutputTypeDefaultArgs<ExtArgs>
   }
 
-  export type $BookPayload<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
-    name: 'Book'
+
+  export type $BookPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    name: "Book"
     objects: {
       shelf: Prisma.$ShelfPayload<ExtArgs>
       notes: Prisma.$NotePayload<ExtArgs>[]
@@ -2873,38 +2670,29 @@ export namespace Prisma {
       tags: Prisma.$TagPayload<ExtArgs>[]
       owner: Prisma.$UserPayload<ExtArgs>
     }
-    scalars: $Extensions.GetResult<
-      {
-        id: string
-        isbn: string | null
-        title: string
-        coverImage: string | null
-        blurb: string | null
-        rating: number
-        shelfId: number
-        ownerId: string
-      },
-      ExtArgs['result']['book']
-    >
+    scalars: $Extensions.GetResult<{
+      id: string
+      isbn: string | null
+      title: string
+      coverImage: string | null
+      blurb: string | null
+      rating: number
+      shelfId: number
+      ownerId: string
+    }, ExtArgs["result"]["book"]>
     composites: {}
   }
 
-  type BookGetPayload<S extends boolean | null | undefined | BookDefaultArgs> =
-    $Result.GetResult<Prisma.$BookPayload, S>
 
-  type BookCountArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = Omit<BookFindManyArgs, 'select' | 'include'> & {
-    select?: BookCountAggregateInputType | true
-  }
+  type BookGetPayload<S extends boolean | null | undefined | BookDefaultArgs> = $Result.GetResult<Prisma.$BookPayload, S>
 
-  export interface BookDelegate<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > {
-    [K: symbol]: {
-      types: Prisma.TypeMap<ExtArgs>['model']['Book']
-      meta: { name: 'Book' }
+  type BookCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+    Omit<BookFindManyArgs, 'select' | 'include'> & {
+      select?: BookCountAggregateInputType | true
     }
+
+  export interface BookDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Book'], meta: { name: 'Book' } }
     /**
      * Find zero or one Book that matches the filter.
      * @param {BookFindUniqueArgs} args - Arguments to find a Book
@@ -2915,17 +2703,13 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findUnique<T extends BookFindUniqueArgs<ExtArgs>>(
       args: SelectSubset<T, BookFindUniqueArgs<ExtArgs>>
-    ): Prisma__BookClient<
-      $Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findUnique'> | null,
-      null,
-      ExtArgs
-    >
+    ): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one Book that matches the filter or throw an error  with `error.code='P2025'`
+     * Find one Book that matches the filter or throw an error  with `error.code='P2025'` 
      *     if no matches were found.
      * @param {BookFindUniqueOrThrowArgs} args - Arguments to find a Book
      * @example
@@ -2935,14 +2719,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findUniqueOrThrow<T extends BookFindUniqueOrThrowArgs<ExtArgs>>(
       args?: SelectSubset<T, BookFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__BookClient<
-      $Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findUniqueOrThrow'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
      * Find the first Book that matches the filter.
@@ -2956,14 +2736,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findFirst<T extends BookFindFirstArgs<ExtArgs>>(
       args?: SelectSubset<T, BookFindFirstArgs<ExtArgs>>
-    ): Prisma__BookClient<
-      $Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findFirst'> | null,
-      null,
-      ExtArgs
-    >
+    ): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
      * Find the first Book that matches the filter or
@@ -2978,14 +2754,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findFirstOrThrow<T extends BookFindFirstOrThrowArgs<ExtArgs>>(
       args?: SelectSubset<T, BookFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__BookClient<
-      $Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findFirstOrThrow'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
      * Find zero or more Books that matches the filter.
@@ -2995,19 +2767,17 @@ export namespace Prisma {
      * @example
      * // Get all Books
      * const books = await prisma.book.findMany()
-     *
+     * 
      * // Get first 10 Books
      * const books = await prisma.book.findMany({ take: 10 })
-     *
+     * 
      * // Only select the `id`
      * const bookWithIdOnly = await prisma.book.findMany({ select: { id: true } })
-     *
-     **/
+     * 
+    **/
     findMany<T extends BookFindManyArgs<ExtArgs>>(
       args?: SelectSubset<T, BookFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<
-      $Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findMany'>
-    >
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findMany'>>
 
     /**
      * Create a Book.
@@ -3019,15 +2789,11 @@ export namespace Prisma {
      *     // ... data to create a Book
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     create<T extends BookCreateArgs<ExtArgs>>(
       args: SelectSubset<T, BookCreateArgs<ExtArgs>>
-    ): Prisma__BookClient<
-      $Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'create'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
      * Create many Books.
@@ -3039,8 +2805,8 @@ export namespace Prisma {
      *         // ... provide data here
      *       }
      *     })
-     *
-     **/
+     *     
+    **/
     createMany<T extends BookCreateManyArgs<ExtArgs>>(
       args?: SelectSubset<T, BookCreateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
@@ -3055,15 +2821,11 @@ export namespace Prisma {
      *     // ... filter to delete one Book
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     delete<T extends BookDeleteArgs<ExtArgs>>(
       args: SelectSubset<T, BookDeleteArgs<ExtArgs>>
-    ): Prisma__BookClient<
-      $Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'delete'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
      * Update one Book.
@@ -3078,15 +2840,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     update<T extends BookUpdateArgs<ExtArgs>>(
       args: SelectSubset<T, BookUpdateArgs<ExtArgs>>
-    ): Prisma__BookClient<
-      $Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'update'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
      * Delete zero or more Books.
@@ -3098,8 +2856,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     deleteMany<T extends BookDeleteManyArgs<ExtArgs>>(
       args?: SelectSubset<T, BookDeleteManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
@@ -3119,8 +2877,8 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     updateMany<T extends BookUpdateManyArgs<ExtArgs>>(
       args: SelectSubset<T, BookUpdateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
@@ -3141,14 +2899,10 @@ export namespace Prisma {
      *     // ... the filter for the Book we want to update
      *   }
      * })
-     **/
+    **/
     upsert<T extends BookUpsertArgs<ExtArgs>>(
       args: SelectSubset<T, BookUpsertArgs<ExtArgs>>
-    ): Prisma__BookClient<
-      $Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'upsert'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
      * Count the number of Books.
@@ -3162,9 +2916,9 @@ export namespace Prisma {
      *     // ... the filter for the Books we want to count
      *   }
      * })
-     **/
+    **/
     count<T extends BookCountArgs>(
-      args?: Subset<T, BookCountArgs>
+      args?: Subset<T, BookCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
@@ -3196,10 +2950,8 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-     **/
-    aggregate<T extends BookAggregateArgs>(
-      args: Subset<T, BookAggregateArgs>
-    ): Prisma.PrismaPromise<GetBookAggregateType<T>>
+    **/
+    aggregate<T extends BookAggregateArgs>(args: Subset<T, BookAggregateArgs>): Prisma.PrismaPromise<GetBookAggregateType<T>>
 
     /**
      * Group by Book.
@@ -3217,8 +2969,8 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     *
-     **/
+     * 
+    **/
     groupBy<
       T extends BookGroupByArgs,
       HasSelectOrTake extends Or<
@@ -3228,65 +2980,59 @@ export namespace Prisma {
       OrderByArg extends True extends HasSelectOrTake
         ? { orderBy: BookGroupByArgs['orderBy'] }
         : { orderBy?: BookGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<
-        Keys<MaybeTupleToUnion<T['orderBy']>>
-      >,
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
       HavingFields extends GetHavingFields<T['having']>,
       HavingValid extends Has<ByFields, HavingFields>,
       ByEmpty extends T['by'] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-        ? `Error: "by" must not be empty.`
-        : HavingValid extends False
-        ? {
-            [P in HavingFields]: P extends ByFields
-              ? never
-              : P extends string
-              ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-              : [
-                  Error,
-                  'Field ',
-                  P,
-                  ` in "having" needs to be provided in "by"`
-                ]
-          }[HavingFields]
-        : 'take' extends Keys<T>
-        ? 'orderBy' extends Keys<T>
-          ? ByValid extends True
-            ? {}
-            : {
-                [P in OrderFields]: P extends ByFields
-                  ? never
-                  : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-              }[OrderFields]
-          : 'Error: If you provide "take", you also need to provide "orderBy"'
-        : 'skip' extends Keys<T>
-        ? 'orderBy' extends Keys<T>
-          ? ByValid extends True
-            ? {}
-            : {
-                [P in OrderFields]: P extends ByFields
-                  ? never
-                  : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-              }[OrderFields]
-          : 'Error: If you provide "skip", you also need to provide "orderBy"'
-        : ByValid extends True
-        ? {}
-        : {
-            [P in OrderFields]: P extends ByFields
-              ? never
-              : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-          }[OrderFields]
-    >(
-      args: SubsetIntersection<T, BookGroupByArgs, OrderByArg> & InputErrors
-    ): {} extends InputErrors
-      ? GetBookGroupByPayload<T>
-      : Prisma.PrismaPromise<InputErrors>
-    /**
-     * Fields of the Book model
-     */
-    readonly fields: BookFieldRefs
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BookGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBookGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Book model
+   */
+  readonly fields: BookFieldRefs;
   }
 
   /**
@@ -3295,48 +3041,18 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__BookClient<
-    T,
-    Null = never,
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise'
+  export interface Prisma__BookClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    shelf<T extends ShelfDefaultArgs<ExtArgs> = {}>(
-      args?: Subset<T, ShelfDefaultArgs<ExtArgs>>
-    ): Prisma__ShelfClient<
-      | $Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'findUniqueOrThrow'>
-      | Null,
-      Null,
-      ExtArgs
-    >
+    shelf<T extends ShelfDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ShelfDefaultArgs<ExtArgs>>): Prisma__ShelfClient<$Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
-    notes<T extends Book$notesArgs<ExtArgs> = {}>(
-      args?: Subset<T, Book$notesArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<
-      $Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, 'findMany'> | Null
-    >
+    notes<T extends Book$notesArgs<ExtArgs> = {}>(args?: Subset<T, Book$notesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    authors<T extends Book$authorsArgs<ExtArgs> = {}>(
-      args?: Subset<T, Book$authorsArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<
-      $Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, 'findMany'> | Null
-    >
+    authors<T extends Book$authorsArgs<ExtArgs> = {}>(args?: Subset<T, Book$authorsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    tags<T extends Book$tagsArgs<ExtArgs> = {}>(
-      args?: Subset<T, Book$tagsArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<
-      $Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findMany'> | Null
-    >
+    tags<T extends Book$tagsArgs<ExtArgs> = {}>(args?: Subset<T, Book$tagsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    owner<T extends UserDefaultArgs<ExtArgs> = {}>(
-      args?: Subset<T, UserDefaultArgs<ExtArgs>>
-    ): Prisma__UserClient<
-      | $Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'>
-      | Null,
-      Null,
-      ExtArgs
-    >
+    owner<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3344,58 +3060,45 @@ export namespace Prisma {
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(
-      onfulfilled?:
-        | ((value: T) => TResult1 | PromiseLike<TResult1>)
-        | undefined
-        | null,
-      onrejected?:
-        | ((reason: any) => TResult2 | PromiseLike<TResult2>)
-        | undefined
-        | null
-    ): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(
-      onrejected?:
-        | ((reason: any) => TResult | PromiseLike<TResult>)
-        | undefined
-        | null
-    ): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
   }
+
+
 
   /**
    * Fields of the Book model
-   */
+   */ 
   interface BookFieldRefs {
-    readonly id: FieldRef<'Book', 'String'>
-    readonly isbn: FieldRef<'Book', 'String'>
-    readonly title: FieldRef<'Book', 'String'>
-    readonly coverImage: FieldRef<'Book', 'String'>
-    readonly blurb: FieldRef<'Book', 'String'>
-    readonly rating: FieldRef<'Book', 'Int'>
-    readonly shelfId: FieldRef<'Book', 'Int'>
-    readonly ownerId: FieldRef<'Book', 'String'>
+    readonly id: FieldRef<"Book", 'String'>
+    readonly isbn: FieldRef<"Book", 'String'>
+    readonly title: FieldRef<"Book", 'String'>
+    readonly coverImage: FieldRef<"Book", 'String'>
+    readonly blurb: FieldRef<"Book", 'String'>
+    readonly rating: FieldRef<"Book", 'Int'>
+    readonly shelfId: FieldRef<"Book", 'Int'>
+    readonly ownerId: FieldRef<"Book", 'String'>
   }
+    
 
   // Custom InputTypes
 
   /**
    * Book findUnique
    */
-  export type BookFindUniqueArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type BookFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Book
      */
@@ -3409,13 +3112,12 @@ export namespace Prisma {
      */
     where: BookWhereUniqueInput
   }
+
 
   /**
    * Book findUniqueOrThrow
    */
-  export type BookFindUniqueOrThrowArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type BookFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Book
      */
@@ -3430,12 +3132,11 @@ export namespace Prisma {
     where: BookWhereUniqueInput
   }
 
+
   /**
    * Book findFirst
    */
-  export type BookFindFirstArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type BookFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Book
      */
@@ -3450,42 +3151,41 @@ export namespace Prisma {
     where?: BookWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Books to fetch.
      */
     orderBy?: BookOrderByWithRelationInput | BookOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Books.
      */
     cursor?: BookWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Books from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Books.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Books.
      */
     distinct?: BookScalarFieldEnum | BookScalarFieldEnum[]
   }
+
 
   /**
    * Book findFirstOrThrow
    */
-  export type BookFindFirstOrThrowArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type BookFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Book
      */
@@ -3500,42 +3200,41 @@ export namespace Prisma {
     where?: BookWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Books to fetch.
      */
     orderBy?: BookOrderByWithRelationInput | BookOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Books.
      */
     cursor?: BookWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Books from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Books.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Books.
      */
     distinct?: BookScalarFieldEnum | BookScalarFieldEnum[]
   }
 
+
   /**
    * Book findMany
    */
-  export type BookFindManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type BookFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Book
      */
@@ -3550,37 +3249,36 @@ export namespace Prisma {
     where?: BookWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Books to fetch.
      */
     orderBy?: BookOrderByWithRelationInput | BookOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for listing Books.
      */
     cursor?: BookWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Books from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Books.
      */
     skip?: number
     distinct?: BookScalarFieldEnum | BookScalarFieldEnum[]
   }
 
+
   /**
    * Book create
    */
-  export type BookCreateArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type BookCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Book
      */
@@ -3595,12 +3293,11 @@ export namespace Prisma {
     data: XOR<BookCreateInput, BookUncheckedCreateInput>
   }
 
+
   /**
    * Book createMany
    */
-  export type BookCreateManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type BookCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many Books.
      */
@@ -3608,12 +3305,11 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+
   /**
    * Book update
    */
-  export type BookUpdateArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type BookUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Book
      */
@@ -3632,12 +3328,11 @@ export namespace Prisma {
     where: BookWhereUniqueInput
   }
 
+
   /**
    * Book updateMany
    */
-  export type BookUpdateManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type BookUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * The data used to update Books.
      */
@@ -3648,12 +3343,11 @@ export namespace Prisma {
     where?: BookWhereInput
   }
 
+
   /**
    * Book upsert
    */
-  export type BookUpsertArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type BookUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Book
      */
@@ -3676,12 +3370,11 @@ export namespace Prisma {
     update: XOR<BookUpdateInput, BookUncheckedUpdateInput>
   }
 
+
   /**
    * Book delete
    */
-  export type BookDeleteArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type BookDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Book
      */
@@ -3696,24 +3389,22 @@ export namespace Prisma {
     where: BookWhereUniqueInput
   }
 
+
   /**
    * Book deleteMany
    */
-  export type BookDeleteManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type BookDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Filter which Books to delete
      */
     where?: BookWhereInput
   }
 
+
   /**
    * Book.notes
    */
-  export type Book$notesArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type Book$notesArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Note
      */
@@ -3730,12 +3421,11 @@ export namespace Prisma {
     distinct?: NoteScalarFieldEnum | NoteScalarFieldEnum[]
   }
 
+
   /**
    * Book.authors
    */
-  export type Book$authorsArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type Book$authorsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Author
      */
@@ -3752,12 +3442,11 @@ export namespace Prisma {
     distinct?: AuthorScalarFieldEnum | AuthorScalarFieldEnum[]
   }
 
+
   /**
    * Book.tags
    */
-  export type Book$tagsArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type Book$tagsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Tag
      */
@@ -3774,12 +3463,11 @@ export namespace Prisma {
     distinct?: TagScalarFieldEnum | TagScalarFieldEnum[]
   }
 
+
   /**
    * Book without action
    */
-  export type BookDefaultArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type BookDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Book
      */
@@ -3789,6 +3477,8 @@ export namespace Prisma {
      */
     include?: BookInclude<ExtArgs> | null
   }
+
+
 
   /**
    * Model Note
@@ -3832,6 +3522,7 @@ export namespace Prisma {
     _all: number
   }
 
+
   export type NoteAvgAggregateInputType = {
     id?: true
   }
@@ -3862,84 +3553,81 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type NoteAggregateArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type NoteAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Filter which Note to aggregate.
      */
     where?: NoteWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Notes to fetch.
      */
     orderBy?: NoteOrderByWithRelationInput | NoteOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the start position
      */
     cursor?: NoteWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Notes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Notes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Count returned Notes
-     **/
+    **/
     _count?: true | NoteCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to average
-     **/
+    **/
     _avg?: NoteAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to sum
-     **/
+    **/
     _sum?: NoteSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the minimum value
-     **/
+    **/
     _min?: NoteMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the maximum value
-     **/
+    **/
     _max?: NoteMaxAggregateInputType
   }
 
   export type GetNoteAggregateType<T extends NoteAggregateArgs> = {
-    [P in keyof T & keyof AggregateNote]: P extends '_count' | 'count'
+        [P in keyof T & keyof AggregateNote]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateNote[P]>
       : GetScalarType<T[P], AggregateNote[P]>
   }
 
-  export type NoteGroupByArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+
+
+
+  export type NoteGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: NoteWhereInput
-    orderBy?:
-      | NoteOrderByWithAggregationInput
-      | NoteOrderByWithAggregationInput[]
+    orderBy?: NoteOrderByWithAggregationInput | NoteOrderByWithAggregationInput[]
     by: NoteScalarFieldEnum[] | NoteScalarFieldEnum
     having?: NoteScalarWhereWithAggregatesInput
     take?: number
@@ -3965,28 +3653,25 @@ export namespace Prisma {
 
   type GetNoteGroupByPayload<T extends NoteGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<NoteGroupByOutputType, T['by']> & {
-        [P in keyof T & keyof NoteGroupByOutputType]: P extends '_count'
-          ? T[P] extends boolean
-            ? number
+      PickEnumerable<NoteGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NoteGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NoteGroupByOutputType[P]>
             : GetScalarType<T[P], NoteGroupByOutputType[P]>
-          : GetScalarType<T[P], NoteGroupByOutputType[P]>
-      }
+        }
+      >
     >
-  >
 
-  export type NoteSelect<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = $Extensions.GetSelect<
-    {
-      id?: boolean
-      createdAt?: boolean
-      content?: boolean
-      bookId?: boolean
-      book?: boolean | BookDefaultArgs<ExtArgs>
-    },
-    ExtArgs['result']['note']
-  >
+
+  export type NoteSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    content?: boolean
+    bookId?: boolean
+    book?: boolean | BookDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["note"]>
 
   export type NoteSelectScalar = {
     id?: boolean
@@ -3995,47 +3680,35 @@ export namespace Prisma {
     bookId?: boolean
   }
 
-  export type NoteInclude<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type NoteInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     book?: boolean | BookDefaultArgs<ExtArgs>
   }
 
-  export type $NotePayload<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
-    name: 'Note'
+
+  export type $NotePayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    name: "Note"
     objects: {
       book: Prisma.$BookPayload<ExtArgs>
     }
-    scalars: $Extensions.GetResult<
-      {
-        id: number
-        createdAt: Date
-        content: string
-        bookId: string
-      },
-      ExtArgs['result']['note']
-    >
+    scalars: $Extensions.GetResult<{
+      id: number
+      createdAt: Date
+      content: string
+      bookId: string
+    }, ExtArgs["result"]["note"]>
     composites: {}
   }
 
-  type NoteGetPayload<S extends boolean | null | undefined | NoteDefaultArgs> =
-    $Result.GetResult<Prisma.$NotePayload, S>
 
-  type NoteCountArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = Omit<NoteFindManyArgs, 'select' | 'include'> & {
-    select?: NoteCountAggregateInputType | true
-  }
+  type NoteGetPayload<S extends boolean | null | undefined | NoteDefaultArgs> = $Result.GetResult<Prisma.$NotePayload, S>
 
-  export interface NoteDelegate<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > {
-    [K: symbol]: {
-      types: Prisma.TypeMap<ExtArgs>['model']['Note']
-      meta: { name: 'Note' }
+  type NoteCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+    Omit<NoteFindManyArgs, 'select' | 'include'> & {
+      select?: NoteCountAggregateInputType | true
     }
+
+  export interface NoteDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Note'], meta: { name: 'Note' } }
     /**
      * Find zero or one Note that matches the filter.
      * @param {NoteFindUniqueArgs} args - Arguments to find a Note
@@ -4046,17 +3719,13 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findUnique<T extends NoteFindUniqueArgs<ExtArgs>>(
       args: SelectSubset<T, NoteFindUniqueArgs<ExtArgs>>
-    ): Prisma__NoteClient<
-      $Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, 'findUnique'> | null,
-      null,
-      ExtArgs
-    >
+    ): Prisma__NoteClient<$Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one Note that matches the filter or throw an error  with `error.code='P2025'`
+     * Find one Note that matches the filter or throw an error  with `error.code='P2025'` 
      *     if no matches were found.
      * @param {NoteFindUniqueOrThrowArgs} args - Arguments to find a Note
      * @example
@@ -4066,14 +3735,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findUniqueOrThrow<T extends NoteFindUniqueOrThrowArgs<ExtArgs>>(
       args?: SelectSubset<T, NoteFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__NoteClient<
-      $Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, 'findUniqueOrThrow'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__NoteClient<$Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
      * Find the first Note that matches the filter.
@@ -4087,14 +3752,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findFirst<T extends NoteFindFirstArgs<ExtArgs>>(
       args?: SelectSubset<T, NoteFindFirstArgs<ExtArgs>>
-    ): Prisma__NoteClient<
-      $Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, 'findFirst'> | null,
-      null,
-      ExtArgs
-    >
+    ): Prisma__NoteClient<$Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
      * Find the first Note that matches the filter or
@@ -4109,14 +3770,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findFirstOrThrow<T extends NoteFindFirstOrThrowArgs<ExtArgs>>(
       args?: SelectSubset<T, NoteFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__NoteClient<
-      $Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, 'findFirstOrThrow'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__NoteClient<$Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
      * Find zero or more Notes that matches the filter.
@@ -4126,19 +3783,17 @@ export namespace Prisma {
      * @example
      * // Get all Notes
      * const notes = await prisma.note.findMany()
-     *
+     * 
      * // Get first 10 Notes
      * const notes = await prisma.note.findMany({ take: 10 })
-     *
+     * 
      * // Only select the `id`
      * const noteWithIdOnly = await prisma.note.findMany({ select: { id: true } })
-     *
-     **/
+     * 
+    **/
     findMany<T extends NoteFindManyArgs<ExtArgs>>(
       args?: SelectSubset<T, NoteFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<
-      $Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, 'findMany'>
-    >
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, 'findMany'>>
 
     /**
      * Create a Note.
@@ -4150,15 +3805,11 @@ export namespace Prisma {
      *     // ... data to create a Note
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     create<T extends NoteCreateArgs<ExtArgs>>(
       args: SelectSubset<T, NoteCreateArgs<ExtArgs>>
-    ): Prisma__NoteClient<
-      $Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, 'create'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__NoteClient<$Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
      * Create many Notes.
@@ -4170,8 +3821,8 @@ export namespace Prisma {
      *         // ... provide data here
      *       }
      *     })
-     *
-     **/
+     *     
+    **/
     createMany<T extends NoteCreateManyArgs<ExtArgs>>(
       args?: SelectSubset<T, NoteCreateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
@@ -4186,15 +3837,11 @@ export namespace Prisma {
      *     // ... filter to delete one Note
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     delete<T extends NoteDeleteArgs<ExtArgs>>(
       args: SelectSubset<T, NoteDeleteArgs<ExtArgs>>
-    ): Prisma__NoteClient<
-      $Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, 'delete'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__NoteClient<$Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
      * Update one Note.
@@ -4209,15 +3856,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     update<T extends NoteUpdateArgs<ExtArgs>>(
       args: SelectSubset<T, NoteUpdateArgs<ExtArgs>>
-    ): Prisma__NoteClient<
-      $Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, 'update'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__NoteClient<$Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
      * Delete zero or more Notes.
@@ -4229,8 +3872,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     deleteMany<T extends NoteDeleteManyArgs<ExtArgs>>(
       args?: SelectSubset<T, NoteDeleteManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
@@ -4250,8 +3893,8 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     updateMany<T extends NoteUpdateManyArgs<ExtArgs>>(
       args: SelectSubset<T, NoteUpdateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
@@ -4272,14 +3915,10 @@ export namespace Prisma {
      *     // ... the filter for the Note we want to update
      *   }
      * })
-     **/
+    **/
     upsert<T extends NoteUpsertArgs<ExtArgs>>(
       args: SelectSubset<T, NoteUpsertArgs<ExtArgs>>
-    ): Prisma__NoteClient<
-      $Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, 'upsert'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__NoteClient<$Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
      * Count the number of Notes.
@@ -4293,9 +3932,9 @@ export namespace Prisma {
      *     // ... the filter for the Notes we want to count
      *   }
      * })
-     **/
+    **/
     count<T extends NoteCountArgs>(
-      args?: Subset<T, NoteCountArgs>
+      args?: Subset<T, NoteCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
@@ -4327,10 +3966,8 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-     **/
-    aggregate<T extends NoteAggregateArgs>(
-      args: Subset<T, NoteAggregateArgs>
-    ): Prisma.PrismaPromise<GetNoteAggregateType<T>>
+    **/
+    aggregate<T extends NoteAggregateArgs>(args: Subset<T, NoteAggregateArgs>): Prisma.PrismaPromise<GetNoteAggregateType<T>>
 
     /**
      * Group by Note.
@@ -4348,8 +3985,8 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     *
-     **/
+     * 
+    **/
     groupBy<
       T extends NoteGroupByArgs,
       HasSelectOrTake extends Or<
@@ -4359,65 +3996,59 @@ export namespace Prisma {
       OrderByArg extends True extends HasSelectOrTake
         ? { orderBy: NoteGroupByArgs['orderBy'] }
         : { orderBy?: NoteGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<
-        Keys<MaybeTupleToUnion<T['orderBy']>>
-      >,
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
       HavingFields extends GetHavingFields<T['having']>,
       HavingValid extends Has<ByFields, HavingFields>,
       ByEmpty extends T['by'] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-        ? `Error: "by" must not be empty.`
-        : HavingValid extends False
-        ? {
-            [P in HavingFields]: P extends ByFields
-              ? never
-              : P extends string
-              ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-              : [
-                  Error,
-                  'Field ',
-                  P,
-                  ` in "having" needs to be provided in "by"`
-                ]
-          }[HavingFields]
-        : 'take' extends Keys<T>
-        ? 'orderBy' extends Keys<T>
-          ? ByValid extends True
-            ? {}
-            : {
-                [P in OrderFields]: P extends ByFields
-                  ? never
-                  : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-              }[OrderFields]
-          : 'Error: If you provide "take", you also need to provide "orderBy"'
-        : 'skip' extends Keys<T>
-        ? 'orderBy' extends Keys<T>
-          ? ByValid extends True
-            ? {}
-            : {
-                [P in OrderFields]: P extends ByFields
-                  ? never
-                  : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-              }[OrderFields]
-          : 'Error: If you provide "skip", you also need to provide "orderBy"'
-        : ByValid extends True
-        ? {}
-        : {
-            [P in OrderFields]: P extends ByFields
-              ? never
-              : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-          }[OrderFields]
-    >(
-      args: SubsetIntersection<T, NoteGroupByArgs, OrderByArg> & InputErrors
-    ): {} extends InputErrors
-      ? GetNoteGroupByPayload<T>
-      : Prisma.PrismaPromise<InputErrors>
-    /**
-     * Fields of the Note model
-     */
-    readonly fields: NoteFieldRefs
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, NoteGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNoteGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Note model
+   */
+  readonly fields: NoteFieldRefs;
   }
 
   /**
@@ -4426,21 +4057,10 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__NoteClient<
-    T,
-    Null = never,
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise'
+  export interface Prisma__NoteClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    book<T extends BookDefaultArgs<ExtArgs> = {}>(
-      args?: Subset<T, BookDefaultArgs<ExtArgs>>
-    ): Prisma__BookClient<
-      | $Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findUniqueOrThrow'>
-      | Null,
-      Null,
-      ExtArgs
-    >
+    book<T extends BookDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BookDefaultArgs<ExtArgs>>): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -4448,54 +4068,41 @@ export namespace Prisma {
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(
-      onfulfilled?:
-        | ((value: T) => TResult1 | PromiseLike<TResult1>)
-        | undefined
-        | null,
-      onrejected?:
-        | ((reason: any) => TResult2 | PromiseLike<TResult2>)
-        | undefined
-        | null
-    ): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(
-      onrejected?:
-        | ((reason: any) => TResult | PromiseLike<TResult>)
-        | undefined
-        | null
-    ): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
   }
+
+
 
   /**
    * Fields of the Note model
-   */
+   */ 
   interface NoteFieldRefs {
-    readonly id: FieldRef<'Note', 'Int'>
-    readonly createdAt: FieldRef<'Note', 'DateTime'>
-    readonly content: FieldRef<'Note', 'String'>
-    readonly bookId: FieldRef<'Note', 'String'>
+    readonly id: FieldRef<"Note", 'Int'>
+    readonly createdAt: FieldRef<"Note", 'DateTime'>
+    readonly content: FieldRef<"Note", 'String'>
+    readonly bookId: FieldRef<"Note", 'String'>
   }
+    
 
   // Custom InputTypes
 
   /**
    * Note findUnique
    */
-  export type NoteFindUniqueArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type NoteFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Note
      */
@@ -4509,13 +4116,12 @@ export namespace Prisma {
      */
     where: NoteWhereUniqueInput
   }
+
 
   /**
    * Note findUniqueOrThrow
    */
-  export type NoteFindUniqueOrThrowArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type NoteFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Note
      */
@@ -4530,12 +4136,11 @@ export namespace Prisma {
     where: NoteWhereUniqueInput
   }
 
+
   /**
    * Note findFirst
    */
-  export type NoteFindFirstArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type NoteFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Note
      */
@@ -4550,42 +4155,41 @@ export namespace Prisma {
     where?: NoteWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Notes to fetch.
      */
     orderBy?: NoteOrderByWithRelationInput | NoteOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Notes.
      */
     cursor?: NoteWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Notes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Notes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Notes.
      */
     distinct?: NoteScalarFieldEnum | NoteScalarFieldEnum[]
   }
+
 
   /**
    * Note findFirstOrThrow
    */
-  export type NoteFindFirstOrThrowArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type NoteFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Note
      */
@@ -4600,42 +4204,41 @@ export namespace Prisma {
     where?: NoteWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Notes to fetch.
      */
     orderBy?: NoteOrderByWithRelationInput | NoteOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Notes.
      */
     cursor?: NoteWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Notes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Notes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Notes.
      */
     distinct?: NoteScalarFieldEnum | NoteScalarFieldEnum[]
   }
 
+
   /**
    * Note findMany
    */
-  export type NoteFindManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type NoteFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Note
      */
@@ -4650,37 +4253,36 @@ export namespace Prisma {
     where?: NoteWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Notes to fetch.
      */
     orderBy?: NoteOrderByWithRelationInput | NoteOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for listing Notes.
      */
     cursor?: NoteWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Notes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Notes.
      */
     skip?: number
     distinct?: NoteScalarFieldEnum | NoteScalarFieldEnum[]
   }
 
+
   /**
    * Note create
    */
-  export type NoteCreateArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type NoteCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Note
      */
@@ -4695,12 +4297,11 @@ export namespace Prisma {
     data: XOR<NoteCreateInput, NoteUncheckedCreateInput>
   }
 
+
   /**
    * Note createMany
    */
-  export type NoteCreateManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type NoteCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many Notes.
      */
@@ -4708,12 +4309,11 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+
   /**
    * Note update
    */
-  export type NoteUpdateArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type NoteUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Note
      */
@@ -4732,12 +4332,11 @@ export namespace Prisma {
     where: NoteWhereUniqueInput
   }
 
+
   /**
    * Note updateMany
    */
-  export type NoteUpdateManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type NoteUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * The data used to update Notes.
      */
@@ -4748,12 +4347,11 @@ export namespace Prisma {
     where?: NoteWhereInput
   }
 
+
   /**
    * Note upsert
    */
-  export type NoteUpsertArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type NoteUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Note
      */
@@ -4776,12 +4374,11 @@ export namespace Prisma {
     update: XOR<NoteUpdateInput, NoteUncheckedUpdateInput>
   }
 
+
   /**
    * Note delete
    */
-  export type NoteDeleteArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type NoteDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Note
      */
@@ -4796,24 +4393,22 @@ export namespace Prisma {
     where: NoteWhereUniqueInput
   }
 
+
   /**
    * Note deleteMany
    */
-  export type NoteDeleteManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type NoteDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Filter which Notes to delete
      */
     where?: NoteWhereInput
   }
 
+
   /**
    * Note without action
    */
-  export type NoteDefaultArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type NoteDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Note
      */
@@ -4823,6 +4418,8 @@ export namespace Prisma {
      */
     include?: NoteInclude<ExtArgs> | null
   }
+
+
 
   /**
    * Model Shelf
@@ -4863,6 +4460,7 @@ export namespace Prisma {
     _all: number
   }
 
+
   export type ShelfAvgAggregateInputType = {
     id?: true
   }
@@ -4890,84 +4488,81 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type ShelfAggregateArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type ShelfAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Filter which Shelf to aggregate.
      */
     where?: ShelfWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Shelves to fetch.
      */
     orderBy?: ShelfOrderByWithRelationInput | ShelfOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the start position
      */
     cursor?: ShelfWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Shelves from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Shelves.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Count returned Shelves
-     **/
+    **/
     _count?: true | ShelfCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to average
-     **/
+    **/
     _avg?: ShelfAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to sum
-     **/
+    **/
     _sum?: ShelfSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the minimum value
-     **/
+    **/
     _min?: ShelfMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the maximum value
-     **/
+    **/
     _max?: ShelfMaxAggregateInputType
   }
 
   export type GetShelfAggregateType<T extends ShelfAggregateArgs> = {
-    [P in keyof T & keyof AggregateShelf]: P extends '_count' | 'count'
+        [P in keyof T & keyof AggregateShelf]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateShelf[P]>
       : GetScalarType<T[P], AggregateShelf[P]>
   }
 
-  export type ShelfGroupByArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+
+
+
+  export type ShelfGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: ShelfWhereInput
-    orderBy?:
-      | ShelfOrderByWithAggregationInput
-      | ShelfOrderByWithAggregationInput[]
+    orderBy?: ShelfOrderByWithAggregationInput | ShelfOrderByWithAggregationInput[]
     by: ShelfScalarFieldEnum[] | ShelfScalarFieldEnum
     having?: ShelfScalarWhereWithAggregatesInput
     take?: number
@@ -4990,11 +4585,11 @@ export namespace Prisma {
     _max: ShelfMaxAggregateOutputType | null
   }
 
-  type GetShelfGroupByPayload<T extends ShelfGroupByArgs> =
-    Prisma.PrismaPromise<
-      Array<
-        PickEnumerable<ShelfGroupByOutputType, T['by']> & {
-          [P in keyof T & keyof ShelfGroupByOutputType]: P extends '_count'
+  type GetShelfGroupByPayload<T extends ShelfGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ShelfGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ShelfGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
               : GetScalarType<T[P], ShelfGroupByOutputType[P]>
@@ -5003,19 +4598,15 @@ export namespace Prisma {
       >
     >
 
-  export type ShelfSelect<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = $Extensions.GetSelect<
-    {
-      id?: boolean
-      name?: boolean
-      userUid?: boolean
-      books?: boolean | Shelf$booksArgs<ExtArgs>
-      owner?: boolean | UserDefaultArgs<ExtArgs>
-      _count?: boolean | ShelfCountOutputTypeDefaultArgs<ExtArgs>
-    },
-    ExtArgs['result']['shelf']
-  >
+
+  export type ShelfSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    userUid?: boolean
+    books?: boolean | Shelf$booksArgs<ExtArgs>
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+    _count?: boolean | ShelfCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["shelf"]>
 
   export type ShelfSelectScalar = {
     id?: boolean
@@ -5023,50 +4614,37 @@ export namespace Prisma {
     userUid?: boolean
   }
 
-  export type ShelfInclude<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type ShelfInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     books?: boolean | Shelf$booksArgs<ExtArgs>
     owner?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | ShelfCountOutputTypeDefaultArgs<ExtArgs>
   }
 
-  export type $ShelfPayload<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
-    name: 'Shelf'
+
+  export type $ShelfPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    name: "Shelf"
     objects: {
       books: Prisma.$BookPayload<ExtArgs>[]
       owner: Prisma.$UserPayload<ExtArgs>
     }
-    scalars: $Extensions.GetResult<
-      {
-        id: number
-        name: string
-        userUid: string
-      },
-      ExtArgs['result']['shelf']
-    >
+    scalars: $Extensions.GetResult<{
+      id: number
+      name: string
+      userUid: string
+    }, ExtArgs["result"]["shelf"]>
     composites: {}
   }
 
-  type ShelfGetPayload<
-    S extends boolean | null | undefined | ShelfDefaultArgs
-  > = $Result.GetResult<Prisma.$ShelfPayload, S>
 
-  type ShelfCountArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = Omit<ShelfFindManyArgs, 'select' | 'include'> & {
-    select?: ShelfCountAggregateInputType | true
-  }
+  type ShelfGetPayload<S extends boolean | null | undefined | ShelfDefaultArgs> = $Result.GetResult<Prisma.$ShelfPayload, S>
 
-  export interface ShelfDelegate<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > {
-    [K: symbol]: {
-      types: Prisma.TypeMap<ExtArgs>['model']['Shelf']
-      meta: { name: 'Shelf' }
+  type ShelfCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+    Omit<ShelfFindManyArgs, 'select' | 'include'> & {
+      select?: ShelfCountAggregateInputType | true
     }
+
+  export interface ShelfDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Shelf'], meta: { name: 'Shelf' } }
     /**
      * Find zero or one Shelf that matches the filter.
      * @param {ShelfFindUniqueArgs} args - Arguments to find a Shelf
@@ -5077,17 +4655,13 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findUnique<T extends ShelfFindUniqueArgs<ExtArgs>>(
       args: SelectSubset<T, ShelfFindUniqueArgs<ExtArgs>>
-    ): Prisma__ShelfClient<
-      $Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'findUnique'> | null,
-      null,
-      ExtArgs
-    >
+    ): Prisma__ShelfClient<$Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one Shelf that matches the filter or throw an error  with `error.code='P2025'`
+     * Find one Shelf that matches the filter or throw an error  with `error.code='P2025'` 
      *     if no matches were found.
      * @param {ShelfFindUniqueOrThrowArgs} args - Arguments to find a Shelf
      * @example
@@ -5097,14 +4671,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findUniqueOrThrow<T extends ShelfFindUniqueOrThrowArgs<ExtArgs>>(
       args?: SelectSubset<T, ShelfFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__ShelfClient<
-      $Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'findUniqueOrThrow'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__ShelfClient<$Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
      * Find the first Shelf that matches the filter.
@@ -5118,14 +4688,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findFirst<T extends ShelfFindFirstArgs<ExtArgs>>(
       args?: SelectSubset<T, ShelfFindFirstArgs<ExtArgs>>
-    ): Prisma__ShelfClient<
-      $Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'findFirst'> | null,
-      null,
-      ExtArgs
-    >
+    ): Prisma__ShelfClient<$Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
      * Find the first Shelf that matches the filter or
@@ -5140,14 +4706,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findFirstOrThrow<T extends ShelfFindFirstOrThrowArgs<ExtArgs>>(
       args?: SelectSubset<T, ShelfFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__ShelfClient<
-      $Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'findFirstOrThrow'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__ShelfClient<$Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
      * Find zero or more Shelves that matches the filter.
@@ -5157,19 +4719,17 @@ export namespace Prisma {
      * @example
      * // Get all Shelves
      * const shelves = await prisma.shelf.findMany()
-     *
+     * 
      * // Get first 10 Shelves
      * const shelves = await prisma.shelf.findMany({ take: 10 })
-     *
+     * 
      * // Only select the `id`
      * const shelfWithIdOnly = await prisma.shelf.findMany({ select: { id: true } })
-     *
-     **/
+     * 
+    **/
     findMany<T extends ShelfFindManyArgs<ExtArgs>>(
       args?: SelectSubset<T, ShelfFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<
-      $Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'findMany'>
-    >
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'findMany'>>
 
     /**
      * Create a Shelf.
@@ -5181,15 +4741,11 @@ export namespace Prisma {
      *     // ... data to create a Shelf
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     create<T extends ShelfCreateArgs<ExtArgs>>(
       args: SelectSubset<T, ShelfCreateArgs<ExtArgs>>
-    ): Prisma__ShelfClient<
-      $Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'create'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__ShelfClient<$Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
      * Create many Shelves.
@@ -5201,8 +4757,8 @@ export namespace Prisma {
      *         // ... provide data here
      *       }
      *     })
-     *
-     **/
+     *     
+    **/
     createMany<T extends ShelfCreateManyArgs<ExtArgs>>(
       args?: SelectSubset<T, ShelfCreateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
@@ -5217,15 +4773,11 @@ export namespace Prisma {
      *     // ... filter to delete one Shelf
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     delete<T extends ShelfDeleteArgs<ExtArgs>>(
       args: SelectSubset<T, ShelfDeleteArgs<ExtArgs>>
-    ): Prisma__ShelfClient<
-      $Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'delete'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__ShelfClient<$Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
      * Update one Shelf.
@@ -5240,15 +4792,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     update<T extends ShelfUpdateArgs<ExtArgs>>(
       args: SelectSubset<T, ShelfUpdateArgs<ExtArgs>>
-    ): Prisma__ShelfClient<
-      $Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'update'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__ShelfClient<$Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
      * Delete zero or more Shelves.
@@ -5260,8 +4808,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     deleteMany<T extends ShelfDeleteManyArgs<ExtArgs>>(
       args?: SelectSubset<T, ShelfDeleteManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
@@ -5281,8 +4829,8 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     updateMany<T extends ShelfUpdateManyArgs<ExtArgs>>(
       args: SelectSubset<T, ShelfUpdateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
@@ -5303,14 +4851,10 @@ export namespace Prisma {
      *     // ... the filter for the Shelf we want to update
      *   }
      * })
-     **/
+    **/
     upsert<T extends ShelfUpsertArgs<ExtArgs>>(
       args: SelectSubset<T, ShelfUpsertArgs<ExtArgs>>
-    ): Prisma__ShelfClient<
-      $Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'upsert'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__ShelfClient<$Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
      * Count the number of Shelves.
@@ -5324,9 +4868,9 @@ export namespace Prisma {
      *     // ... the filter for the Shelves we want to count
      *   }
      * })
-     **/
+    **/
     count<T extends ShelfCountArgs>(
-      args?: Subset<T, ShelfCountArgs>
+      args?: Subset<T, ShelfCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
@@ -5358,10 +4902,8 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-     **/
-    aggregate<T extends ShelfAggregateArgs>(
-      args: Subset<T, ShelfAggregateArgs>
-    ): Prisma.PrismaPromise<GetShelfAggregateType<T>>
+    **/
+    aggregate<T extends ShelfAggregateArgs>(args: Subset<T, ShelfAggregateArgs>): Prisma.PrismaPromise<GetShelfAggregateType<T>>
 
     /**
      * Group by Shelf.
@@ -5379,8 +4921,8 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     *
-     **/
+     * 
+    **/
     groupBy<
       T extends ShelfGroupByArgs,
       HasSelectOrTake extends Or<
@@ -5390,65 +4932,59 @@ export namespace Prisma {
       OrderByArg extends True extends HasSelectOrTake
         ? { orderBy: ShelfGroupByArgs['orderBy'] }
         : { orderBy?: ShelfGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<
-        Keys<MaybeTupleToUnion<T['orderBy']>>
-      >,
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
       HavingFields extends GetHavingFields<T['having']>,
       HavingValid extends Has<ByFields, HavingFields>,
       ByEmpty extends T['by'] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-        ? `Error: "by" must not be empty.`
-        : HavingValid extends False
-        ? {
-            [P in HavingFields]: P extends ByFields
-              ? never
-              : P extends string
-              ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-              : [
-                  Error,
-                  'Field ',
-                  P,
-                  ` in "having" needs to be provided in "by"`
-                ]
-          }[HavingFields]
-        : 'take' extends Keys<T>
-        ? 'orderBy' extends Keys<T>
-          ? ByValid extends True
-            ? {}
-            : {
-                [P in OrderFields]: P extends ByFields
-                  ? never
-                  : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-              }[OrderFields]
-          : 'Error: If you provide "take", you also need to provide "orderBy"'
-        : 'skip' extends Keys<T>
-        ? 'orderBy' extends Keys<T>
-          ? ByValid extends True
-            ? {}
-            : {
-                [P in OrderFields]: P extends ByFields
-                  ? never
-                  : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-              }[OrderFields]
-          : 'Error: If you provide "skip", you also need to provide "orderBy"'
-        : ByValid extends True
-        ? {}
-        : {
-            [P in OrderFields]: P extends ByFields
-              ? never
-              : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-          }[OrderFields]
-    >(
-      args: SubsetIntersection<T, ShelfGroupByArgs, OrderByArg> & InputErrors
-    ): {} extends InputErrors
-      ? GetShelfGroupByPayload<T>
-      : Prisma.PrismaPromise<InputErrors>
-    /**
-     * Fields of the Shelf model
-     */
-    readonly fields: ShelfFieldRefs
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ShelfGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetShelfGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Shelf model
+   */
+  readonly fields: ShelfFieldRefs;
   }
 
   /**
@@ -5457,27 +4993,12 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__ShelfClient<
-    T,
-    Null = never,
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise'
+  export interface Prisma__ShelfClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    books<T extends Shelf$booksArgs<ExtArgs> = {}>(
-      args?: Subset<T, Shelf$booksArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<
-      $Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findMany'> | Null
-    >
+    books<T extends Shelf$booksArgs<ExtArgs> = {}>(args?: Subset<T, Shelf$booksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    owner<T extends UserDefaultArgs<ExtArgs> = {}>(
-      args?: Subset<T, UserDefaultArgs<ExtArgs>>
-    ): Prisma__UserClient<
-      | $Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'>
-      | Null,
-      Null,
-      ExtArgs
-    >
+    owner<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5485,53 +5006,40 @@ export namespace Prisma {
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(
-      onfulfilled?:
-        | ((value: T) => TResult1 | PromiseLike<TResult1>)
-        | undefined
-        | null,
-      onrejected?:
-        | ((reason: any) => TResult2 | PromiseLike<TResult2>)
-        | undefined
-        | null
-    ): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(
-      onrejected?:
-        | ((reason: any) => TResult | PromiseLike<TResult>)
-        | undefined
-        | null
-    ): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
   }
+
+
 
   /**
    * Fields of the Shelf model
-   */
+   */ 
   interface ShelfFieldRefs {
-    readonly id: FieldRef<'Shelf', 'Int'>
-    readonly name: FieldRef<'Shelf', 'String'>
-    readonly userUid: FieldRef<'Shelf', 'String'>
+    readonly id: FieldRef<"Shelf", 'Int'>
+    readonly name: FieldRef<"Shelf", 'String'>
+    readonly userUid: FieldRef<"Shelf", 'String'>
   }
+    
 
   // Custom InputTypes
 
   /**
    * Shelf findUnique
    */
-  export type ShelfFindUniqueArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type ShelfFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Shelf
      */
@@ -5545,13 +5053,12 @@ export namespace Prisma {
      */
     where: ShelfWhereUniqueInput
   }
+
 
   /**
    * Shelf findUniqueOrThrow
    */
-  export type ShelfFindUniqueOrThrowArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type ShelfFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Shelf
      */
@@ -5566,12 +5073,11 @@ export namespace Prisma {
     where: ShelfWhereUniqueInput
   }
 
+
   /**
    * Shelf findFirst
    */
-  export type ShelfFindFirstArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type ShelfFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Shelf
      */
@@ -5586,42 +5092,41 @@ export namespace Prisma {
     where?: ShelfWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Shelves to fetch.
      */
     orderBy?: ShelfOrderByWithRelationInput | ShelfOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Shelves.
      */
     cursor?: ShelfWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Shelves from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Shelves.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Shelves.
      */
     distinct?: ShelfScalarFieldEnum | ShelfScalarFieldEnum[]
   }
+
 
   /**
    * Shelf findFirstOrThrow
    */
-  export type ShelfFindFirstOrThrowArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type ShelfFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Shelf
      */
@@ -5636,42 +5141,41 @@ export namespace Prisma {
     where?: ShelfWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Shelves to fetch.
      */
     orderBy?: ShelfOrderByWithRelationInput | ShelfOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Shelves.
      */
     cursor?: ShelfWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Shelves from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Shelves.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Shelves.
      */
     distinct?: ShelfScalarFieldEnum | ShelfScalarFieldEnum[]
   }
 
+
   /**
    * Shelf findMany
    */
-  export type ShelfFindManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type ShelfFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Shelf
      */
@@ -5686,37 +5190,36 @@ export namespace Prisma {
     where?: ShelfWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Shelves to fetch.
      */
     orderBy?: ShelfOrderByWithRelationInput | ShelfOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for listing Shelves.
      */
     cursor?: ShelfWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Shelves from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Shelves.
      */
     skip?: number
     distinct?: ShelfScalarFieldEnum | ShelfScalarFieldEnum[]
   }
 
+
   /**
    * Shelf create
    */
-  export type ShelfCreateArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type ShelfCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Shelf
      */
@@ -5731,12 +5234,11 @@ export namespace Prisma {
     data: XOR<ShelfCreateInput, ShelfUncheckedCreateInput>
   }
 
+
   /**
    * Shelf createMany
    */
-  export type ShelfCreateManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type ShelfCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many Shelves.
      */
@@ -5744,12 +5246,11 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+
   /**
    * Shelf update
    */
-  export type ShelfUpdateArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type ShelfUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Shelf
      */
@@ -5768,12 +5269,11 @@ export namespace Prisma {
     where: ShelfWhereUniqueInput
   }
 
+
   /**
    * Shelf updateMany
    */
-  export type ShelfUpdateManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type ShelfUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * The data used to update Shelves.
      */
@@ -5784,12 +5284,11 @@ export namespace Prisma {
     where?: ShelfWhereInput
   }
 
+
   /**
    * Shelf upsert
    */
-  export type ShelfUpsertArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type ShelfUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Shelf
      */
@@ -5812,12 +5311,11 @@ export namespace Prisma {
     update: XOR<ShelfUpdateInput, ShelfUncheckedUpdateInput>
   }
 
+
   /**
    * Shelf delete
    */
-  export type ShelfDeleteArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type ShelfDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Shelf
      */
@@ -5832,24 +5330,22 @@ export namespace Prisma {
     where: ShelfWhereUniqueInput
   }
 
+
   /**
    * Shelf deleteMany
    */
-  export type ShelfDeleteManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type ShelfDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Filter which Shelves to delete
      */
     where?: ShelfWhereInput
   }
 
+
   /**
    * Shelf.books
    */
-  export type Shelf$booksArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type Shelf$booksArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Book
      */
@@ -5866,12 +5362,11 @@ export namespace Prisma {
     distinct?: BookScalarFieldEnum | BookScalarFieldEnum[]
   }
 
+
   /**
    * Shelf without action
    */
-  export type ShelfDefaultArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type ShelfDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Shelf
      */
@@ -5881,6 +5376,8 @@ export namespace Prisma {
      */
     include?: ShelfInclude<ExtArgs> | null
   }
+
+
 
   /**
    * Model Tag
@@ -5918,6 +5415,7 @@ export namespace Prisma {
     _all: number
   }
 
+
   export type TagAvgAggregateInputType = {
     id?: true
   }
@@ -5942,80 +5440,79 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type TagAggregateArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type TagAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Filter which Tag to aggregate.
      */
     where?: TagWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Tags to fetch.
      */
     orderBy?: TagOrderByWithRelationInput | TagOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the start position
      */
     cursor?: TagWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Tags from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Tags.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Count returned Tags
-     **/
+    **/
     _count?: true | TagCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to average
-     **/
+    **/
     _avg?: TagAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to sum
-     **/
+    **/
     _sum?: TagSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the minimum value
-     **/
+    **/
     _min?: TagMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the maximum value
-     **/
+    **/
     _max?: TagMaxAggregateInputType
   }
 
   export type GetTagAggregateType<T extends TagAggregateArgs> = {
-    [P in keyof T & keyof AggregateTag]: P extends '_count' | 'count'
+        [P in keyof T & keyof AggregateTag]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateTag[P]>
       : GetScalarType<T[P], AggregateTag[P]>
   }
 
-  export type TagGroupByArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+
+
+
+  export type TagGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: TagWhereInput
     orderBy?: TagOrderByWithAggregationInput | TagOrderByWithAggregationInput[]
     by: TagScalarFieldEnum[] | TagScalarFieldEnum
@@ -6041,73 +5538,58 @@ export namespace Prisma {
 
   type GetTagGroupByPayload<T extends TagGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<TagGroupByOutputType, T['by']> & {
-        [P in keyof T & keyof TagGroupByOutputType]: P extends '_count'
-          ? T[P] extends boolean
-            ? number
+      PickEnumerable<TagGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TagGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TagGroupByOutputType[P]>
             : GetScalarType<T[P], TagGroupByOutputType[P]>
-          : GetScalarType<T[P], TagGroupByOutputType[P]>
-      }
+        }
+      >
     >
-  >
 
-  export type TagSelect<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = $Extensions.GetSelect<
-    {
-      id?: boolean
-      name?: boolean
-      book?: boolean | Tag$bookArgs<ExtArgs>
-      _count?: boolean | TagCountOutputTypeDefaultArgs<ExtArgs>
-    },
-    ExtArgs['result']['tag']
-  >
+
+  export type TagSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    book?: boolean | Tag$bookArgs<ExtArgs>
+    _count?: boolean | TagCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tag"]>
 
   export type TagSelectScalar = {
     id?: boolean
     name?: boolean
   }
 
-  export type TagInclude<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type TagInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     book?: boolean | Tag$bookArgs<ExtArgs>
     _count?: boolean | TagCountOutputTypeDefaultArgs<ExtArgs>
   }
 
-  export type $TagPayload<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
-    name: 'Tag'
+
+  export type $TagPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    name: "Tag"
     objects: {
       book: Prisma.$BookPayload<ExtArgs>[]
     }
-    scalars: $Extensions.GetResult<
-      {
-        id: number
-        name: string
-      },
-      ExtArgs['result']['tag']
-    >
+    scalars: $Extensions.GetResult<{
+      id: number
+      name: string
+    }, ExtArgs["result"]["tag"]>
     composites: {}
   }
 
-  type TagGetPayload<S extends boolean | null | undefined | TagDefaultArgs> =
-    $Result.GetResult<Prisma.$TagPayload, S>
 
-  type TagCountArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = Omit<TagFindManyArgs, 'select' | 'include'> & {
-    select?: TagCountAggregateInputType | true
-  }
+  type TagGetPayload<S extends boolean | null | undefined | TagDefaultArgs> = $Result.GetResult<Prisma.$TagPayload, S>
 
-  export interface TagDelegate<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > {
-    [K: symbol]: {
-      types: Prisma.TypeMap<ExtArgs>['model']['Tag']
-      meta: { name: 'Tag' }
+  type TagCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+    Omit<TagFindManyArgs, 'select' | 'include'> & {
+      select?: TagCountAggregateInputType | true
     }
+
+  export interface TagDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Tag'], meta: { name: 'Tag' } }
     /**
      * Find zero or one Tag that matches the filter.
      * @param {TagFindUniqueArgs} args - Arguments to find a Tag
@@ -6118,17 +5600,13 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findUnique<T extends TagFindUniqueArgs<ExtArgs>>(
       args: SelectSubset<T, TagFindUniqueArgs<ExtArgs>>
-    ): Prisma__TagClient<
-      $Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findUnique'> | null,
-      null,
-      ExtArgs
-    >
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one Tag that matches the filter or throw an error  with `error.code='P2025'`
+     * Find one Tag that matches the filter or throw an error  with `error.code='P2025'` 
      *     if no matches were found.
      * @param {TagFindUniqueOrThrowArgs} args - Arguments to find a Tag
      * @example
@@ -6138,14 +5616,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findUniqueOrThrow<T extends TagFindUniqueOrThrowArgs<ExtArgs>>(
       args?: SelectSubset<T, TagFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__TagClient<
-      $Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findUniqueOrThrow'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
      * Find the first Tag that matches the filter.
@@ -6159,14 +5633,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findFirst<T extends TagFindFirstArgs<ExtArgs>>(
       args?: SelectSubset<T, TagFindFirstArgs<ExtArgs>>
-    ): Prisma__TagClient<
-      $Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findFirst'> | null,
-      null,
-      ExtArgs
-    >
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
      * Find the first Tag that matches the filter or
@@ -6181,14 +5651,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findFirstOrThrow<T extends TagFindFirstOrThrowArgs<ExtArgs>>(
       args?: SelectSubset<T, TagFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__TagClient<
-      $Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findFirstOrThrow'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
      * Find zero or more Tags that matches the filter.
@@ -6198,19 +5664,17 @@ export namespace Prisma {
      * @example
      * // Get all Tags
      * const tags = await prisma.tag.findMany()
-     *
+     * 
      * // Get first 10 Tags
      * const tags = await prisma.tag.findMany({ take: 10 })
-     *
+     * 
      * // Only select the `id`
      * const tagWithIdOnly = await prisma.tag.findMany({ select: { id: true } })
-     *
-     **/
+     * 
+    **/
     findMany<T extends TagFindManyArgs<ExtArgs>>(
       args?: SelectSubset<T, TagFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<
-      $Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findMany'>
-    >
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findMany'>>
 
     /**
      * Create a Tag.
@@ -6222,15 +5686,11 @@ export namespace Prisma {
      *     // ... data to create a Tag
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     create<T extends TagCreateArgs<ExtArgs>>(
       args: SelectSubset<T, TagCreateArgs<ExtArgs>>
-    ): Prisma__TagClient<
-      $Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'create'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
      * Create many Tags.
@@ -6242,8 +5702,8 @@ export namespace Prisma {
      *         // ... provide data here
      *       }
      *     })
-     *
-     **/
+     *     
+    **/
     createMany<T extends TagCreateManyArgs<ExtArgs>>(
       args?: SelectSubset<T, TagCreateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
@@ -6258,15 +5718,11 @@ export namespace Prisma {
      *     // ... filter to delete one Tag
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     delete<T extends TagDeleteArgs<ExtArgs>>(
       args: SelectSubset<T, TagDeleteArgs<ExtArgs>>
-    ): Prisma__TagClient<
-      $Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'delete'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
      * Update one Tag.
@@ -6281,15 +5737,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     update<T extends TagUpdateArgs<ExtArgs>>(
       args: SelectSubset<T, TagUpdateArgs<ExtArgs>>
-    ): Prisma__TagClient<
-      $Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'update'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
      * Delete zero or more Tags.
@@ -6301,8 +5753,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     deleteMany<T extends TagDeleteManyArgs<ExtArgs>>(
       args?: SelectSubset<T, TagDeleteManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
@@ -6322,8 +5774,8 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     updateMany<T extends TagUpdateManyArgs<ExtArgs>>(
       args: SelectSubset<T, TagUpdateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
@@ -6344,14 +5796,10 @@ export namespace Prisma {
      *     // ... the filter for the Tag we want to update
      *   }
      * })
-     **/
+    **/
     upsert<T extends TagUpsertArgs<ExtArgs>>(
       args: SelectSubset<T, TagUpsertArgs<ExtArgs>>
-    ): Prisma__TagClient<
-      $Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'upsert'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
      * Count the number of Tags.
@@ -6365,9 +5813,9 @@ export namespace Prisma {
      *     // ... the filter for the Tags we want to count
      *   }
      * })
-     **/
+    **/
     count<T extends TagCountArgs>(
-      args?: Subset<T, TagCountArgs>
+      args?: Subset<T, TagCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
@@ -6399,10 +5847,8 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-     **/
-    aggregate<T extends TagAggregateArgs>(
-      args: Subset<T, TagAggregateArgs>
-    ): Prisma.PrismaPromise<GetTagAggregateType<T>>
+    **/
+    aggregate<T extends TagAggregateArgs>(args: Subset<T, TagAggregateArgs>): Prisma.PrismaPromise<GetTagAggregateType<T>>
 
     /**
      * Group by Tag.
@@ -6420,8 +5866,8 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     *
-     **/
+     * 
+    **/
     groupBy<
       T extends TagGroupByArgs,
       HasSelectOrTake extends Or<
@@ -6431,65 +5877,59 @@ export namespace Prisma {
       OrderByArg extends True extends HasSelectOrTake
         ? { orderBy: TagGroupByArgs['orderBy'] }
         : { orderBy?: TagGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<
-        Keys<MaybeTupleToUnion<T['orderBy']>>
-      >,
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
       HavingFields extends GetHavingFields<T['having']>,
       HavingValid extends Has<ByFields, HavingFields>,
       ByEmpty extends T['by'] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-        ? `Error: "by" must not be empty.`
-        : HavingValid extends False
-        ? {
-            [P in HavingFields]: P extends ByFields
-              ? never
-              : P extends string
-              ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-              : [
-                  Error,
-                  'Field ',
-                  P,
-                  ` in "having" needs to be provided in "by"`
-                ]
-          }[HavingFields]
-        : 'take' extends Keys<T>
-        ? 'orderBy' extends Keys<T>
-          ? ByValid extends True
-            ? {}
-            : {
-                [P in OrderFields]: P extends ByFields
-                  ? never
-                  : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-              }[OrderFields]
-          : 'Error: If you provide "take", you also need to provide "orderBy"'
-        : 'skip' extends Keys<T>
-        ? 'orderBy' extends Keys<T>
-          ? ByValid extends True
-            ? {}
-            : {
-                [P in OrderFields]: P extends ByFields
-                  ? never
-                  : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-              }[OrderFields]
-          : 'Error: If you provide "skip", you also need to provide "orderBy"'
-        : ByValid extends True
-        ? {}
-        : {
-            [P in OrderFields]: P extends ByFields
-              ? never
-              : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-          }[OrderFields]
-    >(
-      args: SubsetIntersection<T, TagGroupByArgs, OrderByArg> & InputErrors
-    ): {} extends InputErrors
-      ? GetTagGroupByPayload<T>
-      : Prisma.PrismaPromise<InputErrors>
-    /**
-     * Fields of the Tag model
-     */
-    readonly fields: TagFieldRefs
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TagGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTagGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Tag model
+   */
+  readonly fields: TagFieldRefs;
   }
 
   /**
@@ -6498,18 +5938,10 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__TagClient<
-    T,
-    Null = never,
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise'
+  export interface Prisma__TagClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    book<T extends Tag$bookArgs<ExtArgs> = {}>(
-      args?: Subset<T, Tag$bookArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<
-      $Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findMany'> | Null
-    >
+    book<T extends Tag$bookArgs<ExtArgs> = {}>(args?: Subset<T, Tag$bookArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -6517,52 +5949,39 @@ export namespace Prisma {
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(
-      onfulfilled?:
-        | ((value: T) => TResult1 | PromiseLike<TResult1>)
-        | undefined
-        | null,
-      onrejected?:
-        | ((reason: any) => TResult2 | PromiseLike<TResult2>)
-        | undefined
-        | null
-    ): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(
-      onrejected?:
-        | ((reason: any) => TResult | PromiseLike<TResult>)
-        | undefined
-        | null
-    ): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
   }
+
+
 
   /**
    * Fields of the Tag model
-   */
+   */ 
   interface TagFieldRefs {
-    readonly id: FieldRef<'Tag', 'Int'>
-    readonly name: FieldRef<'Tag', 'String'>
+    readonly id: FieldRef<"Tag", 'Int'>
+    readonly name: FieldRef<"Tag", 'String'>
   }
+    
 
   // Custom InputTypes
 
   /**
    * Tag findUnique
    */
-  export type TagFindUniqueArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type TagFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Tag
      */
@@ -6576,13 +5995,12 @@ export namespace Prisma {
      */
     where: TagWhereUniqueInput
   }
+
 
   /**
    * Tag findUniqueOrThrow
    */
-  export type TagFindUniqueOrThrowArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type TagFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Tag
      */
@@ -6597,12 +6015,11 @@ export namespace Prisma {
     where: TagWhereUniqueInput
   }
 
+
   /**
    * Tag findFirst
    */
-  export type TagFindFirstArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type TagFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Tag
      */
@@ -6617,42 +6034,41 @@ export namespace Prisma {
     where?: TagWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Tags to fetch.
      */
     orderBy?: TagOrderByWithRelationInput | TagOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Tags.
      */
     cursor?: TagWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Tags from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Tags.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Tags.
      */
     distinct?: TagScalarFieldEnum | TagScalarFieldEnum[]
   }
+
 
   /**
    * Tag findFirstOrThrow
    */
-  export type TagFindFirstOrThrowArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type TagFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Tag
      */
@@ -6667,42 +6083,41 @@ export namespace Prisma {
     where?: TagWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Tags to fetch.
      */
     orderBy?: TagOrderByWithRelationInput | TagOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Tags.
      */
     cursor?: TagWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Tags from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Tags.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Tags.
      */
     distinct?: TagScalarFieldEnum | TagScalarFieldEnum[]
   }
 
+
   /**
    * Tag findMany
    */
-  export type TagFindManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type TagFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Tag
      */
@@ -6717,37 +6132,36 @@ export namespace Prisma {
     where?: TagWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Tags to fetch.
      */
     orderBy?: TagOrderByWithRelationInput | TagOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for listing Tags.
      */
     cursor?: TagWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Tags from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Tags.
      */
     skip?: number
     distinct?: TagScalarFieldEnum | TagScalarFieldEnum[]
   }
 
+
   /**
    * Tag create
    */
-  export type TagCreateArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type TagCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Tag
      */
@@ -6762,12 +6176,11 @@ export namespace Prisma {
     data: XOR<TagCreateInput, TagUncheckedCreateInput>
   }
 
+
   /**
    * Tag createMany
    */
-  export type TagCreateManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type TagCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many Tags.
      */
@@ -6775,12 +6188,11 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+
   /**
    * Tag update
    */
-  export type TagUpdateArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type TagUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Tag
      */
@@ -6799,12 +6211,11 @@ export namespace Prisma {
     where: TagWhereUniqueInput
   }
 
+
   /**
    * Tag updateMany
    */
-  export type TagUpdateManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type TagUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * The data used to update Tags.
      */
@@ -6815,12 +6226,11 @@ export namespace Prisma {
     where?: TagWhereInput
   }
 
+
   /**
    * Tag upsert
    */
-  export type TagUpsertArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type TagUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Tag
      */
@@ -6843,12 +6253,11 @@ export namespace Prisma {
     update: XOR<TagUpdateInput, TagUncheckedUpdateInput>
   }
 
+
   /**
    * Tag delete
    */
-  export type TagDeleteArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type TagDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Tag
      */
@@ -6863,24 +6272,22 @@ export namespace Prisma {
     where: TagWhereUniqueInput
   }
 
+
   /**
    * Tag deleteMany
    */
-  export type TagDeleteManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type TagDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Filter which Tags to delete
      */
     where?: TagWhereInput
   }
 
+
   /**
    * Tag.book
    */
-  export type Tag$bookArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type Tag$bookArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Book
      */
@@ -6897,12 +6304,11 @@ export namespace Prisma {
     distinct?: BookScalarFieldEnum | BookScalarFieldEnum[]
   }
 
+
   /**
    * Tag without action
    */
-  export type TagDefaultArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type TagDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Tag
      */
@@ -6912,6 +6318,8 @@ export namespace Prisma {
      */
     include?: TagInclude<ExtArgs> | null
   }
+
+
 
   /**
    * Model User
@@ -6942,6 +6350,7 @@ export namespace Prisma {
     _all: number
   }
 
+
   export type UserMinAggregateInputType = {
     uid?: true
     name?: true
@@ -6961,72 +6370,69 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type UserAggregateArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type UserAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Filter which User to aggregate.
      */
     where?: UserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Users to fetch.
      */
     orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the start position
      */
     cursor?: UserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Users from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Users.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Count returned Users
-     **/
+    **/
     _count?: true | UserCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the minimum value
-     **/
+    **/
     _min?: UserMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the maximum value
-     **/
+    **/
     _max?: UserMaxAggregateInputType
   }
 
   export type GetUserAggregateType<T extends UserAggregateArgs> = {
-    [P in keyof T & keyof AggregateUser]: P extends '_count' | 'count'
+        [P in keyof T & keyof AggregateUser]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateUser[P]>
       : GetScalarType<T[P], AggregateUser[P]>
   }
 
-  export type UserGroupByArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+
+
+
+  export type UserGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: UserWhereInput
-    orderBy?:
-      | UserOrderByWithAggregationInput
-      | UserOrderByWithAggregationInput[]
+    orderBy?: UserOrderByWithAggregationInput | UserOrderByWithAggregationInput[]
     by: UserScalarFieldEnum[] | UserScalarFieldEnum
     having?: UserScalarWhereWithAggregatesInput
     take?: number
@@ -7047,29 +6453,26 @@ export namespace Prisma {
 
   type GetUserGroupByPayload<T extends UserGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<UserGroupByOutputType, T['by']> & {
-        [P in keyof T & keyof UserGroupByOutputType]: P extends '_count'
-          ? T[P] extends boolean
-            ? number
+      PickEnumerable<UserGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserGroupByOutputType[P]>
             : GetScalarType<T[P], UserGroupByOutputType[P]>
-          : GetScalarType<T[P], UserGroupByOutputType[P]>
-      }
+        }
+      >
     >
-  >
 
-  export type UserSelect<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = $Extensions.GetSelect<
-    {
-      uid?: boolean
-      name?: boolean
-      avatar_url?: boolean
-      shelves?: boolean | User$shelvesArgs<ExtArgs>
-      books?: boolean | User$booksArgs<ExtArgs>
-      _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
-    },
-    ExtArgs['result']['user']
-  >
+
+  export type UserSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    uid?: boolean
+    name?: boolean
+    avatar_url?: boolean
+    shelves?: boolean | User$shelvesArgs<ExtArgs>
+    books?: boolean | User$booksArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
     uid?: boolean
@@ -7077,49 +6480,37 @@ export namespace Prisma {
     avatar_url?: boolean
   }
 
-  export type UserInclude<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type UserInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     shelves?: boolean | User$shelvesArgs<ExtArgs>
     books?: boolean | User$booksArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
-  export type $UserPayload<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
-    name: 'User'
+
+  export type $UserPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    name: "User"
     objects: {
       shelves: Prisma.$ShelfPayload<ExtArgs>[]
       books: Prisma.$BookPayload<ExtArgs>[]
     }
-    scalars: $Extensions.GetResult<
-      {
-        uid: string
-        name: string | null
-        avatar_url: string | null
-      },
-      ExtArgs['result']['user']
-    >
+    scalars: $Extensions.GetResult<{
+      uid: string
+      name: string | null
+      avatar_url: string | null
+    }, ExtArgs["result"]["user"]>
     composites: {}
   }
 
-  type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> =
-    $Result.GetResult<Prisma.$UserPayload, S>
 
-  type UserCountArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = Omit<UserFindManyArgs, 'select' | 'include'> & {
-    select?: UserCountAggregateInputType | true
-  }
+  type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = $Result.GetResult<Prisma.$UserPayload, S>
 
-  export interface UserDelegate<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > {
-    [K: symbol]: {
-      types: Prisma.TypeMap<ExtArgs>['model']['User']
-      meta: { name: 'User' }
+  type UserCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+    Omit<UserFindManyArgs, 'select' | 'include'> & {
+      select?: UserCountAggregateInputType | true
     }
+
+  export interface UserDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['User'], meta: { name: 'User' } }
     /**
      * Find zero or one User that matches the filter.
      * @param {UserFindUniqueArgs} args - Arguments to find a User
@@ -7130,17 +6521,13 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findUnique<T extends UserFindUniqueArgs<ExtArgs>>(
       args: SelectSubset<T, UserFindUniqueArgs<ExtArgs>>
-    ): Prisma__UserClient<
-      $Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUnique'> | null,
-      null,
-      ExtArgs
-    >
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one User that matches the filter or throw an error  with `error.code='P2025'`
+     * Find one User that matches the filter or throw an error  with `error.code='P2025'` 
      *     if no matches were found.
      * @param {UserFindUniqueOrThrowArgs} args - Arguments to find a User
      * @example
@@ -7150,14 +6537,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs<ExtArgs>>(
       args?: SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__UserClient<
-      $Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
      * Find the first User that matches the filter.
@@ -7171,14 +6554,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findFirst<T extends UserFindFirstArgs<ExtArgs>>(
       args?: SelectSubset<T, UserFindFirstArgs<ExtArgs>>
-    ): Prisma__UserClient<
-      $Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findFirst'> | null,
-      null,
-      ExtArgs
-    >
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
      * Find the first User that matches the filter or
@@ -7193,14 +6572,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     **/
+    **/
     findFirstOrThrow<T extends UserFindFirstOrThrowArgs<ExtArgs>>(
       args?: SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__UserClient<
-      $Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findFirstOrThrow'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
      * Find zero or more Users that matches the filter.
@@ -7210,19 +6585,17 @@ export namespace Prisma {
      * @example
      * // Get all Users
      * const users = await prisma.user.findMany()
-     *
+     * 
      * // Get first 10 Users
      * const users = await prisma.user.findMany({ take: 10 })
-     *
+     * 
      * // Only select the `uid`
      * const userWithUidOnly = await prisma.user.findMany({ select: { uid: true } })
-     *
-     **/
+     * 
+    **/
     findMany<T extends UserFindManyArgs<ExtArgs>>(
       args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<
-      $Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findMany'>
-    >
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findMany'>>
 
     /**
      * Create a User.
@@ -7234,15 +6607,11 @@ export namespace Prisma {
      *     // ... data to create a User
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     create<T extends UserCreateArgs<ExtArgs>>(
       args: SelectSubset<T, UserCreateArgs<ExtArgs>>
-    ): Prisma__UserClient<
-      $Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'create'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
      * Create many Users.
@@ -7254,8 +6623,8 @@ export namespace Prisma {
      *         // ... provide data here
      *       }
      *     })
-     *
-     **/
+     *     
+    **/
     createMany<T extends UserCreateManyArgs<ExtArgs>>(
       args?: SelectSubset<T, UserCreateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
@@ -7270,15 +6639,11 @@ export namespace Prisma {
      *     // ... filter to delete one User
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     delete<T extends UserDeleteArgs<ExtArgs>>(
       args: SelectSubset<T, UserDeleteArgs<ExtArgs>>
-    ): Prisma__UserClient<
-      $Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'delete'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
      * Update one User.
@@ -7293,15 +6658,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     update<T extends UserUpdateArgs<ExtArgs>>(
       args: SelectSubset<T, UserUpdateArgs<ExtArgs>>
-    ): Prisma__UserClient<
-      $Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'update'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
      * Delete zero or more Users.
@@ -7313,8 +6674,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     deleteMany<T extends UserDeleteManyArgs<ExtArgs>>(
       args?: SelectSubset<T, UserDeleteManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
@@ -7334,8 +6695,8 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
-     **/
+     * 
+    **/
     updateMany<T extends UserUpdateManyArgs<ExtArgs>>(
       args: SelectSubset<T, UserUpdateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
@@ -7356,14 +6717,10 @@ export namespace Prisma {
      *     // ... the filter for the User we want to update
      *   }
      * })
-     **/
+    **/
     upsert<T extends UserUpsertArgs<ExtArgs>>(
       args: SelectSubset<T, UserUpsertArgs<ExtArgs>>
-    ): Prisma__UserClient<
-      $Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'upsert'>,
-      never,
-      ExtArgs
-    >
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
      * Count the number of Users.
@@ -7377,9 +6734,9 @@ export namespace Prisma {
      *     // ... the filter for the Users we want to count
      *   }
      * })
-     **/
+    **/
     count<T extends UserCountArgs>(
-      args?: Subset<T, UserCountArgs>
+      args?: Subset<T, UserCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
@@ -7411,10 +6768,8 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-     **/
-    aggregate<T extends UserAggregateArgs>(
-      args: Subset<T, UserAggregateArgs>
-    ): Prisma.PrismaPromise<GetUserAggregateType<T>>
+    **/
+    aggregate<T extends UserAggregateArgs>(args: Subset<T, UserAggregateArgs>): Prisma.PrismaPromise<GetUserAggregateType<T>>
 
     /**
      * Group by User.
@@ -7432,8 +6787,8 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     *
-     **/
+     * 
+    **/
     groupBy<
       T extends UserGroupByArgs,
       HasSelectOrTake extends Or<
@@ -7443,65 +6798,59 @@ export namespace Prisma {
       OrderByArg extends True extends HasSelectOrTake
         ? { orderBy: UserGroupByArgs['orderBy'] }
         : { orderBy?: UserGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<
-        Keys<MaybeTupleToUnion<T['orderBy']>>
-      >,
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
       HavingFields extends GetHavingFields<T['having']>,
       HavingValid extends Has<ByFields, HavingFields>,
       ByEmpty extends T['by'] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-        ? `Error: "by" must not be empty.`
-        : HavingValid extends False
-        ? {
-            [P in HavingFields]: P extends ByFields
-              ? never
-              : P extends string
-              ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-              : [
-                  Error,
-                  'Field ',
-                  P,
-                  ` in "having" needs to be provided in "by"`
-                ]
-          }[HavingFields]
-        : 'take' extends Keys<T>
-        ? 'orderBy' extends Keys<T>
-          ? ByValid extends True
-            ? {}
-            : {
-                [P in OrderFields]: P extends ByFields
-                  ? never
-                  : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-              }[OrderFields]
-          : 'Error: If you provide "take", you also need to provide "orderBy"'
-        : 'skip' extends Keys<T>
-        ? 'orderBy' extends Keys<T>
-          ? ByValid extends True
-            ? {}
-            : {
-                [P in OrderFields]: P extends ByFields
-                  ? never
-                  : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-              }[OrderFields]
-          : 'Error: If you provide "skip", you also need to provide "orderBy"'
-        : ByValid extends True
-        ? {}
-        : {
-            [P in OrderFields]: P extends ByFields
-              ? never
-              : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-          }[OrderFields]
-    >(
-      args: SubsetIntersection<T, UserGroupByArgs, OrderByArg> & InputErrors
-    ): {} extends InputErrors
-      ? GetUserGroupByPayload<T>
-      : Prisma.PrismaPromise<InputErrors>
-    /**
-     * Fields of the User model
-     */
-    readonly fields: UserFieldRefs
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the User model
+   */
+  readonly fields: UserFieldRefs;
   }
 
   /**
@@ -7510,24 +6859,12 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__UserClient<
-    T,
-    Null = never,
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise'
+  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    shelves<T extends User$shelvesArgs<ExtArgs> = {}>(
-      args?: Subset<T, User$shelvesArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<
-      $Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'findMany'> | Null
-    >
+    shelves<T extends User$shelvesArgs<ExtArgs> = {}>(args?: Subset<T, User$shelvesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    books<T extends User$booksArgs<ExtArgs> = {}>(
-      args?: Subset<T, User$booksArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<
-      $Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findMany'> | Null
-    >
+    books<T extends User$booksArgs<ExtArgs> = {}>(args?: Subset<T, User$booksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -7535,53 +6872,40 @@ export namespace Prisma {
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(
-      onfulfilled?:
-        | ((value: T) => TResult1 | PromiseLike<TResult1>)
-        | undefined
-        | null,
-      onrejected?:
-        | ((reason: any) => TResult2 | PromiseLike<TResult2>)
-        | undefined
-        | null
-    ): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(
-      onrejected?:
-        | ((reason: any) => TResult | PromiseLike<TResult>)
-        | undefined
-        | null
-    ): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
   }
+
+
 
   /**
    * Fields of the User model
-   */
+   */ 
   interface UserFieldRefs {
-    readonly uid: FieldRef<'User', 'String'>
-    readonly name: FieldRef<'User', 'String'>
-    readonly avatar_url: FieldRef<'User', 'String'>
+    readonly uid: FieldRef<"User", 'String'>
+    readonly name: FieldRef<"User", 'String'>
+    readonly avatar_url: FieldRef<"User", 'String'>
   }
+    
 
   // Custom InputTypes
 
   /**
    * User findUnique
    */
-  export type UserFindUniqueArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type UserFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -7595,13 +6919,12 @@ export namespace Prisma {
      */
     where: UserWhereUniqueInput
   }
+
 
   /**
    * User findUniqueOrThrow
    */
-  export type UserFindUniqueOrThrowArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type UserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -7616,12 +6939,11 @@ export namespace Prisma {
     where: UserWhereUniqueInput
   }
 
+
   /**
    * User findFirst
    */
-  export type UserFindFirstArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type UserFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -7636,42 +6958,41 @@ export namespace Prisma {
     where?: UserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Users to fetch.
      */
     orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Users.
      */
     cursor?: UserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Users from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Users.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Users.
      */
     distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
+
 
   /**
    * User findFirstOrThrow
    */
-  export type UserFindFirstOrThrowArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type UserFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -7686,42 +7007,41 @@ export namespace Prisma {
     where?: UserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Users to fetch.
      */
     orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Users.
      */
     cursor?: UserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Users from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Users.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Users.
      */
     distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
 
+
   /**
    * User findMany
    */
-  export type UserFindManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type UserFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -7736,37 +7056,36 @@ export namespace Prisma {
     where?: UserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Users to fetch.
      */
     orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for listing Users.
      */
     cursor?: UserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Users from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Users.
      */
     skip?: number
     distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
 
+
   /**
    * User create
    */
-  export type UserCreateArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type UserCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -7781,12 +7100,11 @@ export namespace Prisma {
     data: XOR<UserCreateInput, UserUncheckedCreateInput>
   }
 
+
   /**
    * User createMany
    */
-  export type UserCreateManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type UserCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many Users.
      */
@@ -7794,12 +7112,11 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+
   /**
    * User update
    */
-  export type UserUpdateArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type UserUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -7818,12 +7135,11 @@ export namespace Prisma {
     where: UserWhereUniqueInput
   }
 
+
   /**
    * User updateMany
    */
-  export type UserUpdateManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type UserUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * The data used to update Users.
      */
@@ -7834,12 +7150,11 @@ export namespace Prisma {
     where?: UserWhereInput
   }
 
+
   /**
    * User upsert
    */
-  export type UserUpsertArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type UserUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -7862,12 +7177,11 @@ export namespace Prisma {
     update: XOR<UserUpdateInput, UserUncheckedUpdateInput>
   }
 
+
   /**
    * User delete
    */
-  export type UserDeleteArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type UserDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -7882,24 +7196,22 @@ export namespace Prisma {
     where: UserWhereUniqueInput
   }
 
+
   /**
    * User deleteMany
    */
-  export type UserDeleteManyArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type UserDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Filter which Users to delete
      */
     where?: UserWhereInput
   }
 
+
   /**
    * User.shelves
    */
-  export type User$shelvesArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type User$shelvesArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Shelf
      */
@@ -7916,12 +7228,11 @@ export namespace Prisma {
     distinct?: ShelfScalarFieldEnum | ShelfScalarFieldEnum[]
   }
 
+
   /**
    * User.books
    */
-  export type User$booksArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type User$booksArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Book
      */
@@ -7938,12 +7249,11 @@ export namespace Prisma {
     distinct?: BookScalarFieldEnum | BookScalarFieldEnum[]
   }
 
+
   /**
    * User without action
    */
-  export type UserDefaultArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = {
+  export type UserDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -7954,177 +7264,174 @@ export namespace Prisma {
     include?: UserInclude<ExtArgs> | null
   }
 
+
+
   /**
    * Enums
    */
 
   export const TransactionIsolationLevel: {
-    ReadUncommitted: 'ReadUncommitted'
-    ReadCommitted: 'ReadCommitted'
-    RepeatableRead: 'RepeatableRead'
+    ReadUncommitted: 'ReadUncommitted',
+    ReadCommitted: 'ReadCommitted',
+    RepeatableRead: 'RepeatableRead',
     Serializable: 'Serializable'
-  }
+  };
 
-  export type TransactionIsolationLevel =
-    (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+  export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
 
   export const AuthorScalarFieldEnum: {
-    id: 'id'
+    id: 'id',
     name: 'name'
-  }
+  };
 
-  export type AuthorScalarFieldEnum =
-    (typeof AuthorScalarFieldEnum)[keyof typeof AuthorScalarFieldEnum]
+  export type AuthorScalarFieldEnum = (typeof AuthorScalarFieldEnum)[keyof typeof AuthorScalarFieldEnum]
+
 
   export const BookScalarFieldEnum: {
-    id: 'id'
-    isbn: 'isbn'
-    title: 'title'
-    coverImage: 'coverImage'
-    blurb: 'blurb'
-    rating: 'rating'
-    shelfId: 'shelfId'
+    id: 'id',
+    isbn: 'isbn',
+    title: 'title',
+    coverImage: 'coverImage',
+    blurb: 'blurb',
+    rating: 'rating',
+    shelfId: 'shelfId',
     ownerId: 'ownerId'
-  }
+  };
 
-  export type BookScalarFieldEnum =
-    (typeof BookScalarFieldEnum)[keyof typeof BookScalarFieldEnum]
+  export type BookScalarFieldEnum = (typeof BookScalarFieldEnum)[keyof typeof BookScalarFieldEnum]
+
 
   export const NoteScalarFieldEnum: {
-    id: 'id'
-    createdAt: 'createdAt'
-    content: 'content'
+    id: 'id',
+    createdAt: 'createdAt',
+    content: 'content',
     bookId: 'bookId'
-  }
+  };
 
-  export type NoteScalarFieldEnum =
-    (typeof NoteScalarFieldEnum)[keyof typeof NoteScalarFieldEnum]
+  export type NoteScalarFieldEnum = (typeof NoteScalarFieldEnum)[keyof typeof NoteScalarFieldEnum]
+
 
   export const ShelfScalarFieldEnum: {
-    id: 'id'
-    name: 'name'
+    id: 'id',
+    name: 'name',
     userUid: 'userUid'
-  }
+  };
 
-  export type ShelfScalarFieldEnum =
-    (typeof ShelfScalarFieldEnum)[keyof typeof ShelfScalarFieldEnum]
+  export type ShelfScalarFieldEnum = (typeof ShelfScalarFieldEnum)[keyof typeof ShelfScalarFieldEnum]
+
 
   export const TagScalarFieldEnum: {
-    id: 'id'
+    id: 'id',
     name: 'name'
-  }
+  };
 
-  export type TagScalarFieldEnum =
-    (typeof TagScalarFieldEnum)[keyof typeof TagScalarFieldEnum]
+  export type TagScalarFieldEnum = (typeof TagScalarFieldEnum)[keyof typeof TagScalarFieldEnum]
+
 
   export const UserScalarFieldEnum: {
-    uid: 'uid'
-    name: 'name'
+    uid: 'uid',
+    name: 'name',
     avatar_url: 'avatar_url'
-  }
+  };
 
-  export type UserScalarFieldEnum =
-    (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+  export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
 
   export const SortOrder: {
-    asc: 'asc'
+    asc: 'asc',
     desc: 'desc'
-  }
+  };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
+
   export const QueryMode: {
-    default: 'default'
+    default: 'default',
     insensitive: 'insensitive'
-  }
+  };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
+
   export const NullsOrder: {
-    first: 'first'
+    first: 'first',
     last: 'last'
-  }
+  };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
+
   /**
-   * Field references
+   * Field references 
    */
+
 
   /**
    * Reference to a field of type 'Int'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<
-    $PrismaModel,
-    'Int'
-  >
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
 
   /**
    * Reference to a field of type 'Int[]'
    */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<
-    $PrismaModel,
-    'Int[]'
-  >
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
 
   /**
    * Reference to a field of type 'String'
    */
-  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<
-    $PrismaModel,
-    'String'
-  >
+  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    
+
 
   /**
    * Reference to a field of type 'String[]'
    */
-  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<
-    $PrismaModel,
-    'String[]'
-  >
+  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
 
   /**
    * Reference to a field of type 'DateTime'
    */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<
-    $PrismaModel,
-    'DateTime'
-  >
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
 
   /**
    * Reference to a field of type 'DateTime[]'
    */
-  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<
-    $PrismaModel,
-    'DateTime[]'
-  >
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
 
   /**
    * Reference to a field of type 'Float'
    */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<
-    $PrismaModel,
-    'Float'
-  >
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
 
   /**
    * Reference to a field of type 'Float[]'
    */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<
-    $PrismaModel,
-    'Float[]'
-  >
-
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
   /**
    * Deep Input Types
    */
+
 
   export type AuthorWhereInput = {
     AND?: AuthorWhereInput | AuthorWhereInput[]
     OR?: AuthorWhereInput[]
     NOT?: AuthorWhereInput | AuthorWhereInput[]
-    id?: IntFilter<'Author'> | number
-    name?: StringFilter<'Author'> | string
+    id?: IntFilter<"Author"> | number
+    name?: StringFilter<"Author"> | string
     Book?: BookListRelationFilter
   }
 
@@ -8134,17 +7441,14 @@ export namespace Prisma {
     Book?: BookOrderByRelationAggregateInput
   }
 
-  export type AuthorWhereUniqueInput = Prisma.AtLeast<
-    {
-      id?: number
-      AND?: AuthorWhereInput | AuthorWhereInput[]
-      OR?: AuthorWhereInput[]
-      NOT?: AuthorWhereInput | AuthorWhereInput[]
-      name?: StringFilter<'Author'> | string
-      Book?: BookListRelationFilter
-    },
-    'id'
-  >
+  export type AuthorWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: AuthorWhereInput | AuthorWhereInput[]
+    OR?: AuthorWhereInput[]
+    NOT?: AuthorWhereInput | AuthorWhereInput[]
+    name?: StringFilter<"Author"> | string
+    Book?: BookListRelationFilter
+  }, "id">
 
   export type AuthorOrderByWithAggregationInput = {
     id?: SortOrder
@@ -8157,29 +7461,25 @@ export namespace Prisma {
   }
 
   export type AuthorScalarWhereWithAggregatesInput = {
-    AND?:
-      | AuthorScalarWhereWithAggregatesInput
-      | AuthorScalarWhereWithAggregatesInput[]
+    AND?: AuthorScalarWhereWithAggregatesInput | AuthorScalarWhereWithAggregatesInput[]
     OR?: AuthorScalarWhereWithAggregatesInput[]
-    NOT?:
-      | AuthorScalarWhereWithAggregatesInput
-      | AuthorScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<'Author'> | number
-    name?: StringWithAggregatesFilter<'Author'> | string
+    NOT?: AuthorScalarWhereWithAggregatesInput | AuthorScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Author"> | number
+    name?: StringWithAggregatesFilter<"Author"> | string
   }
 
   export type BookWhereInput = {
     AND?: BookWhereInput | BookWhereInput[]
     OR?: BookWhereInput[]
     NOT?: BookWhereInput | BookWhereInput[]
-    id?: UuidFilter<'Book'> | string
-    isbn?: StringNullableFilter<'Book'> | string | null
-    title?: StringFilter<'Book'> | string
-    coverImage?: StringNullableFilter<'Book'> | string | null
-    blurb?: StringNullableFilter<'Book'> | string | null
-    rating?: IntFilter<'Book'> | number
-    shelfId?: IntFilter<'Book'> | number
-    ownerId?: UuidFilter<'Book'> | string
+    id?: UuidFilter<"Book"> | string
+    isbn?: StringNullableFilter<"Book"> | string | null
+    title?: StringFilter<"Book"> | string
+    coverImage?: StringNullableFilter<"Book"> | string | null
+    blurb?: StringNullableFilter<"Book"> | string | null
+    rating?: IntFilter<"Book"> | number
+    shelfId?: IntFilter<"Book"> | number
+    ownerId?: UuidFilter<"Book"> | string
     shelf?: XOR<ShelfRelationFilter, ShelfWhereInput>
     notes?: NoteListRelationFilter
     authors?: AuthorListRelationFilter
@@ -8203,27 +7503,24 @@ export namespace Prisma {
     owner?: UserOrderByWithRelationInput
   }
 
-  export type BookWhereUniqueInput = Prisma.AtLeast<
-    {
-      id?: string
-      AND?: BookWhereInput | BookWhereInput[]
-      OR?: BookWhereInput[]
-      NOT?: BookWhereInput | BookWhereInput[]
-      isbn?: StringNullableFilter<'Book'> | string | null
-      title?: StringFilter<'Book'> | string
-      coverImage?: StringNullableFilter<'Book'> | string | null
-      blurb?: StringNullableFilter<'Book'> | string | null
-      rating?: IntFilter<'Book'> | number
-      shelfId?: IntFilter<'Book'> | number
-      ownerId?: UuidFilter<'Book'> | string
-      shelf?: XOR<ShelfRelationFilter, ShelfWhereInput>
-      notes?: NoteListRelationFilter
-      authors?: AuthorListRelationFilter
-      tags?: TagListRelationFilter
-      owner?: XOR<UserRelationFilter, UserWhereInput>
-    },
-    'id' | 'id'
-  >
+  export type BookWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: BookWhereInput | BookWhereInput[]
+    OR?: BookWhereInput[]
+    NOT?: BookWhereInput | BookWhereInput[]
+    isbn?: StringNullableFilter<"Book"> | string | null
+    title?: StringFilter<"Book"> | string
+    coverImage?: StringNullableFilter<"Book"> | string | null
+    blurb?: StringNullableFilter<"Book"> | string | null
+    rating?: IntFilter<"Book"> | number
+    shelfId?: IntFilter<"Book"> | number
+    ownerId?: UuidFilter<"Book"> | string
+    shelf?: XOR<ShelfRelationFilter, ShelfWhereInput>
+    notes?: NoteListRelationFilter
+    authors?: AuthorListRelationFilter
+    tags?: TagListRelationFilter
+    owner?: XOR<UserRelationFilter, UserWhereInput>
+  }, "id" | "id">
 
   export type BookOrderByWithAggregationInput = {
     id?: SortOrder
@@ -8242,31 +7539,27 @@ export namespace Prisma {
   }
 
   export type BookScalarWhereWithAggregatesInput = {
-    AND?:
-      | BookScalarWhereWithAggregatesInput
-      | BookScalarWhereWithAggregatesInput[]
+    AND?: BookScalarWhereWithAggregatesInput | BookScalarWhereWithAggregatesInput[]
     OR?: BookScalarWhereWithAggregatesInput[]
-    NOT?:
-      | BookScalarWhereWithAggregatesInput
-      | BookScalarWhereWithAggregatesInput[]
-    id?: UuidWithAggregatesFilter<'Book'> | string
-    isbn?: StringNullableWithAggregatesFilter<'Book'> | string | null
-    title?: StringWithAggregatesFilter<'Book'> | string
-    coverImage?: StringNullableWithAggregatesFilter<'Book'> | string | null
-    blurb?: StringNullableWithAggregatesFilter<'Book'> | string | null
-    rating?: IntWithAggregatesFilter<'Book'> | number
-    shelfId?: IntWithAggregatesFilter<'Book'> | number
-    ownerId?: UuidWithAggregatesFilter<'Book'> | string
+    NOT?: BookScalarWhereWithAggregatesInput | BookScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"Book"> | string
+    isbn?: StringNullableWithAggregatesFilter<"Book"> | string | null
+    title?: StringWithAggregatesFilter<"Book"> | string
+    coverImage?: StringNullableWithAggregatesFilter<"Book"> | string | null
+    blurb?: StringNullableWithAggregatesFilter<"Book"> | string | null
+    rating?: IntWithAggregatesFilter<"Book"> | number
+    shelfId?: IntWithAggregatesFilter<"Book"> | number
+    ownerId?: UuidWithAggregatesFilter<"Book"> | string
   }
 
   export type NoteWhereInput = {
     AND?: NoteWhereInput | NoteWhereInput[]
     OR?: NoteWhereInput[]
     NOT?: NoteWhereInput | NoteWhereInput[]
-    id?: IntFilter<'Note'> | number
-    createdAt?: DateTimeFilter<'Note'> | Date | string
-    content?: StringFilter<'Note'> | string
-    bookId?: UuidFilter<'Note'> | string
+    id?: IntFilter<"Note"> | number
+    createdAt?: DateTimeFilter<"Note"> | Date | string
+    content?: StringFilter<"Note"> | string
+    bookId?: UuidFilter<"Note"> | string
     book?: XOR<BookRelationFilter, BookWhereInput>
   }
 
@@ -8278,19 +7571,16 @@ export namespace Prisma {
     book?: BookOrderByWithRelationInput
   }
 
-  export type NoteWhereUniqueInput = Prisma.AtLeast<
-    {
-      id?: number
-      AND?: NoteWhereInput | NoteWhereInput[]
-      OR?: NoteWhereInput[]
-      NOT?: NoteWhereInput | NoteWhereInput[]
-      createdAt?: DateTimeFilter<'Note'> | Date | string
-      content?: StringFilter<'Note'> | string
-      bookId?: UuidFilter<'Note'> | string
-      book?: XOR<BookRelationFilter, BookWhereInput>
-    },
-    'id'
-  >
+  export type NoteWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: NoteWhereInput | NoteWhereInput[]
+    OR?: NoteWhereInput[]
+    NOT?: NoteWhereInput | NoteWhereInput[]
+    createdAt?: DateTimeFilter<"Note"> | Date | string
+    content?: StringFilter<"Note"> | string
+    bookId?: UuidFilter<"Note"> | string
+    book?: XOR<BookRelationFilter, BookWhereInput>
+  }, "id">
 
   export type NoteOrderByWithAggregationInput = {
     id?: SortOrder
@@ -8305,26 +7595,22 @@ export namespace Prisma {
   }
 
   export type NoteScalarWhereWithAggregatesInput = {
-    AND?:
-      | NoteScalarWhereWithAggregatesInput
-      | NoteScalarWhereWithAggregatesInput[]
+    AND?: NoteScalarWhereWithAggregatesInput | NoteScalarWhereWithAggregatesInput[]
     OR?: NoteScalarWhereWithAggregatesInput[]
-    NOT?:
-      | NoteScalarWhereWithAggregatesInput
-      | NoteScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<'Note'> | number
-    createdAt?: DateTimeWithAggregatesFilter<'Note'> | Date | string
-    content?: StringWithAggregatesFilter<'Note'> | string
-    bookId?: UuidWithAggregatesFilter<'Note'> | string
+    NOT?: NoteScalarWhereWithAggregatesInput | NoteScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Note"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Note"> | Date | string
+    content?: StringWithAggregatesFilter<"Note"> | string
+    bookId?: UuidWithAggregatesFilter<"Note"> | string
   }
 
   export type ShelfWhereInput = {
     AND?: ShelfWhereInput | ShelfWhereInput[]
     OR?: ShelfWhereInput[]
     NOT?: ShelfWhereInput | ShelfWhereInput[]
-    id?: IntFilter<'Shelf'> | number
-    name?: StringFilter<'Shelf'> | string
-    userUid?: UuidFilter<'Shelf'> | string
+    id?: IntFilter<"Shelf"> | number
+    name?: StringFilter<"Shelf"> | string
+    userUid?: UuidFilter<"Shelf"> | string
     books?: BookListRelationFilter
     owner?: XOR<UserRelationFilter, UserWhereInput>
   }
@@ -8337,19 +7623,16 @@ export namespace Prisma {
     owner?: UserOrderByWithRelationInput
   }
 
-  export type ShelfWhereUniqueInput = Prisma.AtLeast<
-    {
-      id?: number
-      AND?: ShelfWhereInput | ShelfWhereInput[]
-      OR?: ShelfWhereInput[]
-      NOT?: ShelfWhereInput | ShelfWhereInput[]
-      name?: StringFilter<'Shelf'> | string
-      userUid?: UuidFilter<'Shelf'> | string
-      books?: BookListRelationFilter
-      owner?: XOR<UserRelationFilter, UserWhereInput>
-    },
-    'id'
-  >
+  export type ShelfWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ShelfWhereInput | ShelfWhereInput[]
+    OR?: ShelfWhereInput[]
+    NOT?: ShelfWhereInput | ShelfWhereInput[]
+    name?: StringFilter<"Shelf"> | string
+    userUid?: UuidFilter<"Shelf"> | string
+    books?: BookListRelationFilter
+    owner?: XOR<UserRelationFilter, UserWhereInput>
+  }, "id">
 
   export type ShelfOrderByWithAggregationInput = {
     id?: SortOrder
@@ -8363,24 +7646,20 @@ export namespace Prisma {
   }
 
   export type ShelfScalarWhereWithAggregatesInput = {
-    AND?:
-      | ShelfScalarWhereWithAggregatesInput
-      | ShelfScalarWhereWithAggregatesInput[]
+    AND?: ShelfScalarWhereWithAggregatesInput | ShelfScalarWhereWithAggregatesInput[]
     OR?: ShelfScalarWhereWithAggregatesInput[]
-    NOT?:
-      | ShelfScalarWhereWithAggregatesInput
-      | ShelfScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<'Shelf'> | number
-    name?: StringWithAggregatesFilter<'Shelf'> | string
-    userUid?: UuidWithAggregatesFilter<'Shelf'> | string
+    NOT?: ShelfScalarWhereWithAggregatesInput | ShelfScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Shelf"> | number
+    name?: StringWithAggregatesFilter<"Shelf"> | string
+    userUid?: UuidWithAggregatesFilter<"Shelf"> | string
   }
 
   export type TagWhereInput = {
     AND?: TagWhereInput | TagWhereInput[]
     OR?: TagWhereInput[]
     NOT?: TagWhereInput | TagWhereInput[]
-    id?: IntFilter<'Tag'> | number
-    name?: StringFilter<'Tag'> | string
+    id?: IntFilter<"Tag"> | number
+    name?: StringFilter<"Tag"> | string
     book?: BookListRelationFilter
   }
 
@@ -8390,17 +7669,14 @@ export namespace Prisma {
     book?: BookOrderByRelationAggregateInput
   }
 
-  export type TagWhereUniqueInput = Prisma.AtLeast<
-    {
-      id?: number
-      AND?: TagWhereInput | TagWhereInput[]
-      OR?: TagWhereInput[]
-      NOT?: TagWhereInput | TagWhereInput[]
-      name?: StringFilter<'Tag'> | string
-      book?: BookListRelationFilter
-    },
-    'id'
-  >
+  export type TagWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: TagWhereInput | TagWhereInput[]
+    OR?: TagWhereInput[]
+    NOT?: TagWhereInput | TagWhereInput[]
+    name?: StringFilter<"Tag"> | string
+    book?: BookListRelationFilter
+  }, "id">
 
   export type TagOrderByWithAggregationInput = {
     id?: SortOrder
@@ -8413,24 +7689,20 @@ export namespace Prisma {
   }
 
   export type TagScalarWhereWithAggregatesInput = {
-    AND?:
-      | TagScalarWhereWithAggregatesInput
-      | TagScalarWhereWithAggregatesInput[]
+    AND?: TagScalarWhereWithAggregatesInput | TagScalarWhereWithAggregatesInput[]
     OR?: TagScalarWhereWithAggregatesInput[]
-    NOT?:
-      | TagScalarWhereWithAggregatesInput
-      | TagScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<'Tag'> | number
-    name?: StringWithAggregatesFilter<'Tag'> | string
+    NOT?: TagScalarWhereWithAggregatesInput | TagScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Tag"> | number
+    name?: StringWithAggregatesFilter<"Tag"> | string
   }
 
   export type UserWhereInput = {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    uid?: UuidFilter<'User'> | string
-    name?: StringNullableFilter<'User'> | string | null
-    avatar_url?: StringNullableFilter<'User'> | string | null
+    uid?: UuidFilter<"User"> | string
+    name?: StringNullableFilter<"User"> | string | null
+    avatar_url?: StringNullableFilter<"User"> | string | null
     shelves?: ShelfListRelationFilter
     books?: BookListRelationFilter
   }
@@ -8443,19 +7715,16 @@ export namespace Prisma {
     books?: BookOrderByRelationAggregateInput
   }
 
-  export type UserWhereUniqueInput = Prisma.AtLeast<
-    {
-      uid?: string
-      AND?: UserWhereInput | UserWhereInput[]
-      OR?: UserWhereInput[]
-      NOT?: UserWhereInput | UserWhereInput[]
-      name?: StringNullableFilter<'User'> | string | null
-      avatar_url?: StringNullableFilter<'User'> | string | null
-      shelves?: ShelfListRelationFilter
-      books?: BookListRelationFilter
-    },
-    'uid' | 'uid'
-  >
+  export type UserWhereUniqueInput = Prisma.AtLeast<{
+    uid?: string
+    AND?: UserWhereInput | UserWhereInput[]
+    OR?: UserWhereInput[]
+    NOT?: UserWhereInput | UserWhereInput[]
+    name?: StringNullableFilter<"User"> | string | null
+    avatar_url?: StringNullableFilter<"User"> | string | null
+    shelves?: ShelfListRelationFilter
+    books?: BookListRelationFilter
+  }, "uid" | "uid">
 
   export type UserOrderByWithAggregationInput = {
     uid?: SortOrder
@@ -8467,16 +7736,12 @@ export namespace Prisma {
   }
 
   export type UserScalarWhereWithAggregatesInput = {
-    AND?:
-      | UserScalarWhereWithAggregatesInput
-      | UserScalarWhereWithAggregatesInput[]
+    AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     OR?: UserScalarWhereWithAggregatesInput[]
-    NOT?:
-      | UserScalarWhereWithAggregatesInput
-      | UserScalarWhereWithAggregatesInput[]
-    uid?: UuidWithAggregatesFilter<'User'> | string
-    name?: StringNullableWithAggregatesFilter<'User'> | string | null
-    avatar_url?: StringNullableWithAggregatesFilter<'User'> | string | null
+    NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
+    uid?: UuidWithAggregatesFilter<"User"> | string
+    name?: StringNullableWithAggregatesFilter<"User"> | string | null
+    avatar_url?: StringNullableWithAggregatesFilter<"User"> | string | null
   }
 
   export type AuthorCreateInput = {
@@ -9153,30 +8418,14 @@ export namespace Prisma {
   }
 
   export type BookCreateNestedManyWithoutAuthorsInput = {
-    create?:
-      | XOR<
-          BookCreateWithoutAuthorsInput,
-          BookUncheckedCreateWithoutAuthorsInput
-        >
-      | BookCreateWithoutAuthorsInput[]
-      | BookUncheckedCreateWithoutAuthorsInput[]
-    connectOrCreate?:
-      | BookCreateOrConnectWithoutAuthorsInput
-      | BookCreateOrConnectWithoutAuthorsInput[]
+    create?: XOR<BookCreateWithoutAuthorsInput, BookUncheckedCreateWithoutAuthorsInput> | BookCreateWithoutAuthorsInput[] | BookUncheckedCreateWithoutAuthorsInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutAuthorsInput | BookCreateOrConnectWithoutAuthorsInput[]
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
   }
 
   export type BookUncheckedCreateNestedManyWithoutAuthorsInput = {
-    create?:
-      | XOR<
-          BookCreateWithoutAuthorsInput,
-          BookUncheckedCreateWithoutAuthorsInput
-        >
-      | BookCreateWithoutAuthorsInput[]
-      | BookUncheckedCreateWithoutAuthorsInput[]
-    connectOrCreate?:
-      | BookCreateOrConnectWithoutAuthorsInput
-      | BookCreateOrConnectWithoutAuthorsInput[]
+    create?: XOR<BookCreateWithoutAuthorsInput, BookUncheckedCreateWithoutAuthorsInput> | BookCreateWithoutAuthorsInput[] | BookUncheckedCreateWithoutAuthorsInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutAuthorsInput | BookCreateOrConnectWithoutAuthorsInput[]
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
   }
 
@@ -9185,29 +8434,15 @@ export namespace Prisma {
   }
 
   export type BookUpdateManyWithoutAuthorsNestedInput = {
-    create?:
-      | XOR<
-          BookCreateWithoutAuthorsInput,
-          BookUncheckedCreateWithoutAuthorsInput
-        >
-      | BookCreateWithoutAuthorsInput[]
-      | BookUncheckedCreateWithoutAuthorsInput[]
-    connectOrCreate?:
-      | BookCreateOrConnectWithoutAuthorsInput
-      | BookCreateOrConnectWithoutAuthorsInput[]
-    upsert?:
-      | BookUpsertWithWhereUniqueWithoutAuthorsInput
-      | BookUpsertWithWhereUniqueWithoutAuthorsInput[]
+    create?: XOR<BookCreateWithoutAuthorsInput, BookUncheckedCreateWithoutAuthorsInput> | BookCreateWithoutAuthorsInput[] | BookUncheckedCreateWithoutAuthorsInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutAuthorsInput | BookCreateOrConnectWithoutAuthorsInput[]
+    upsert?: BookUpsertWithWhereUniqueWithoutAuthorsInput | BookUpsertWithWhereUniqueWithoutAuthorsInput[]
     set?: BookWhereUniqueInput | BookWhereUniqueInput[]
     disconnect?: BookWhereUniqueInput | BookWhereUniqueInput[]
     delete?: BookWhereUniqueInput | BookWhereUniqueInput[]
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
-    update?:
-      | BookUpdateWithWhereUniqueWithoutAuthorsInput
-      | BookUpdateWithWhereUniqueWithoutAuthorsInput[]
-    updateMany?:
-      | BookUpdateManyWithWhereWithoutAuthorsInput
-      | BookUpdateManyWithWhereWithoutAuthorsInput[]
+    update?: BookUpdateWithWhereUniqueWithoutAuthorsInput | BookUpdateWithWhereUniqueWithoutAuthorsInput[]
+    updateMany?: BookUpdateManyWithWhereWithoutAuthorsInput | BookUpdateManyWithWhereWithoutAuthorsInput[]
     deleteMany?: BookScalarWhereInput | BookScalarWhereInput[]
   }
 
@@ -9220,115 +8455,65 @@ export namespace Prisma {
   }
 
   export type BookUncheckedUpdateManyWithoutAuthorsNestedInput = {
-    create?:
-      | XOR<
-          BookCreateWithoutAuthorsInput,
-          BookUncheckedCreateWithoutAuthorsInput
-        >
-      | BookCreateWithoutAuthorsInput[]
-      | BookUncheckedCreateWithoutAuthorsInput[]
-    connectOrCreate?:
-      | BookCreateOrConnectWithoutAuthorsInput
-      | BookCreateOrConnectWithoutAuthorsInput[]
-    upsert?:
-      | BookUpsertWithWhereUniqueWithoutAuthorsInput
-      | BookUpsertWithWhereUniqueWithoutAuthorsInput[]
+    create?: XOR<BookCreateWithoutAuthorsInput, BookUncheckedCreateWithoutAuthorsInput> | BookCreateWithoutAuthorsInput[] | BookUncheckedCreateWithoutAuthorsInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutAuthorsInput | BookCreateOrConnectWithoutAuthorsInput[]
+    upsert?: BookUpsertWithWhereUniqueWithoutAuthorsInput | BookUpsertWithWhereUniqueWithoutAuthorsInput[]
     set?: BookWhereUniqueInput | BookWhereUniqueInput[]
     disconnect?: BookWhereUniqueInput | BookWhereUniqueInput[]
     delete?: BookWhereUniqueInput | BookWhereUniqueInput[]
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
-    update?:
-      | BookUpdateWithWhereUniqueWithoutAuthorsInput
-      | BookUpdateWithWhereUniqueWithoutAuthorsInput[]
-    updateMany?:
-      | BookUpdateManyWithWhereWithoutAuthorsInput
-      | BookUpdateManyWithWhereWithoutAuthorsInput[]
+    update?: BookUpdateWithWhereUniqueWithoutAuthorsInput | BookUpdateWithWhereUniqueWithoutAuthorsInput[]
+    updateMany?: BookUpdateManyWithWhereWithoutAuthorsInput | BookUpdateManyWithWhereWithoutAuthorsInput[]
     deleteMany?: BookScalarWhereInput | BookScalarWhereInput[]
   }
 
   export type ShelfCreateNestedOneWithoutBooksInput = {
-    create?: XOR<
-      ShelfCreateWithoutBooksInput,
-      ShelfUncheckedCreateWithoutBooksInput
-    >
+    create?: XOR<ShelfCreateWithoutBooksInput, ShelfUncheckedCreateWithoutBooksInput>
     connectOrCreate?: ShelfCreateOrConnectWithoutBooksInput
     connect?: ShelfWhereUniqueInput
   }
 
   export type NoteCreateNestedManyWithoutBookInput = {
-    create?:
-      | XOR<NoteCreateWithoutBookInput, NoteUncheckedCreateWithoutBookInput>
-      | NoteCreateWithoutBookInput[]
-      | NoteUncheckedCreateWithoutBookInput[]
-    connectOrCreate?:
-      | NoteCreateOrConnectWithoutBookInput
-      | NoteCreateOrConnectWithoutBookInput[]
+    create?: XOR<NoteCreateWithoutBookInput, NoteUncheckedCreateWithoutBookInput> | NoteCreateWithoutBookInput[] | NoteUncheckedCreateWithoutBookInput[]
+    connectOrCreate?: NoteCreateOrConnectWithoutBookInput | NoteCreateOrConnectWithoutBookInput[]
     createMany?: NoteCreateManyBookInputEnvelope
     connect?: NoteWhereUniqueInput | NoteWhereUniqueInput[]
   }
 
   export type AuthorCreateNestedManyWithoutBookInput = {
-    create?:
-      | XOR<AuthorCreateWithoutBookInput, AuthorUncheckedCreateWithoutBookInput>
-      | AuthorCreateWithoutBookInput[]
-      | AuthorUncheckedCreateWithoutBookInput[]
-    connectOrCreate?:
-      | AuthorCreateOrConnectWithoutBookInput
-      | AuthorCreateOrConnectWithoutBookInput[]
+    create?: XOR<AuthorCreateWithoutBookInput, AuthorUncheckedCreateWithoutBookInput> | AuthorCreateWithoutBookInput[] | AuthorUncheckedCreateWithoutBookInput[]
+    connectOrCreate?: AuthorCreateOrConnectWithoutBookInput | AuthorCreateOrConnectWithoutBookInput[]
     connect?: AuthorWhereUniqueInput | AuthorWhereUniqueInput[]
   }
 
   export type TagCreateNestedManyWithoutBookInput = {
-    create?:
-      | XOR<TagCreateWithoutBookInput, TagUncheckedCreateWithoutBookInput>
-      | TagCreateWithoutBookInput[]
-      | TagUncheckedCreateWithoutBookInput[]
-    connectOrCreate?:
-      | TagCreateOrConnectWithoutBookInput
-      | TagCreateOrConnectWithoutBookInput[]
+    create?: XOR<TagCreateWithoutBookInput, TagUncheckedCreateWithoutBookInput> | TagCreateWithoutBookInput[] | TagUncheckedCreateWithoutBookInput[]
+    connectOrCreate?: TagCreateOrConnectWithoutBookInput | TagCreateOrConnectWithoutBookInput[]
     connect?: TagWhereUniqueInput | TagWhereUniqueInput[]
   }
 
   export type UserCreateNestedOneWithoutBooksInput = {
-    create?: XOR<
-      UserCreateWithoutBooksInput,
-      UserUncheckedCreateWithoutBooksInput
-    >
+    create?: XOR<UserCreateWithoutBooksInput, UserUncheckedCreateWithoutBooksInput>
     connectOrCreate?: UserCreateOrConnectWithoutBooksInput
     connect?: UserWhereUniqueInput
   }
 
   export type NoteUncheckedCreateNestedManyWithoutBookInput = {
-    create?:
-      | XOR<NoteCreateWithoutBookInput, NoteUncheckedCreateWithoutBookInput>
-      | NoteCreateWithoutBookInput[]
-      | NoteUncheckedCreateWithoutBookInput[]
-    connectOrCreate?:
-      | NoteCreateOrConnectWithoutBookInput
-      | NoteCreateOrConnectWithoutBookInput[]
+    create?: XOR<NoteCreateWithoutBookInput, NoteUncheckedCreateWithoutBookInput> | NoteCreateWithoutBookInput[] | NoteUncheckedCreateWithoutBookInput[]
+    connectOrCreate?: NoteCreateOrConnectWithoutBookInput | NoteCreateOrConnectWithoutBookInput[]
     createMany?: NoteCreateManyBookInputEnvelope
     connect?: NoteWhereUniqueInput | NoteWhereUniqueInput[]
   }
 
   export type AuthorUncheckedCreateNestedManyWithoutBookInput = {
-    create?:
-      | XOR<AuthorCreateWithoutBookInput, AuthorUncheckedCreateWithoutBookInput>
-      | AuthorCreateWithoutBookInput[]
-      | AuthorUncheckedCreateWithoutBookInput[]
-    connectOrCreate?:
-      | AuthorCreateOrConnectWithoutBookInput
-      | AuthorCreateOrConnectWithoutBookInput[]
+    create?: XOR<AuthorCreateWithoutBookInput, AuthorUncheckedCreateWithoutBookInput> | AuthorCreateWithoutBookInput[] | AuthorUncheckedCreateWithoutBookInput[]
+    connectOrCreate?: AuthorCreateOrConnectWithoutBookInput | AuthorCreateOrConnectWithoutBookInput[]
     connect?: AuthorWhereUniqueInput | AuthorWhereUniqueInput[]
   }
 
   export type TagUncheckedCreateNestedManyWithoutBookInput = {
-    create?:
-      | XOR<TagCreateWithoutBookInput, TagUncheckedCreateWithoutBookInput>
-      | TagCreateWithoutBookInput[]
-      | TagUncheckedCreateWithoutBookInput[]
-    connectOrCreate?:
-      | TagCreateOrConnectWithoutBookInput
-      | TagCreateOrConnectWithoutBookInput[]
+    create?: XOR<TagCreateWithoutBookInput, TagUncheckedCreateWithoutBookInput> | TagCreateWithoutBookInput[] | TagUncheckedCreateWithoutBookInput[]
+    connectOrCreate?: TagCreateOrConnectWithoutBookInput | TagCreateOrConnectWithoutBookInput[]
     connect?: TagWhereUniqueInput | TagWhereUniqueInput[]
   }
 
@@ -9337,190 +8522,103 @@ export namespace Prisma {
   }
 
   export type ShelfUpdateOneRequiredWithoutBooksNestedInput = {
-    create?: XOR<
-      ShelfCreateWithoutBooksInput,
-      ShelfUncheckedCreateWithoutBooksInput
-    >
+    create?: XOR<ShelfCreateWithoutBooksInput, ShelfUncheckedCreateWithoutBooksInput>
     connectOrCreate?: ShelfCreateOrConnectWithoutBooksInput
     upsert?: ShelfUpsertWithoutBooksInput
     connect?: ShelfWhereUniqueInput
-    update?: XOR<
-      XOR<
-        ShelfUpdateToOneWithWhereWithoutBooksInput,
-        ShelfUpdateWithoutBooksInput
-      >,
-      ShelfUncheckedUpdateWithoutBooksInput
-    >
+    update?: XOR<XOR<ShelfUpdateToOneWithWhereWithoutBooksInput, ShelfUpdateWithoutBooksInput>, ShelfUncheckedUpdateWithoutBooksInput>
   }
 
   export type NoteUpdateManyWithoutBookNestedInput = {
-    create?:
-      | XOR<NoteCreateWithoutBookInput, NoteUncheckedCreateWithoutBookInput>
-      | NoteCreateWithoutBookInput[]
-      | NoteUncheckedCreateWithoutBookInput[]
-    connectOrCreate?:
-      | NoteCreateOrConnectWithoutBookInput
-      | NoteCreateOrConnectWithoutBookInput[]
-    upsert?:
-      | NoteUpsertWithWhereUniqueWithoutBookInput
-      | NoteUpsertWithWhereUniqueWithoutBookInput[]
+    create?: XOR<NoteCreateWithoutBookInput, NoteUncheckedCreateWithoutBookInput> | NoteCreateWithoutBookInput[] | NoteUncheckedCreateWithoutBookInput[]
+    connectOrCreate?: NoteCreateOrConnectWithoutBookInput | NoteCreateOrConnectWithoutBookInput[]
+    upsert?: NoteUpsertWithWhereUniqueWithoutBookInput | NoteUpsertWithWhereUniqueWithoutBookInput[]
     createMany?: NoteCreateManyBookInputEnvelope
     set?: NoteWhereUniqueInput | NoteWhereUniqueInput[]
     disconnect?: NoteWhereUniqueInput | NoteWhereUniqueInput[]
     delete?: NoteWhereUniqueInput | NoteWhereUniqueInput[]
     connect?: NoteWhereUniqueInput | NoteWhereUniqueInput[]
-    update?:
-      | NoteUpdateWithWhereUniqueWithoutBookInput
-      | NoteUpdateWithWhereUniqueWithoutBookInput[]
-    updateMany?:
-      | NoteUpdateManyWithWhereWithoutBookInput
-      | NoteUpdateManyWithWhereWithoutBookInput[]
+    update?: NoteUpdateWithWhereUniqueWithoutBookInput | NoteUpdateWithWhereUniqueWithoutBookInput[]
+    updateMany?: NoteUpdateManyWithWhereWithoutBookInput | NoteUpdateManyWithWhereWithoutBookInput[]
     deleteMany?: NoteScalarWhereInput | NoteScalarWhereInput[]
   }
 
   export type AuthorUpdateManyWithoutBookNestedInput = {
-    create?:
-      | XOR<AuthorCreateWithoutBookInput, AuthorUncheckedCreateWithoutBookInput>
-      | AuthorCreateWithoutBookInput[]
-      | AuthorUncheckedCreateWithoutBookInput[]
-    connectOrCreate?:
-      | AuthorCreateOrConnectWithoutBookInput
-      | AuthorCreateOrConnectWithoutBookInput[]
-    upsert?:
-      | AuthorUpsertWithWhereUniqueWithoutBookInput
-      | AuthorUpsertWithWhereUniqueWithoutBookInput[]
+    create?: XOR<AuthorCreateWithoutBookInput, AuthorUncheckedCreateWithoutBookInput> | AuthorCreateWithoutBookInput[] | AuthorUncheckedCreateWithoutBookInput[]
+    connectOrCreate?: AuthorCreateOrConnectWithoutBookInput | AuthorCreateOrConnectWithoutBookInput[]
+    upsert?: AuthorUpsertWithWhereUniqueWithoutBookInput | AuthorUpsertWithWhereUniqueWithoutBookInput[]
     set?: AuthorWhereUniqueInput | AuthorWhereUniqueInput[]
     disconnect?: AuthorWhereUniqueInput | AuthorWhereUniqueInput[]
     delete?: AuthorWhereUniqueInput | AuthorWhereUniqueInput[]
     connect?: AuthorWhereUniqueInput | AuthorWhereUniqueInput[]
-    update?:
-      | AuthorUpdateWithWhereUniqueWithoutBookInput
-      | AuthorUpdateWithWhereUniqueWithoutBookInput[]
-    updateMany?:
-      | AuthorUpdateManyWithWhereWithoutBookInput
-      | AuthorUpdateManyWithWhereWithoutBookInput[]
+    update?: AuthorUpdateWithWhereUniqueWithoutBookInput | AuthorUpdateWithWhereUniqueWithoutBookInput[]
+    updateMany?: AuthorUpdateManyWithWhereWithoutBookInput | AuthorUpdateManyWithWhereWithoutBookInput[]
     deleteMany?: AuthorScalarWhereInput | AuthorScalarWhereInput[]
   }
 
   export type TagUpdateManyWithoutBookNestedInput = {
-    create?:
-      | XOR<TagCreateWithoutBookInput, TagUncheckedCreateWithoutBookInput>
-      | TagCreateWithoutBookInput[]
-      | TagUncheckedCreateWithoutBookInput[]
-    connectOrCreate?:
-      | TagCreateOrConnectWithoutBookInput
-      | TagCreateOrConnectWithoutBookInput[]
-    upsert?:
-      | TagUpsertWithWhereUniqueWithoutBookInput
-      | TagUpsertWithWhereUniqueWithoutBookInput[]
+    create?: XOR<TagCreateWithoutBookInput, TagUncheckedCreateWithoutBookInput> | TagCreateWithoutBookInput[] | TagUncheckedCreateWithoutBookInput[]
+    connectOrCreate?: TagCreateOrConnectWithoutBookInput | TagCreateOrConnectWithoutBookInput[]
+    upsert?: TagUpsertWithWhereUniqueWithoutBookInput | TagUpsertWithWhereUniqueWithoutBookInput[]
     set?: TagWhereUniqueInput | TagWhereUniqueInput[]
     disconnect?: TagWhereUniqueInput | TagWhereUniqueInput[]
     delete?: TagWhereUniqueInput | TagWhereUniqueInput[]
     connect?: TagWhereUniqueInput | TagWhereUniqueInput[]
-    update?:
-      | TagUpdateWithWhereUniqueWithoutBookInput
-      | TagUpdateWithWhereUniqueWithoutBookInput[]
-    updateMany?:
-      | TagUpdateManyWithWhereWithoutBookInput
-      | TagUpdateManyWithWhereWithoutBookInput[]
+    update?: TagUpdateWithWhereUniqueWithoutBookInput | TagUpdateWithWhereUniqueWithoutBookInput[]
+    updateMany?: TagUpdateManyWithWhereWithoutBookInput | TagUpdateManyWithWhereWithoutBookInput[]
     deleteMany?: TagScalarWhereInput | TagScalarWhereInput[]
   }
 
   export type UserUpdateOneRequiredWithoutBooksNestedInput = {
-    create?: XOR<
-      UserCreateWithoutBooksInput,
-      UserUncheckedCreateWithoutBooksInput
-    >
+    create?: XOR<UserCreateWithoutBooksInput, UserUncheckedCreateWithoutBooksInput>
     connectOrCreate?: UserCreateOrConnectWithoutBooksInput
     upsert?: UserUpsertWithoutBooksInput
     connect?: UserWhereUniqueInput
-    update?: XOR<
-      XOR<
-        UserUpdateToOneWithWhereWithoutBooksInput,
-        UserUpdateWithoutBooksInput
-      >,
-      UserUncheckedUpdateWithoutBooksInput
-    >
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBooksInput, UserUpdateWithoutBooksInput>, UserUncheckedUpdateWithoutBooksInput>
   }
 
   export type NoteUncheckedUpdateManyWithoutBookNestedInput = {
-    create?:
-      | XOR<NoteCreateWithoutBookInput, NoteUncheckedCreateWithoutBookInput>
-      | NoteCreateWithoutBookInput[]
-      | NoteUncheckedCreateWithoutBookInput[]
-    connectOrCreate?:
-      | NoteCreateOrConnectWithoutBookInput
-      | NoteCreateOrConnectWithoutBookInput[]
-    upsert?:
-      | NoteUpsertWithWhereUniqueWithoutBookInput
-      | NoteUpsertWithWhereUniqueWithoutBookInput[]
+    create?: XOR<NoteCreateWithoutBookInput, NoteUncheckedCreateWithoutBookInput> | NoteCreateWithoutBookInput[] | NoteUncheckedCreateWithoutBookInput[]
+    connectOrCreate?: NoteCreateOrConnectWithoutBookInput | NoteCreateOrConnectWithoutBookInput[]
+    upsert?: NoteUpsertWithWhereUniqueWithoutBookInput | NoteUpsertWithWhereUniqueWithoutBookInput[]
     createMany?: NoteCreateManyBookInputEnvelope
     set?: NoteWhereUniqueInput | NoteWhereUniqueInput[]
     disconnect?: NoteWhereUniqueInput | NoteWhereUniqueInput[]
     delete?: NoteWhereUniqueInput | NoteWhereUniqueInput[]
     connect?: NoteWhereUniqueInput | NoteWhereUniqueInput[]
-    update?:
-      | NoteUpdateWithWhereUniqueWithoutBookInput
-      | NoteUpdateWithWhereUniqueWithoutBookInput[]
-    updateMany?:
-      | NoteUpdateManyWithWhereWithoutBookInput
-      | NoteUpdateManyWithWhereWithoutBookInput[]
+    update?: NoteUpdateWithWhereUniqueWithoutBookInput | NoteUpdateWithWhereUniqueWithoutBookInput[]
+    updateMany?: NoteUpdateManyWithWhereWithoutBookInput | NoteUpdateManyWithWhereWithoutBookInput[]
     deleteMany?: NoteScalarWhereInput | NoteScalarWhereInput[]
   }
 
   export type AuthorUncheckedUpdateManyWithoutBookNestedInput = {
-    create?:
-      | XOR<AuthorCreateWithoutBookInput, AuthorUncheckedCreateWithoutBookInput>
-      | AuthorCreateWithoutBookInput[]
-      | AuthorUncheckedCreateWithoutBookInput[]
-    connectOrCreate?:
-      | AuthorCreateOrConnectWithoutBookInput
-      | AuthorCreateOrConnectWithoutBookInput[]
-    upsert?:
-      | AuthorUpsertWithWhereUniqueWithoutBookInput
-      | AuthorUpsertWithWhereUniqueWithoutBookInput[]
+    create?: XOR<AuthorCreateWithoutBookInput, AuthorUncheckedCreateWithoutBookInput> | AuthorCreateWithoutBookInput[] | AuthorUncheckedCreateWithoutBookInput[]
+    connectOrCreate?: AuthorCreateOrConnectWithoutBookInput | AuthorCreateOrConnectWithoutBookInput[]
+    upsert?: AuthorUpsertWithWhereUniqueWithoutBookInput | AuthorUpsertWithWhereUniqueWithoutBookInput[]
     set?: AuthorWhereUniqueInput | AuthorWhereUniqueInput[]
     disconnect?: AuthorWhereUniqueInput | AuthorWhereUniqueInput[]
     delete?: AuthorWhereUniqueInput | AuthorWhereUniqueInput[]
     connect?: AuthorWhereUniqueInput | AuthorWhereUniqueInput[]
-    update?:
-      | AuthorUpdateWithWhereUniqueWithoutBookInput
-      | AuthorUpdateWithWhereUniqueWithoutBookInput[]
-    updateMany?:
-      | AuthorUpdateManyWithWhereWithoutBookInput
-      | AuthorUpdateManyWithWhereWithoutBookInput[]
+    update?: AuthorUpdateWithWhereUniqueWithoutBookInput | AuthorUpdateWithWhereUniqueWithoutBookInput[]
+    updateMany?: AuthorUpdateManyWithWhereWithoutBookInput | AuthorUpdateManyWithWhereWithoutBookInput[]
     deleteMany?: AuthorScalarWhereInput | AuthorScalarWhereInput[]
   }
 
   export type TagUncheckedUpdateManyWithoutBookNestedInput = {
-    create?:
-      | XOR<TagCreateWithoutBookInput, TagUncheckedCreateWithoutBookInput>
-      | TagCreateWithoutBookInput[]
-      | TagUncheckedCreateWithoutBookInput[]
-    connectOrCreate?:
-      | TagCreateOrConnectWithoutBookInput
-      | TagCreateOrConnectWithoutBookInput[]
-    upsert?:
-      | TagUpsertWithWhereUniqueWithoutBookInput
-      | TagUpsertWithWhereUniqueWithoutBookInput[]
+    create?: XOR<TagCreateWithoutBookInput, TagUncheckedCreateWithoutBookInput> | TagCreateWithoutBookInput[] | TagUncheckedCreateWithoutBookInput[]
+    connectOrCreate?: TagCreateOrConnectWithoutBookInput | TagCreateOrConnectWithoutBookInput[]
+    upsert?: TagUpsertWithWhereUniqueWithoutBookInput | TagUpsertWithWhereUniqueWithoutBookInput[]
     set?: TagWhereUniqueInput | TagWhereUniqueInput[]
     disconnect?: TagWhereUniqueInput | TagWhereUniqueInput[]
     delete?: TagWhereUniqueInput | TagWhereUniqueInput[]
     connect?: TagWhereUniqueInput | TagWhereUniqueInput[]
-    update?:
-      | TagUpdateWithWhereUniqueWithoutBookInput
-      | TagUpdateWithWhereUniqueWithoutBookInput[]
-    updateMany?:
-      | TagUpdateManyWithWhereWithoutBookInput
-      | TagUpdateManyWithWhereWithoutBookInput[]
+    update?: TagUpdateWithWhereUniqueWithoutBookInput | TagUpdateWithWhereUniqueWithoutBookInput[]
+    updateMany?: TagUpdateManyWithWhereWithoutBookInput | TagUpdateManyWithWhereWithoutBookInput[]
     deleteMany?: TagScalarWhereInput | TagScalarWhereInput[]
   }
 
   export type BookCreateNestedOneWithoutNotesInput = {
-    create?: XOR<
-      BookCreateWithoutNotesInput,
-      BookUncheckedCreateWithoutNotesInput
-    >
+    create?: XOR<BookCreateWithoutNotesInput, BookUncheckedCreateWithoutNotesInput>
     connectOrCreate?: BookCreateOrConnectWithoutNotesInput
     connect?: BookWhereUniqueInput
   }
@@ -9530,337 +8628,188 @@ export namespace Prisma {
   }
 
   export type BookUpdateOneRequiredWithoutNotesNestedInput = {
-    create?: XOR<
-      BookCreateWithoutNotesInput,
-      BookUncheckedCreateWithoutNotesInput
-    >
+    create?: XOR<BookCreateWithoutNotesInput, BookUncheckedCreateWithoutNotesInput>
     connectOrCreate?: BookCreateOrConnectWithoutNotesInput
     upsert?: BookUpsertWithoutNotesInput
     connect?: BookWhereUniqueInput
-    update?: XOR<
-      XOR<
-        BookUpdateToOneWithWhereWithoutNotesInput,
-        BookUpdateWithoutNotesInput
-      >,
-      BookUncheckedUpdateWithoutNotesInput
-    >
+    update?: XOR<XOR<BookUpdateToOneWithWhereWithoutNotesInput, BookUpdateWithoutNotesInput>, BookUncheckedUpdateWithoutNotesInput>
   }
 
   export type BookCreateNestedManyWithoutShelfInput = {
-    create?:
-      | XOR<BookCreateWithoutShelfInput, BookUncheckedCreateWithoutShelfInput>
-      | BookCreateWithoutShelfInput[]
-      | BookUncheckedCreateWithoutShelfInput[]
-    connectOrCreate?:
-      | BookCreateOrConnectWithoutShelfInput
-      | BookCreateOrConnectWithoutShelfInput[]
+    create?: XOR<BookCreateWithoutShelfInput, BookUncheckedCreateWithoutShelfInput> | BookCreateWithoutShelfInput[] | BookUncheckedCreateWithoutShelfInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutShelfInput | BookCreateOrConnectWithoutShelfInput[]
     createMany?: BookCreateManyShelfInputEnvelope
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
   }
 
   export type UserCreateNestedOneWithoutShelvesInput = {
-    create?: XOR<
-      UserCreateWithoutShelvesInput,
-      UserUncheckedCreateWithoutShelvesInput
-    >
+    create?: XOR<UserCreateWithoutShelvesInput, UserUncheckedCreateWithoutShelvesInput>
     connectOrCreate?: UserCreateOrConnectWithoutShelvesInput
     connect?: UserWhereUniqueInput
   }
 
   export type BookUncheckedCreateNestedManyWithoutShelfInput = {
-    create?:
-      | XOR<BookCreateWithoutShelfInput, BookUncheckedCreateWithoutShelfInput>
-      | BookCreateWithoutShelfInput[]
-      | BookUncheckedCreateWithoutShelfInput[]
-    connectOrCreate?:
-      | BookCreateOrConnectWithoutShelfInput
-      | BookCreateOrConnectWithoutShelfInput[]
+    create?: XOR<BookCreateWithoutShelfInput, BookUncheckedCreateWithoutShelfInput> | BookCreateWithoutShelfInput[] | BookUncheckedCreateWithoutShelfInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutShelfInput | BookCreateOrConnectWithoutShelfInput[]
     createMany?: BookCreateManyShelfInputEnvelope
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
   }
 
   export type BookUpdateManyWithoutShelfNestedInput = {
-    create?:
-      | XOR<BookCreateWithoutShelfInput, BookUncheckedCreateWithoutShelfInput>
-      | BookCreateWithoutShelfInput[]
-      | BookUncheckedCreateWithoutShelfInput[]
-    connectOrCreate?:
-      | BookCreateOrConnectWithoutShelfInput
-      | BookCreateOrConnectWithoutShelfInput[]
-    upsert?:
-      | BookUpsertWithWhereUniqueWithoutShelfInput
-      | BookUpsertWithWhereUniqueWithoutShelfInput[]
+    create?: XOR<BookCreateWithoutShelfInput, BookUncheckedCreateWithoutShelfInput> | BookCreateWithoutShelfInput[] | BookUncheckedCreateWithoutShelfInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutShelfInput | BookCreateOrConnectWithoutShelfInput[]
+    upsert?: BookUpsertWithWhereUniqueWithoutShelfInput | BookUpsertWithWhereUniqueWithoutShelfInput[]
     createMany?: BookCreateManyShelfInputEnvelope
     set?: BookWhereUniqueInput | BookWhereUniqueInput[]
     disconnect?: BookWhereUniqueInput | BookWhereUniqueInput[]
     delete?: BookWhereUniqueInput | BookWhereUniqueInput[]
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
-    update?:
-      | BookUpdateWithWhereUniqueWithoutShelfInput
-      | BookUpdateWithWhereUniqueWithoutShelfInput[]
-    updateMany?:
-      | BookUpdateManyWithWhereWithoutShelfInput
-      | BookUpdateManyWithWhereWithoutShelfInput[]
+    update?: BookUpdateWithWhereUniqueWithoutShelfInput | BookUpdateWithWhereUniqueWithoutShelfInput[]
+    updateMany?: BookUpdateManyWithWhereWithoutShelfInput | BookUpdateManyWithWhereWithoutShelfInput[]
     deleteMany?: BookScalarWhereInput | BookScalarWhereInput[]
   }
 
   export type UserUpdateOneRequiredWithoutShelvesNestedInput = {
-    create?: XOR<
-      UserCreateWithoutShelvesInput,
-      UserUncheckedCreateWithoutShelvesInput
-    >
+    create?: XOR<UserCreateWithoutShelvesInput, UserUncheckedCreateWithoutShelvesInput>
     connectOrCreate?: UserCreateOrConnectWithoutShelvesInput
     upsert?: UserUpsertWithoutShelvesInput
     connect?: UserWhereUniqueInput
-    update?: XOR<
-      XOR<
-        UserUpdateToOneWithWhereWithoutShelvesInput,
-        UserUpdateWithoutShelvesInput
-      >,
-      UserUncheckedUpdateWithoutShelvesInput
-    >
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutShelvesInput, UserUpdateWithoutShelvesInput>, UserUncheckedUpdateWithoutShelvesInput>
   }
 
   export type BookUncheckedUpdateManyWithoutShelfNestedInput = {
-    create?:
-      | XOR<BookCreateWithoutShelfInput, BookUncheckedCreateWithoutShelfInput>
-      | BookCreateWithoutShelfInput[]
-      | BookUncheckedCreateWithoutShelfInput[]
-    connectOrCreate?:
-      | BookCreateOrConnectWithoutShelfInput
-      | BookCreateOrConnectWithoutShelfInput[]
-    upsert?:
-      | BookUpsertWithWhereUniqueWithoutShelfInput
-      | BookUpsertWithWhereUniqueWithoutShelfInput[]
+    create?: XOR<BookCreateWithoutShelfInput, BookUncheckedCreateWithoutShelfInput> | BookCreateWithoutShelfInput[] | BookUncheckedCreateWithoutShelfInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutShelfInput | BookCreateOrConnectWithoutShelfInput[]
+    upsert?: BookUpsertWithWhereUniqueWithoutShelfInput | BookUpsertWithWhereUniqueWithoutShelfInput[]
     createMany?: BookCreateManyShelfInputEnvelope
     set?: BookWhereUniqueInput | BookWhereUniqueInput[]
     disconnect?: BookWhereUniqueInput | BookWhereUniqueInput[]
     delete?: BookWhereUniqueInput | BookWhereUniqueInput[]
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
-    update?:
-      | BookUpdateWithWhereUniqueWithoutShelfInput
-      | BookUpdateWithWhereUniqueWithoutShelfInput[]
-    updateMany?:
-      | BookUpdateManyWithWhereWithoutShelfInput
-      | BookUpdateManyWithWhereWithoutShelfInput[]
+    update?: BookUpdateWithWhereUniqueWithoutShelfInput | BookUpdateWithWhereUniqueWithoutShelfInput[]
+    updateMany?: BookUpdateManyWithWhereWithoutShelfInput | BookUpdateManyWithWhereWithoutShelfInput[]
     deleteMany?: BookScalarWhereInput | BookScalarWhereInput[]
   }
 
   export type BookCreateNestedManyWithoutTagsInput = {
-    create?:
-      | XOR<BookCreateWithoutTagsInput, BookUncheckedCreateWithoutTagsInput>
-      | BookCreateWithoutTagsInput[]
-      | BookUncheckedCreateWithoutTagsInput[]
-    connectOrCreate?:
-      | BookCreateOrConnectWithoutTagsInput
-      | BookCreateOrConnectWithoutTagsInput[]
+    create?: XOR<BookCreateWithoutTagsInput, BookUncheckedCreateWithoutTagsInput> | BookCreateWithoutTagsInput[] | BookUncheckedCreateWithoutTagsInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutTagsInput | BookCreateOrConnectWithoutTagsInput[]
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
   }
 
   export type BookUncheckedCreateNestedManyWithoutTagsInput = {
-    create?:
-      | XOR<BookCreateWithoutTagsInput, BookUncheckedCreateWithoutTagsInput>
-      | BookCreateWithoutTagsInput[]
-      | BookUncheckedCreateWithoutTagsInput[]
-    connectOrCreate?:
-      | BookCreateOrConnectWithoutTagsInput
-      | BookCreateOrConnectWithoutTagsInput[]
+    create?: XOR<BookCreateWithoutTagsInput, BookUncheckedCreateWithoutTagsInput> | BookCreateWithoutTagsInput[] | BookUncheckedCreateWithoutTagsInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutTagsInput | BookCreateOrConnectWithoutTagsInput[]
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
   }
 
   export type BookUpdateManyWithoutTagsNestedInput = {
-    create?:
-      | XOR<BookCreateWithoutTagsInput, BookUncheckedCreateWithoutTagsInput>
-      | BookCreateWithoutTagsInput[]
-      | BookUncheckedCreateWithoutTagsInput[]
-    connectOrCreate?:
-      | BookCreateOrConnectWithoutTagsInput
-      | BookCreateOrConnectWithoutTagsInput[]
-    upsert?:
-      | BookUpsertWithWhereUniqueWithoutTagsInput
-      | BookUpsertWithWhereUniqueWithoutTagsInput[]
+    create?: XOR<BookCreateWithoutTagsInput, BookUncheckedCreateWithoutTagsInput> | BookCreateWithoutTagsInput[] | BookUncheckedCreateWithoutTagsInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutTagsInput | BookCreateOrConnectWithoutTagsInput[]
+    upsert?: BookUpsertWithWhereUniqueWithoutTagsInput | BookUpsertWithWhereUniqueWithoutTagsInput[]
     set?: BookWhereUniqueInput | BookWhereUniqueInput[]
     disconnect?: BookWhereUniqueInput | BookWhereUniqueInput[]
     delete?: BookWhereUniqueInput | BookWhereUniqueInput[]
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
-    update?:
-      | BookUpdateWithWhereUniqueWithoutTagsInput
-      | BookUpdateWithWhereUniqueWithoutTagsInput[]
-    updateMany?:
-      | BookUpdateManyWithWhereWithoutTagsInput
-      | BookUpdateManyWithWhereWithoutTagsInput[]
+    update?: BookUpdateWithWhereUniqueWithoutTagsInput | BookUpdateWithWhereUniqueWithoutTagsInput[]
+    updateMany?: BookUpdateManyWithWhereWithoutTagsInput | BookUpdateManyWithWhereWithoutTagsInput[]
     deleteMany?: BookScalarWhereInput | BookScalarWhereInput[]
   }
 
   export type BookUncheckedUpdateManyWithoutTagsNestedInput = {
-    create?:
-      | XOR<BookCreateWithoutTagsInput, BookUncheckedCreateWithoutTagsInput>
-      | BookCreateWithoutTagsInput[]
-      | BookUncheckedCreateWithoutTagsInput[]
-    connectOrCreate?:
-      | BookCreateOrConnectWithoutTagsInput
-      | BookCreateOrConnectWithoutTagsInput[]
-    upsert?:
-      | BookUpsertWithWhereUniqueWithoutTagsInput
-      | BookUpsertWithWhereUniqueWithoutTagsInput[]
+    create?: XOR<BookCreateWithoutTagsInput, BookUncheckedCreateWithoutTagsInput> | BookCreateWithoutTagsInput[] | BookUncheckedCreateWithoutTagsInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutTagsInput | BookCreateOrConnectWithoutTagsInput[]
+    upsert?: BookUpsertWithWhereUniqueWithoutTagsInput | BookUpsertWithWhereUniqueWithoutTagsInput[]
     set?: BookWhereUniqueInput | BookWhereUniqueInput[]
     disconnect?: BookWhereUniqueInput | BookWhereUniqueInput[]
     delete?: BookWhereUniqueInput | BookWhereUniqueInput[]
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
-    update?:
-      | BookUpdateWithWhereUniqueWithoutTagsInput
-      | BookUpdateWithWhereUniqueWithoutTagsInput[]
-    updateMany?:
-      | BookUpdateManyWithWhereWithoutTagsInput
-      | BookUpdateManyWithWhereWithoutTagsInput[]
+    update?: BookUpdateWithWhereUniqueWithoutTagsInput | BookUpdateWithWhereUniqueWithoutTagsInput[]
+    updateMany?: BookUpdateManyWithWhereWithoutTagsInput | BookUpdateManyWithWhereWithoutTagsInput[]
     deleteMany?: BookScalarWhereInput | BookScalarWhereInput[]
   }
 
   export type ShelfCreateNestedManyWithoutOwnerInput = {
-    create?:
-      | XOR<ShelfCreateWithoutOwnerInput, ShelfUncheckedCreateWithoutOwnerInput>
-      | ShelfCreateWithoutOwnerInput[]
-      | ShelfUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?:
-      | ShelfCreateOrConnectWithoutOwnerInput
-      | ShelfCreateOrConnectWithoutOwnerInput[]
+    create?: XOR<ShelfCreateWithoutOwnerInput, ShelfUncheckedCreateWithoutOwnerInput> | ShelfCreateWithoutOwnerInput[] | ShelfUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: ShelfCreateOrConnectWithoutOwnerInput | ShelfCreateOrConnectWithoutOwnerInput[]
     createMany?: ShelfCreateManyOwnerInputEnvelope
     connect?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
   }
 
   export type BookCreateNestedManyWithoutOwnerInput = {
-    create?:
-      | XOR<BookCreateWithoutOwnerInput, BookUncheckedCreateWithoutOwnerInput>
-      | BookCreateWithoutOwnerInput[]
-      | BookUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?:
-      | BookCreateOrConnectWithoutOwnerInput
-      | BookCreateOrConnectWithoutOwnerInput[]
+    create?: XOR<BookCreateWithoutOwnerInput, BookUncheckedCreateWithoutOwnerInput> | BookCreateWithoutOwnerInput[] | BookUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutOwnerInput | BookCreateOrConnectWithoutOwnerInput[]
     createMany?: BookCreateManyOwnerInputEnvelope
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
   }
 
   export type ShelfUncheckedCreateNestedManyWithoutOwnerInput = {
-    create?:
-      | XOR<ShelfCreateWithoutOwnerInput, ShelfUncheckedCreateWithoutOwnerInput>
-      | ShelfCreateWithoutOwnerInput[]
-      | ShelfUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?:
-      | ShelfCreateOrConnectWithoutOwnerInput
-      | ShelfCreateOrConnectWithoutOwnerInput[]
+    create?: XOR<ShelfCreateWithoutOwnerInput, ShelfUncheckedCreateWithoutOwnerInput> | ShelfCreateWithoutOwnerInput[] | ShelfUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: ShelfCreateOrConnectWithoutOwnerInput | ShelfCreateOrConnectWithoutOwnerInput[]
     createMany?: ShelfCreateManyOwnerInputEnvelope
     connect?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
   }
 
   export type BookUncheckedCreateNestedManyWithoutOwnerInput = {
-    create?:
-      | XOR<BookCreateWithoutOwnerInput, BookUncheckedCreateWithoutOwnerInput>
-      | BookCreateWithoutOwnerInput[]
-      | BookUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?:
-      | BookCreateOrConnectWithoutOwnerInput
-      | BookCreateOrConnectWithoutOwnerInput[]
+    create?: XOR<BookCreateWithoutOwnerInput, BookUncheckedCreateWithoutOwnerInput> | BookCreateWithoutOwnerInput[] | BookUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutOwnerInput | BookCreateOrConnectWithoutOwnerInput[]
     createMany?: BookCreateManyOwnerInputEnvelope
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
   }
 
   export type ShelfUpdateManyWithoutOwnerNestedInput = {
-    create?:
-      | XOR<ShelfCreateWithoutOwnerInput, ShelfUncheckedCreateWithoutOwnerInput>
-      | ShelfCreateWithoutOwnerInput[]
-      | ShelfUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?:
-      | ShelfCreateOrConnectWithoutOwnerInput
-      | ShelfCreateOrConnectWithoutOwnerInput[]
-    upsert?:
-      | ShelfUpsertWithWhereUniqueWithoutOwnerInput
-      | ShelfUpsertWithWhereUniqueWithoutOwnerInput[]
+    create?: XOR<ShelfCreateWithoutOwnerInput, ShelfUncheckedCreateWithoutOwnerInput> | ShelfCreateWithoutOwnerInput[] | ShelfUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: ShelfCreateOrConnectWithoutOwnerInput | ShelfCreateOrConnectWithoutOwnerInput[]
+    upsert?: ShelfUpsertWithWhereUniqueWithoutOwnerInput | ShelfUpsertWithWhereUniqueWithoutOwnerInput[]
     createMany?: ShelfCreateManyOwnerInputEnvelope
     set?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
     disconnect?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
     delete?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
     connect?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
-    update?:
-      | ShelfUpdateWithWhereUniqueWithoutOwnerInput
-      | ShelfUpdateWithWhereUniqueWithoutOwnerInput[]
-    updateMany?:
-      | ShelfUpdateManyWithWhereWithoutOwnerInput
-      | ShelfUpdateManyWithWhereWithoutOwnerInput[]
+    update?: ShelfUpdateWithWhereUniqueWithoutOwnerInput | ShelfUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: ShelfUpdateManyWithWhereWithoutOwnerInput | ShelfUpdateManyWithWhereWithoutOwnerInput[]
     deleteMany?: ShelfScalarWhereInput | ShelfScalarWhereInput[]
   }
 
   export type BookUpdateManyWithoutOwnerNestedInput = {
-    create?:
-      | XOR<BookCreateWithoutOwnerInput, BookUncheckedCreateWithoutOwnerInput>
-      | BookCreateWithoutOwnerInput[]
-      | BookUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?:
-      | BookCreateOrConnectWithoutOwnerInput
-      | BookCreateOrConnectWithoutOwnerInput[]
-    upsert?:
-      | BookUpsertWithWhereUniqueWithoutOwnerInput
-      | BookUpsertWithWhereUniqueWithoutOwnerInput[]
+    create?: XOR<BookCreateWithoutOwnerInput, BookUncheckedCreateWithoutOwnerInput> | BookCreateWithoutOwnerInput[] | BookUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutOwnerInput | BookCreateOrConnectWithoutOwnerInput[]
+    upsert?: BookUpsertWithWhereUniqueWithoutOwnerInput | BookUpsertWithWhereUniqueWithoutOwnerInput[]
     createMany?: BookCreateManyOwnerInputEnvelope
     set?: BookWhereUniqueInput | BookWhereUniqueInput[]
     disconnect?: BookWhereUniqueInput | BookWhereUniqueInput[]
     delete?: BookWhereUniqueInput | BookWhereUniqueInput[]
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
-    update?:
-      | BookUpdateWithWhereUniqueWithoutOwnerInput
-      | BookUpdateWithWhereUniqueWithoutOwnerInput[]
-    updateMany?:
-      | BookUpdateManyWithWhereWithoutOwnerInput
-      | BookUpdateManyWithWhereWithoutOwnerInput[]
+    update?: BookUpdateWithWhereUniqueWithoutOwnerInput | BookUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: BookUpdateManyWithWhereWithoutOwnerInput | BookUpdateManyWithWhereWithoutOwnerInput[]
     deleteMany?: BookScalarWhereInput | BookScalarWhereInput[]
   }
 
   export type ShelfUncheckedUpdateManyWithoutOwnerNestedInput = {
-    create?:
-      | XOR<ShelfCreateWithoutOwnerInput, ShelfUncheckedCreateWithoutOwnerInput>
-      | ShelfCreateWithoutOwnerInput[]
-      | ShelfUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?:
-      | ShelfCreateOrConnectWithoutOwnerInput
-      | ShelfCreateOrConnectWithoutOwnerInput[]
-    upsert?:
-      | ShelfUpsertWithWhereUniqueWithoutOwnerInput
-      | ShelfUpsertWithWhereUniqueWithoutOwnerInput[]
+    create?: XOR<ShelfCreateWithoutOwnerInput, ShelfUncheckedCreateWithoutOwnerInput> | ShelfCreateWithoutOwnerInput[] | ShelfUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: ShelfCreateOrConnectWithoutOwnerInput | ShelfCreateOrConnectWithoutOwnerInput[]
+    upsert?: ShelfUpsertWithWhereUniqueWithoutOwnerInput | ShelfUpsertWithWhereUniqueWithoutOwnerInput[]
     createMany?: ShelfCreateManyOwnerInputEnvelope
     set?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
     disconnect?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
     delete?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
     connect?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
-    update?:
-      | ShelfUpdateWithWhereUniqueWithoutOwnerInput
-      | ShelfUpdateWithWhereUniqueWithoutOwnerInput[]
-    updateMany?:
-      | ShelfUpdateManyWithWhereWithoutOwnerInput
-      | ShelfUpdateManyWithWhereWithoutOwnerInput[]
+    update?: ShelfUpdateWithWhereUniqueWithoutOwnerInput | ShelfUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: ShelfUpdateManyWithWhereWithoutOwnerInput | ShelfUpdateManyWithWhereWithoutOwnerInput[]
     deleteMany?: ShelfScalarWhereInput | ShelfScalarWhereInput[]
   }
 
   export type BookUncheckedUpdateManyWithoutOwnerNestedInput = {
-    create?:
-      | XOR<BookCreateWithoutOwnerInput, BookUncheckedCreateWithoutOwnerInput>
-      | BookCreateWithoutOwnerInput[]
-      | BookUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?:
-      | BookCreateOrConnectWithoutOwnerInput
-      | BookCreateOrConnectWithoutOwnerInput[]
-    upsert?:
-      | BookUpsertWithWhereUniqueWithoutOwnerInput
-      | BookUpsertWithWhereUniqueWithoutOwnerInput[]
+    create?: XOR<BookCreateWithoutOwnerInput, BookUncheckedCreateWithoutOwnerInput> | BookCreateWithoutOwnerInput[] | BookUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutOwnerInput | BookCreateOrConnectWithoutOwnerInput[]
+    upsert?: BookUpsertWithWhereUniqueWithoutOwnerInput | BookUpsertWithWhereUniqueWithoutOwnerInput[]
     createMany?: BookCreateManyOwnerInputEnvelope
     set?: BookWhereUniqueInput | BookWhereUniqueInput[]
     disconnect?: BookWhereUniqueInput | BookWhereUniqueInput[]
     delete?: BookWhereUniqueInput | BookWhereUniqueInput[]
     connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
-    update?:
-      | BookUpdateWithWhereUniqueWithoutOwnerInput
-      | BookUpdateWithWhereUniqueWithoutOwnerInput[]
-    updateMany?:
-      | BookUpdateManyWithWhereWithoutOwnerInput
-      | BookUpdateManyWithWhereWithoutOwnerInput[]
+    update?: BookUpdateWithWhereUniqueWithoutOwnerInput | BookUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: BookUpdateManyWithWhereWithoutOwnerInput | BookUpdateManyWithWhereWithoutOwnerInput[]
     deleteMany?: BookScalarWhereInput | BookScalarWhereInput[]
   }
 
@@ -10053,52 +9002,37 @@ export namespace Prisma {
 
   export type BookCreateOrConnectWithoutAuthorsInput = {
     where: BookWhereUniqueInput
-    create: XOR<
-      BookCreateWithoutAuthorsInput,
-      BookUncheckedCreateWithoutAuthorsInput
-    >
+    create: XOR<BookCreateWithoutAuthorsInput, BookUncheckedCreateWithoutAuthorsInput>
   }
 
   export type BookUpsertWithWhereUniqueWithoutAuthorsInput = {
     where: BookWhereUniqueInput
-    update: XOR<
-      BookUpdateWithoutAuthorsInput,
-      BookUncheckedUpdateWithoutAuthorsInput
-    >
-    create: XOR<
-      BookCreateWithoutAuthorsInput,
-      BookUncheckedCreateWithoutAuthorsInput
-    >
+    update: XOR<BookUpdateWithoutAuthorsInput, BookUncheckedUpdateWithoutAuthorsInput>
+    create: XOR<BookCreateWithoutAuthorsInput, BookUncheckedCreateWithoutAuthorsInput>
   }
 
   export type BookUpdateWithWhereUniqueWithoutAuthorsInput = {
     where: BookWhereUniqueInput
-    data: XOR<
-      BookUpdateWithoutAuthorsInput,
-      BookUncheckedUpdateWithoutAuthorsInput
-    >
+    data: XOR<BookUpdateWithoutAuthorsInput, BookUncheckedUpdateWithoutAuthorsInput>
   }
 
   export type BookUpdateManyWithWhereWithoutAuthorsInput = {
     where: BookScalarWhereInput
-    data: XOR<
-      BookUpdateManyMutationInput,
-      BookUncheckedUpdateManyWithoutAuthorsInput
-    >
+    data: XOR<BookUpdateManyMutationInput, BookUncheckedUpdateManyWithoutAuthorsInput>
   }
 
   export type BookScalarWhereInput = {
     AND?: BookScalarWhereInput | BookScalarWhereInput[]
     OR?: BookScalarWhereInput[]
     NOT?: BookScalarWhereInput | BookScalarWhereInput[]
-    id?: UuidFilter<'Book'> | string
-    isbn?: StringNullableFilter<'Book'> | string | null
-    title?: StringFilter<'Book'> | string
-    coverImage?: StringNullableFilter<'Book'> | string | null
-    blurb?: StringNullableFilter<'Book'> | string | null
-    rating?: IntFilter<'Book'> | number
-    shelfId?: IntFilter<'Book'> | number
-    ownerId?: UuidFilter<'Book'> | string
+    id?: UuidFilter<"Book"> | string
+    isbn?: StringNullableFilter<"Book"> | string | null
+    title?: StringFilter<"Book"> | string
+    coverImage?: StringNullableFilter<"Book"> | string | null
+    blurb?: StringNullableFilter<"Book"> | string | null
+    rating?: IntFilter<"Book"> | number
+    shelfId?: IntFilter<"Book"> | number
+    ownerId?: UuidFilter<"Book"> | string
   }
 
   export type ShelfCreateWithoutBooksInput = {
@@ -10114,10 +9048,7 @@ export namespace Prisma {
 
   export type ShelfCreateOrConnectWithoutBooksInput = {
     where: ShelfWhereUniqueInput
-    create: XOR<
-      ShelfCreateWithoutBooksInput,
-      ShelfUncheckedCreateWithoutBooksInput
-    >
+    create: XOR<ShelfCreateWithoutBooksInput, ShelfUncheckedCreateWithoutBooksInput>
   }
 
   export type NoteCreateWithoutBookInput = {
@@ -10152,10 +9083,7 @@ export namespace Prisma {
 
   export type AuthorCreateOrConnectWithoutBookInput = {
     where: AuthorWhereUniqueInput
-    create: XOR<
-      AuthorCreateWithoutBookInput,
-      AuthorUncheckedCreateWithoutBookInput
-    >
+    create: XOR<AuthorCreateWithoutBookInput, AuthorUncheckedCreateWithoutBookInput>
   }
 
   export type TagCreateWithoutBookInput = {
@@ -10188,30 +9116,18 @@ export namespace Prisma {
 
   export type UserCreateOrConnectWithoutBooksInput = {
     where: UserWhereUniqueInput
-    create: XOR<
-      UserCreateWithoutBooksInput,
-      UserUncheckedCreateWithoutBooksInput
-    >
+    create: XOR<UserCreateWithoutBooksInput, UserUncheckedCreateWithoutBooksInput>
   }
 
   export type ShelfUpsertWithoutBooksInput = {
-    update: XOR<
-      ShelfUpdateWithoutBooksInput,
-      ShelfUncheckedUpdateWithoutBooksInput
-    >
-    create: XOR<
-      ShelfCreateWithoutBooksInput,
-      ShelfUncheckedCreateWithoutBooksInput
-    >
+    update: XOR<ShelfUpdateWithoutBooksInput, ShelfUncheckedUpdateWithoutBooksInput>
+    create: XOR<ShelfCreateWithoutBooksInput, ShelfUncheckedCreateWithoutBooksInput>
     where?: ShelfWhereInput
   }
 
   export type ShelfUpdateToOneWithWhereWithoutBooksInput = {
     where?: ShelfWhereInput
-    data: XOR<
-      ShelfUpdateWithoutBooksInput,
-      ShelfUncheckedUpdateWithoutBooksInput
-    >
+    data: XOR<ShelfUpdateWithoutBooksInput, ShelfUncheckedUpdateWithoutBooksInput>
   }
 
   export type ShelfUpdateWithoutBooksInput = {
@@ -10238,56 +9154,41 @@ export namespace Prisma {
 
   export type NoteUpdateManyWithWhereWithoutBookInput = {
     where: NoteScalarWhereInput
-    data: XOR<
-      NoteUpdateManyMutationInput,
-      NoteUncheckedUpdateManyWithoutBookInput
-    >
+    data: XOR<NoteUpdateManyMutationInput, NoteUncheckedUpdateManyWithoutBookInput>
   }
 
   export type NoteScalarWhereInput = {
     AND?: NoteScalarWhereInput | NoteScalarWhereInput[]
     OR?: NoteScalarWhereInput[]
     NOT?: NoteScalarWhereInput | NoteScalarWhereInput[]
-    id?: IntFilter<'Note'> | number
-    createdAt?: DateTimeFilter<'Note'> | Date | string
-    content?: StringFilter<'Note'> | string
-    bookId?: UuidFilter<'Note'> | string
+    id?: IntFilter<"Note"> | number
+    createdAt?: DateTimeFilter<"Note"> | Date | string
+    content?: StringFilter<"Note"> | string
+    bookId?: UuidFilter<"Note"> | string
   }
 
   export type AuthorUpsertWithWhereUniqueWithoutBookInput = {
     where: AuthorWhereUniqueInput
-    update: XOR<
-      AuthorUpdateWithoutBookInput,
-      AuthorUncheckedUpdateWithoutBookInput
-    >
-    create: XOR<
-      AuthorCreateWithoutBookInput,
-      AuthorUncheckedCreateWithoutBookInput
-    >
+    update: XOR<AuthorUpdateWithoutBookInput, AuthorUncheckedUpdateWithoutBookInput>
+    create: XOR<AuthorCreateWithoutBookInput, AuthorUncheckedCreateWithoutBookInput>
   }
 
   export type AuthorUpdateWithWhereUniqueWithoutBookInput = {
     where: AuthorWhereUniqueInput
-    data: XOR<
-      AuthorUpdateWithoutBookInput,
-      AuthorUncheckedUpdateWithoutBookInput
-    >
+    data: XOR<AuthorUpdateWithoutBookInput, AuthorUncheckedUpdateWithoutBookInput>
   }
 
   export type AuthorUpdateManyWithWhereWithoutBookInput = {
     where: AuthorScalarWhereInput
-    data: XOR<
-      AuthorUpdateManyMutationInput,
-      AuthorUncheckedUpdateManyWithoutBookInput
-    >
+    data: XOR<AuthorUpdateManyMutationInput, AuthorUncheckedUpdateManyWithoutBookInput>
   }
 
   export type AuthorScalarWhereInput = {
     AND?: AuthorScalarWhereInput | AuthorScalarWhereInput[]
     OR?: AuthorScalarWhereInput[]
     NOT?: AuthorScalarWhereInput | AuthorScalarWhereInput[]
-    id?: IntFilter<'Author'> | number
-    name?: StringFilter<'Author'> | string
+    id?: IntFilter<"Author"> | number
+    name?: StringFilter<"Author"> | string
   }
 
   export type TagUpsertWithWhereUniqueWithoutBookInput = {
@@ -10303,29 +9204,20 @@ export namespace Prisma {
 
   export type TagUpdateManyWithWhereWithoutBookInput = {
     where: TagScalarWhereInput
-    data: XOR<
-      TagUpdateManyMutationInput,
-      TagUncheckedUpdateManyWithoutBookInput
-    >
+    data: XOR<TagUpdateManyMutationInput, TagUncheckedUpdateManyWithoutBookInput>
   }
 
   export type TagScalarWhereInput = {
     AND?: TagScalarWhereInput | TagScalarWhereInput[]
     OR?: TagScalarWhereInput[]
     NOT?: TagScalarWhereInput | TagScalarWhereInput[]
-    id?: IntFilter<'Tag'> | number
-    name?: StringFilter<'Tag'> | string
+    id?: IntFilter<"Tag"> | number
+    name?: StringFilter<"Tag"> | string
   }
 
   export type UserUpsertWithoutBooksInput = {
-    update: XOR<
-      UserUpdateWithoutBooksInput,
-      UserUncheckedUpdateWithoutBooksInput
-    >
-    create: XOR<
-      UserCreateWithoutBooksInput,
-      UserUncheckedCreateWithoutBooksInput
-    >
+    update: XOR<UserUpdateWithoutBooksInput, UserUncheckedUpdateWithoutBooksInput>
+    create: XOR<UserCreateWithoutBooksInput, UserUncheckedCreateWithoutBooksInput>
     where?: UserWhereInput
   }
 
@@ -10376,21 +9268,12 @@ export namespace Prisma {
 
   export type BookCreateOrConnectWithoutNotesInput = {
     where: BookWhereUniqueInput
-    create: XOR<
-      BookCreateWithoutNotesInput,
-      BookUncheckedCreateWithoutNotesInput
-    >
+    create: XOR<BookCreateWithoutNotesInput, BookUncheckedCreateWithoutNotesInput>
   }
 
   export type BookUpsertWithoutNotesInput = {
-    update: XOR<
-      BookUpdateWithoutNotesInput,
-      BookUncheckedUpdateWithoutNotesInput
-    >
-    create: XOR<
-      BookCreateWithoutNotesInput,
-      BookUncheckedCreateWithoutNotesInput
-    >
+    update: XOR<BookUpdateWithoutNotesInput, BookUncheckedUpdateWithoutNotesInput>
+    create: XOR<BookCreateWithoutNotesInput, BookUncheckedCreateWithoutNotesInput>
     where?: BookWhereInput
   }
 
@@ -10453,10 +9336,7 @@ export namespace Prisma {
 
   export type BookCreateOrConnectWithoutShelfInput = {
     where: BookWhereUniqueInput
-    create: XOR<
-      BookCreateWithoutShelfInput,
-      BookUncheckedCreateWithoutShelfInput
-    >
+    create: XOR<BookCreateWithoutShelfInput, BookUncheckedCreateWithoutShelfInput>
   }
 
   export type BookCreateManyShelfInputEnvelope = {
@@ -10480,22 +9360,13 @@ export namespace Prisma {
 
   export type UserCreateOrConnectWithoutShelvesInput = {
     where: UserWhereUniqueInput
-    create: XOR<
-      UserCreateWithoutShelvesInput,
-      UserUncheckedCreateWithoutShelvesInput
-    >
+    create: XOR<UserCreateWithoutShelvesInput, UserUncheckedCreateWithoutShelvesInput>
   }
 
   export type BookUpsertWithWhereUniqueWithoutShelfInput = {
     where: BookWhereUniqueInput
-    update: XOR<
-      BookUpdateWithoutShelfInput,
-      BookUncheckedUpdateWithoutShelfInput
-    >
-    create: XOR<
-      BookCreateWithoutShelfInput,
-      BookUncheckedCreateWithoutShelfInput
-    >
+    update: XOR<BookUpdateWithoutShelfInput, BookUncheckedUpdateWithoutShelfInput>
+    create: XOR<BookCreateWithoutShelfInput, BookUncheckedCreateWithoutShelfInput>
   }
 
   export type BookUpdateWithWhereUniqueWithoutShelfInput = {
@@ -10505,30 +9376,18 @@ export namespace Prisma {
 
   export type BookUpdateManyWithWhereWithoutShelfInput = {
     where: BookScalarWhereInput
-    data: XOR<
-      BookUpdateManyMutationInput,
-      BookUncheckedUpdateManyWithoutShelfInput
-    >
+    data: XOR<BookUpdateManyMutationInput, BookUncheckedUpdateManyWithoutShelfInput>
   }
 
   export type UserUpsertWithoutShelvesInput = {
-    update: XOR<
-      UserUpdateWithoutShelvesInput,
-      UserUncheckedUpdateWithoutShelvesInput
-    >
-    create: XOR<
-      UserCreateWithoutShelvesInput,
-      UserUncheckedCreateWithoutShelvesInput
-    >
+    update: XOR<UserUpdateWithoutShelvesInput, UserUncheckedUpdateWithoutShelvesInput>
+    create: XOR<UserCreateWithoutShelvesInput, UserUncheckedCreateWithoutShelvesInput>
     where?: UserWhereInput
   }
 
   export type UserUpdateToOneWithWhereWithoutShelvesInput = {
     where?: UserWhereInput
-    data: XOR<
-      UserUpdateWithoutShelvesInput,
-      UserUncheckedUpdateWithoutShelvesInput
-    >
+    data: XOR<UserUpdateWithoutShelvesInput, UserUncheckedUpdateWithoutShelvesInput>
   }
 
   export type UserUpdateWithoutShelvesInput = {
@@ -10589,10 +9448,7 @@ export namespace Prisma {
 
   export type BookUpdateManyWithWhereWithoutTagsInput = {
     where: BookScalarWhereInput
-    data: XOR<
-      BookUpdateManyMutationInput,
-      BookUncheckedUpdateManyWithoutTagsInput
-    >
+    data: XOR<BookUpdateManyMutationInput, BookUncheckedUpdateManyWithoutTagsInput>
   }
 
   export type ShelfCreateWithoutOwnerInput = {
@@ -10608,10 +9464,7 @@ export namespace Prisma {
 
   export type ShelfCreateOrConnectWithoutOwnerInput = {
     where: ShelfWhereUniqueInput
-    create: XOR<
-      ShelfCreateWithoutOwnerInput,
-      ShelfUncheckedCreateWithoutOwnerInput
-    >
+    create: XOR<ShelfCreateWithoutOwnerInput, ShelfUncheckedCreateWithoutOwnerInput>
   }
 
   export type ShelfCreateManyOwnerInputEnvelope = {
@@ -10647,10 +9500,7 @@ export namespace Prisma {
 
   export type BookCreateOrConnectWithoutOwnerInput = {
     where: BookWhereUniqueInput
-    create: XOR<
-      BookCreateWithoutOwnerInput,
-      BookUncheckedCreateWithoutOwnerInput
-    >
+    create: XOR<BookCreateWithoutOwnerInput, BookUncheckedCreateWithoutOwnerInput>
   }
 
   export type BookCreateManyOwnerInputEnvelope = {
@@ -10660,51 +9510,33 @@ export namespace Prisma {
 
   export type ShelfUpsertWithWhereUniqueWithoutOwnerInput = {
     where: ShelfWhereUniqueInput
-    update: XOR<
-      ShelfUpdateWithoutOwnerInput,
-      ShelfUncheckedUpdateWithoutOwnerInput
-    >
-    create: XOR<
-      ShelfCreateWithoutOwnerInput,
-      ShelfUncheckedCreateWithoutOwnerInput
-    >
+    update: XOR<ShelfUpdateWithoutOwnerInput, ShelfUncheckedUpdateWithoutOwnerInput>
+    create: XOR<ShelfCreateWithoutOwnerInput, ShelfUncheckedCreateWithoutOwnerInput>
   }
 
   export type ShelfUpdateWithWhereUniqueWithoutOwnerInput = {
     where: ShelfWhereUniqueInput
-    data: XOR<
-      ShelfUpdateWithoutOwnerInput,
-      ShelfUncheckedUpdateWithoutOwnerInput
-    >
+    data: XOR<ShelfUpdateWithoutOwnerInput, ShelfUncheckedUpdateWithoutOwnerInput>
   }
 
   export type ShelfUpdateManyWithWhereWithoutOwnerInput = {
     where: ShelfScalarWhereInput
-    data: XOR<
-      ShelfUpdateManyMutationInput,
-      ShelfUncheckedUpdateManyWithoutOwnerInput
-    >
+    data: XOR<ShelfUpdateManyMutationInput, ShelfUncheckedUpdateManyWithoutOwnerInput>
   }
 
   export type ShelfScalarWhereInput = {
     AND?: ShelfScalarWhereInput | ShelfScalarWhereInput[]
     OR?: ShelfScalarWhereInput[]
     NOT?: ShelfScalarWhereInput | ShelfScalarWhereInput[]
-    id?: IntFilter<'Shelf'> | number
-    name?: StringFilter<'Shelf'> | string
-    userUid?: UuidFilter<'Shelf'> | string
+    id?: IntFilter<"Shelf"> | number
+    name?: StringFilter<"Shelf"> | string
+    userUid?: UuidFilter<"Shelf"> | string
   }
 
   export type BookUpsertWithWhereUniqueWithoutOwnerInput = {
     where: BookWhereUniqueInput
-    update: XOR<
-      BookUpdateWithoutOwnerInput,
-      BookUncheckedUpdateWithoutOwnerInput
-    >
-    create: XOR<
-      BookCreateWithoutOwnerInput,
-      BookUncheckedCreateWithoutOwnerInput
-    >
+    update: XOR<BookUpdateWithoutOwnerInput, BookUncheckedUpdateWithoutOwnerInput>
+    create: XOR<BookCreateWithoutOwnerInput, BookUncheckedCreateWithoutOwnerInput>
   }
 
   export type BookUpdateWithWhereUniqueWithoutOwnerInput = {
@@ -10714,10 +9546,7 @@ export namespace Prisma {
 
   export type BookUpdateManyWithWhereWithoutOwnerInput = {
     where: BookScalarWhereInput
-    data: XOR<
-      BookUpdateManyMutationInput,
-      BookUncheckedUpdateManyWithoutOwnerInput
-    >
+    data: XOR<BookUpdateManyMutationInput, BookUncheckedUpdateManyWithoutOwnerInput>
   }
 
   export type BookUpdateWithoutAuthorsInput = {
@@ -10958,45 +9787,35 @@ export namespace Prisma {
     shelfId?: IntFieldUpdateOperationsInput | number
   }
 
+
+
   /**
    * Aliases for legacy arg types
    */
-  /**
-   * @deprecated Use AuthorDefaultArgs instead
-   */
-  export type AuthorArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = AuthorDefaultArgs<ExtArgs>
-  /**
-   * @deprecated Use BookDefaultArgs instead
-   */
-  export type BookArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = BookDefaultArgs<ExtArgs>
-  /**
-   * @deprecated Use NoteDefaultArgs instead
-   */
-  export type NoteArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = NoteDefaultArgs<ExtArgs>
-  /**
-   * @deprecated Use ShelfDefaultArgs instead
-   */
-  export type ShelfArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = ShelfDefaultArgs<ExtArgs>
-  /**
-   * @deprecated Use TagDefaultArgs instead
-   */
-  export type TagArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = TagDefaultArgs<ExtArgs>
-  /**
-   * @deprecated Use UserDefaultArgs instead
-   */
-  export type UserArgs<
-    ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
-  > = UserDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use AuthorDefaultArgs instead
+     */
+    export type AuthorArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = AuthorDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use BookDefaultArgs instead
+     */
+    export type BookArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = BookDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use NoteDefaultArgs instead
+     */
+    export type NoteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = NoteDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ShelfDefaultArgs instead
+     */
+    export type ShelfArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = ShelfDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use TagDefaultArgs instead
+     */
+    export type TagArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = TagDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use UserDefaultArgs instead
+     */
+    export type UserArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany
