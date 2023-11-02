@@ -19,7 +19,7 @@ import {
 import { BiBookHeart } from 'react-icons/bi'
 import Image from 'next/image'
 import React from 'react'
-import { useBookStore } from '@/lib/hooks/useBookStore'
+import { useBookStore } from '@/lib/hooks/useBook'
 
 const columnHelper = createColumnHelper<BookWithAuthor>()
 

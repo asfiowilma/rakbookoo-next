@@ -1,7 +1,8 @@
-import { useBookStore } from '@/lib/hooks/useBookStore'
+import { useBook } from '@/lib/hooks/useBook'
 import { routes } from '@/lib/routes'
 import { cn, truncate } from '@/lib/utils'
 import { type BookDetails } from '@/types/books'
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { BiBookHeart } from 'react-icons/bi'
@@ -12,7 +13,7 @@ type BookProps = {
 }
 
 const Book = ({ book }: BookProps) => {
-  const { isBookModalOpen } = useBookStore()
+  const { isBookModalOpen } = useBook()
   return (
     <>
       <div
@@ -21,18 +22,21 @@ const Book = ({ book }: BookProps) => {
           isBookModalOpen ? 'h-32' : 'h-52'
         )}
       >
-        <img
-          src={book.coverImage}
+        <Image
+          src={book.coverImage!}
           alt={book.title}
+          layout="fill"
           className="h-full w-full scale-110 bg-base-300 object-cover object-center blur"
         />
       </div>
       <div>
         <div className="flex w-full gap-6">
           {book.coverImage ? (
-            <img
+            <Image
               src={book.coverImage}
               alt={book.title}
+              width={(5 / 8) * 288}
+              height={288}
               className="aspect-[5/8] h-72 rounded-xl bg-base-300 object-cover"
             />
           ) : (

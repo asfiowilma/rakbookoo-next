@@ -4,8 +4,9 @@ import React, { type PropsWithChildren } from 'react'
 const Modal = ({
   isOpen,
   setIsOpen,
+  className,
   children,
-}: ModalBaseProps & PropsWithChildren) => {
+}: ModalBaseProps & PropsWithChildren & PropsWithClassName) => {
   return (
     <div
       aria-hidden
@@ -18,7 +19,7 @@ const Modal = ({
       <div
         aria-hidden
         onClick={(e) => e.stopPropagation()}
-        className="modal-box relative m-4 max-w-screen-md pr-0"
+        className={cn('modal-box bg-base-300 relative m-4 pr-0', className)}
       >
         <button
           className="btn btn-circle btn-sm absolute right-2 top-2"

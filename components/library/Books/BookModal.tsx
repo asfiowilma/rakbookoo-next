@@ -1,50 +1,37 @@
 'use client'
 
 import React, { useEffect } from 'react'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 import Book from './Book'
 import { FaSpinner } from 'react-icons/fa'
 import Modal from '@/components/ui/modal'
-import { RESET_BOOK_ID } from '@/lib/constants/book'
-import { urlBuilder } from '@/lib/utils'
-import { useBookStore } from '@/lib/hooks/useBookStore'
+import { useBook } from '@/lib/hooks/useBook'
 import useGetBookDetailsQuery from '@/context/queries/book/useGetBookDetailsQuery'
+import { useSearchParams } from 'next/navigation'
 
 type BookModalProps = {
   shelfId?: number
 }
 
-const BookModal = ({ shelfId }: BookModalProps) => {
-  const router = useRouter()
-  const pathname = usePathname()
-  const routerParams = useSearchParams()
-
-  const { bookId, isBookModalOpen, setBookModalOpen, setBookId } =
-    useBookStore()
+const BookModal = (_: BookModalProps) => {
+  const params = useSearchParams()
+  const { bookId, isBookModalOpen, setBookModalOpen, setBookId } = useBook()
   const { data: book, isLoading } = useGetBookDetailsQuery(bookId)
 
-  const getBookRoute = (id?: string) => {
-    const params = new URLSearchParams(routerParams.toString())
-    if (id) params.append('book', id)
-    else params.delete('book')
-    return urlBuilder(pathname, params)
-  }
-
   useEffect(() => {
-    if (bookId) router.replace(getBookRoute(bookId))
-  }, [bookId])
-
-  const setIsOpen = (to: boolean) => {
-    if (!to) {
-      setBookId(RESET_BOOK_ID)
-      router.replace(getBookRoute())
+    const book = params.get('book')
+    if (book) {
+      setBookId(book)
+      setBookModalOpen(true)
     }
-    setBookModalOpen(to)
-  }
+  }, [])
 
   return (
-    <Modal isOpen={isBookModalOpen} setIsOpen={setIsOpen}>
+    <Modal
+      isOpen={isBookModalOpen}
+      setIsOpen={setBookModalOpen}
+      className="!max-w-screen-md w-full"
+    >
       {isLoading && <FaSpinner className="animate-spin" />}
       {book && <Book book={book} />}
     </Modal>

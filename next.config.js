@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['placehold.co', 'storage.googleapis.com'],
+    domains: ['placehold.co', 'storage.googleapis.com', 'store.goodreads.lk'],
     remotePatterns: [
       {
         protocol: 'https',

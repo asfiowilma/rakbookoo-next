@@ -62,7 +62,7 @@ const config: Config = {
     require('daisyui'),
     require('@tailwindcss/typography'),
     require('tailwindcss-animate'),
-    require('tailwind-scrollbar'),
+    require('tailwind-scrollbar')({ nocompatible: true }),
   ],
 }
 export default config

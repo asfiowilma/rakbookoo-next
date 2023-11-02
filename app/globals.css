@@ -91,6 +91,6 @@
     border-radius: 99px;
   }
   .rak-scrollbar {
-    @apply scrollbar-thin scrollbar-track-gray-500 scrollbar-thumb-gray-700 dark:scrollbar-track-gray-800 dark:scrollbar-thumb-gray-900;
+    @apply scrollbar-thin scrollbar-track-neutral scrollbar-thumb-base-200 scrollbar-track-rounded scrollbar-thumb-rounded;
   }
 }

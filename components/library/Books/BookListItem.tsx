@@ -3,7 +3,7 @@ import type { BookViewProps } from '@/types/books'
 import Image from 'next/image'
 import Rating from './Rating'
 import React from 'react'
-import { useBookStore } from '@/lib/hooks/useBookStore'
+import { useBookStore } from '@/lib/hooks/useBook'
 
 const BookListItem = ({ book }: BookViewProps) => {
   const { setBookId, setBookModalOpen } = useBookStore()
