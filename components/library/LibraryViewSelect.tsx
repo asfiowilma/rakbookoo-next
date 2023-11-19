@@ -6,25 +6,41 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 import { Button } from '../ui/button'
 import { LibraryView } from '@/lib/enums'
-import { useLibraryView } from '@/lib/hooks/useLibraryView'
-import { useQueryClient } from '@tanstack/react-query'
+import { libraryView } from '@/lib/signals/view'
+import { queryClient } from '@/context/providers/RakQueryClientProvider'
+import { useSignalEffect } from '@preact/signals-react'
 import { views as viewButtons } from '@/lib/constants/libraryViews'
 
 const LibraryViewSelect = () => {
   const router = useRouter()
   const pathname = usePathname()
   const params = useSearchParams()
-  const { view, setView } = useLibraryView()
-  const queryClient = useQueryClient()
 
   useEffect(() => {
-    if (view && (params.get('view') as LibraryView) !== view) {
-      const searchParams = new URLSearchParams(params.toString())
-      searchParams.set('view', view)
-      router.replace(urlBuilder(pathname, searchParams))
-      queryClient.invalidateQueries({ queryKey: ['books'] })
+    const cachedView = localStorage.getItem('library-view')
+    const view =
+      (params.get('view') as LibraryView) || cachedView || LibraryView.thumbnail
+    if (view !== libraryView.value) {
+      libraryView.value = view
     }
-  }, [view])
+  }, [])
+
+  useSignalEffect(() => {
+    if ((params.get('view') as LibraryView) !== libraryView.value) {
+      // refetch books
+      queryClient.invalidateQueries({ queryKey: ['books'] })
+
+      // update query params
+      const searchParams = new URLSearchParams(params.toString())
+      searchParams.set('view', libraryView.value)
+      router.replace(urlBuilder(pathname, searchParams))
+
+      // persist in localstorage
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('library-view', libraryView.value)
+      }
+    }
+  })
 
   return (
     <div className="join">
@@ -33,10 +49,10 @@ const LibraryViewSelect = () => {
           key={button.view}
           size="sm"
           shape="square"
-          state={view === button.view ? 'active' : 'default'}
+          state={libraryView.value === button.view ? 'active' : 'default'}
           className={cn('join-item')}
           title={button.view}
-          onClick={() => setView(button.view)}
+          onClick={() => (libraryView.value = button.view)}
         >
           <button.icon className="h-5 w-5" />
         </Button>

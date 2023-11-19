@@ -19,7 +19,7 @@ import {
 import { BiBookHeart } from 'react-icons/bi'
 import Image from 'next/image'
 import React from 'react'
-import { useBookStore } from '@/lib/hooks/useBook'
+import { useBook } from '@/lib/hooks/useBook'
 
 const columnHelper = createColumnHelper<BookWithAuthor>()
 
@@ -59,7 +59,7 @@ const columns = [
 ]
 
 const BookTable = ({ books }: BooksViewProps) => {
-  const { setBookId, setBookModalOpen } = useBookStore()
+  const { setBookId, setBookModalOpen } = useBook()
 
   const openBookInfo = (bookId: string) => {
     setBookId(bookId)

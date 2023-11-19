@@ -3,10 +3,10 @@ import type { BookViewProps } from '@/types/books'
 import Image from 'next/image'
 import Rating from './Rating'
 import React from 'react'
-import { useBookStore } from '@/lib/hooks/useBook'
+import { useBook } from '@/lib/hooks/useBook'
 
 const BookListItem = ({ book }: BookViewProps) => {
-  const { setBookId, setBookModalOpen } = useBookStore()
+  const { setBookId, setBookModalOpen } = useBook()
 
   const openBookInfo = () => {
     setBookId(book.id)
@@ -34,8 +34,8 @@ const BookListItem = ({ book }: BookViewProps) => {
       <div className="flex flex-col gap-1">
         <div className="inline-flex">
           <span className="font-bold flex-none">{book.title}</span>
-          <span>・</span>
-          <span>{book.authors?.map((author) => author.name).join(', ')}</span>
+          {book?.authors && <span>・</span>}
+          <span>{book?.authors?.map((author) => author.name).join(', ')}</span>
         </div>
         {book?.rating && (
           <Rating rating={book.rating} bookId={book.id} readonly />
