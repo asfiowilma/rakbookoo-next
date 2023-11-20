@@ -8,43 +8,29 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { FaEllipsisH, FaEllipsisV } from 'react-icons/fa'
+import {
+  isShowAuthor,
+  isShowCoverImage,
+  isShowRating,
+  isShowTags,
+} from '@/lib/signals/view'
 
 import { Button } from '@/components/ui/button'
+import { FaEllipsisV } from 'react-icons/fa'
 import React from 'react'
-import { useBooksViewOptionsStore } from '@/lib/hooks/useBooksViewOption'
 import { useQueryClient } from '@tanstack/react-query'
 
 const BooksViewOptions = () => {
-  const {
-    showAuthor,
-    setShowAuthor,
-    showCoverImage,
-    setShowCoverImage,
-    showRating,
-    setShowRating,
-    showTags,
-    setShowTags,
-  } = useBooksViewOptionsStore()
   const queryClient = useQueryClient()
 
   const options = {
-    author: { label: 'Penulis', checked: showAuthor, onChange: setShowAuthor },
+    author: { label: 'Penulis', checked: isShowAuthor },
     cover: {
       label: 'Cover',
-      checked: showCoverImage,
-      onChange: setShowCoverImage,
+      checked: isShowCoverImage,
     },
-    rating: { label: 'Rating', checked: showRating, onChange: setShowRating },
-    tags: { label: 'Tags', checked: showTags, onChange: setShowTags },
-  }
-
-  const onCheckedChange = (
-    checked: boolean,
-    onChange: (to: boolean) => void
-  ) => {
-    onChange(checked)
-    queryClient.refetchQueries({ queryKey: ['books'] })
+    rating: { label: 'Rating', checked: isShowRating },
+    tags: { label: 'Tags', checked: isShowTags },
   }
 
   return (
@@ -63,10 +49,11 @@ const BooksViewOptions = () => {
         {Object.entries(options).map(([key, option]) => (
           <DropdownMenuCheckboxItem
             key={key}
-            checked={option.checked}
-            onCheckedChange={(checked) =>
-              onCheckedChange(checked, option.onChange)
-            }
+            checked={option.checked.value}
+            onCheckedChange={(value) => {
+              option.checked.value = value
+              queryClient.refetchQueries({ queryKey: ['books'] })
+            }}
           >
             {option.label}
           </DropdownMenuCheckboxItem>

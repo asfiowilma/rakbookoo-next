@@ -1,5 +1,5 @@
-import { useBook } from '@/lib/hooks/useBook'
 import { routes } from '@/lib/routes'
+import { isBookModalOpen } from '@/lib/signals/book'
 import { cn, truncate } from '@/lib/utils'
 import { type BookDetails } from '@/types/books'
 import Image from 'next/image'
@@ -13,13 +13,12 @@ type BookProps = {
 }
 
 const Book = ({ book }: BookProps) => {
-  const { isBookModalOpen } = useBook()
   return (
     <>
       <div
         className={cn(
           'absolute inset-0 -z-10 overflow-hidden opacity-40',
-          isBookModalOpen ? 'h-32' : 'h-52'
+          isBookModalOpen.value ? 'h-32' : 'h-52'
         )}
       >
         <Image

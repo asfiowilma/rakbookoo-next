@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect } from 'react'
+import { bookId, isBookModalOpen } from '@/lib/signals/book'
 
 import Book from './Book'
 import { FaSpinner } from 'react-icons/fa'
@@ -15,8 +16,8 @@ type BookModalProps = {
 
 const BookModal = (_: BookModalProps) => {
   const params = useSearchParams()
-  const { bookId, isBookModalOpen, setBookModalOpen, setBookId } = useBook()
-  const { data: book, isLoading } = useGetBookDetailsQuery(bookId)
+  const { setBookModalOpen, setBookId } = useBook()
+  const { data: book, isLoading } = useGetBookDetailsQuery(bookId.value)
 
   useEffect(() => {
     const book = params.get('book')
@@ -28,7 +29,7 @@ const BookModal = (_: BookModalProps) => {
 
   return (
     <Modal
-      isOpen={isBookModalOpen}
+      isOpen={isBookModalOpen.value}
       setIsOpen={setBookModalOpen}
       className="!max-w-screen-md w-full"
     >

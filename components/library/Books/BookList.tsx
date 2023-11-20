@@ -4,10 +4,10 @@ import BookListItem from './BookListItem'
 import type { BooksViewProps } from '@/types/books'
 import React from 'react'
 import { Skeleton } from '@/components/ui/skeleton'
-import useBooks from '@/context/queries/book/useBooks'
+import useGetBooksQuery from '@/context/queries/book/useGetBooksQuery'
 
 const BookList = ({ books: initBooks }: BooksViewProps) => {
-  const { isLoading, data: books } = useBooks(initBooks)
+  const { isLoading, data: books } = useGetBooksQuery(initBooks)
 
   return isLoading ? (
     <div className="w-full grid grid-cols-1 gap-y-2">

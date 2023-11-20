@@ -4,10 +4,10 @@ import BookThumbnail from './BookThumbnail'
 import type { BooksViewProps } from '@/types/books'
 import React from 'react'
 import { Skeleton } from '@/components/ui/skeleton'
-import useBooks from '@/context/queries/book/useBooks'
+import useGetBooksQuery from '@/context/queries/book/useGetBooksQuery'
 
 const BookGrid = ({ books: initBooks }: BooksViewProps) => {
-  const { isLoading, data: books } = useBooks(initBooks)
+  const { isLoading, data: books } = useGetBooksQuery(initBooks)
 
   return isLoading ? (
     <div className="grid grid-cols-2 gap-x-2 gap-y-4 sm:grid-cols-4 lg:grid-cols-6 w-full">
