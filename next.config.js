@@ -1,16 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['placehold.co', 'storage.googleapis.com', 'store.goodreads.lk'],
     remotePatterns: [
+      { hostname: 'placehold.co' },
+      { hostname: 'storage.googleapis.com' },
+      { hostname: 'store.goodreads.lk' },
       {
         protocol: 'https',
         hostname: '**.tulalyth.com',
       },
     ],
-  },
-  experimental: {
-    serverActions: true,
   },
 }
 

@@ -1,5 +1,5 @@
 import { BookDetails } from '@/types/books'
-import { signal } from '@preact/signals-react'
+import { signal } from 'signals-react-safe'
 
 export const bookId = signal<string>('')
 export const book = signal<Partial<BookDetails> | null>(null)

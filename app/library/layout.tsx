@@ -9,7 +9,7 @@ const LibraryLayout = ({ children }: { children: React.ReactNode }) => {
       <main className="mx-auto flex flex-col items-start px-6 pt-4 pb-16 lg:max-w-screen-lg xl:max-w-screen-xl">
         {children}
       </main>
-      <SpeedDial />
+      {/* <SpeedDial /> */}
     </>
   )
 }

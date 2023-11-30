@@ -1,6 +1,6 @@
 'use client'
 
-import type { BookWithAuthor, BooksViewProps } from '@/types/books'
+import type { BookWithAuthorAndTag, BooksViewProps } from '@/types/books'
 import {
   Table,
   TableBody,
@@ -15,16 +15,25 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table'
+import {
+  isShowAuthor,
+  isShowCoverImage,
+  isShowRating,
+  isShowTags,
+} from '@/lib/signals/view'
+import { useComputedValue, useSignalEffect } from 'signals-react-safe'
 
 import { BiBookHeart } from 'react-icons/bi'
+import { FaStar } from 'react-icons/fa'
 import Image from 'next/image'
 import React from 'react'
-import { useBook } from '@/lib/hooks/useBook'
+import { routes } from '@/lib/routes'
+import { useRouter } from 'next/navigation'
 
-const columnHelper = createColumnHelper<BookWithAuthor>()
+const columnHelper = createColumnHelper<BookWithAuthorAndTag>()
 
-const columns = [
-  columnHelper.accessor('coverImage', {
+const columns = {
+  coverImage: columnHelper.accessor('coverImage', {
     header: () => <div className="text-center">Cover</div>,
     cell: (props) =>
       !!props.getValue() ? (
@@ -41,11 +50,11 @@ const columns = [
         </div>
       ),
   }),
-  columnHelper.accessor('title', {
+  title: columnHelper.accessor('title', {
     header: () => 'Judul Buku',
     cell: (props) => <span className="font-medium">{props.getValue()}</span>,
   }),
-  columnHelper.accessor('authors', {
+  authors: columnHelper.accessor('authors', {
     header: () => 'Penulis',
     cell: (props) => (
       <>
@@ -56,20 +65,59 @@ const columns = [
       </>
     ),
   }),
-]
+  tags: columnHelper.accessor('tags', {
+    header: () => 'Tags',
+    cell: (props) => (
+      <div className="mt-4 flex flex-wrap gap-2">
+        {props.getValue()?.map((tag) => (
+          <div key={tag.id} className="badge badge-neutral">
+            {tag.name}
+          </div>
+        ))}
+      </div>
+    ),
+  }),
+  rating: columnHelper.accessor('rating', {
+    header: () => 'Rating',
+    cell: (props) => (
+      <div className="flex">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <FaStar
+            key={i}
+            className={`text-lg ${
+              i < props.getValue() ? 'text-neutral-content' : 'text-neutral'
+            }`}
+          />
+        ))}
+      </div>
+    ),
+  }),
+}
 
 const BookTable = ({ books }: BooksViewProps) => {
-  const { setBookId, setBookModalOpen } = useBook()
-
-  const openBookInfo = (bookId: string) => {
-    setBookId(bookId)
-    setBookModalOpen(true)
-  }
+  console.log('🚀 ~ file: BookTable.tsx:98 ~ BookTable ~ books:', books)
+  const router = useRouter()
+  const filteredColumns = useComputedValue(() => {
+    const columns_ = []
+    if (isShowCoverImage.value) columns_.push(columns.coverImage)
+    columns_.push(columns.title)
+    if (isShowAuthor.value) columns_.push(columns.authors)
+    if (isShowRating.value) columns_.push(columns.rating)
+    if (isShowTags.value) columns_.push(columns.tags)
+    return columns_
+  })
 
   const table = useReactTable({
     data: books,
-    columns,
+    columns: filteredColumns,
     getCoreRowModel: getCoreRowModel(),
+  })
+
+  useSignalEffect(() => {
+    table.setOptions({
+      ...table.options,
+      columns: filteredColumns,
+    })
   })
 
   return (
@@ -92,7 +140,10 @@ const BookTable = ({ books }: BooksViewProps) => {
       </TableHeader>
       <TableBody>
         {table.getRowModel().rows.map((row) => (
-          <TableRow key={row.id} onClick={() => openBookInfo(row.original.id)}>
+          <TableRow
+            key={row.id}
+            onClick={() => router.push(routes.book(row.original.id))}
+          >
             {row.getVisibleCells().map((cell) => (
               <TableCell key={cell.id}>
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}

@@ -1,6 +1,6 @@
 'use client'
 
-import { computed, effect, signal } from '@preact/signals-react'
+import { computed, effect, signal } from 'signals-react-safe'
 
 import { LibraryView } from '../enums'
 

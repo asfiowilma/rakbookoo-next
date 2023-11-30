@@ -1,21 +1,23 @@
 import { BiBookHeart } from 'react-icons/bi'
 import type { BookViewProps } from '@/types/books'
 import Image from 'next/image'
+import Link from 'next/link'
 import Rating from './Rating'
 import React from 'react'
+import { routes } from '@/lib/routes'
 import { useBook } from '@/lib/hooks/useBook'
 
 const BookListItem = ({ book }: BookViewProps) => {
-  const { setBookId, setBookModalOpen } = useBook()
+  // const { setBookId, setBookModalOpen } = useBook()
 
-  const openBookInfo = () => {
-    setBookId(book.id)
-    setBookModalOpen(true)
-  }
+  // const openBookInfo = () => {
+  //   setBookId(book.id)
+  //   setBookModalOpen(true)
+  // }
 
   return (
-    <button
-      onClick={openBookInfo}
+    <Link
+      href={routes.book(book.id)}
       className="flex items-center gap-2 hover:bg-neutral-focus cursor-pointer rounded-box"
     >
       {book.coverImage ? (
@@ -41,7 +43,7 @@ const BookListItem = ({ book }: BookViewProps) => {
           <Rating rating={book.rating} bookId={book.id} readonly />
         )}
       </div>
-    </button>
+    </Link>
   )
 }
 
