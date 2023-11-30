@@ -38,7 +38,6 @@ const LibraryViewSelect = () => {
 
   return (
     <div className="join">
-      {isShowTags.value.toString()}
       {viewButtons.map((button) => (
         <Button
           key={button.view}

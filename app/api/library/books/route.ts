@@ -6,9 +6,9 @@ import prisma from '@/services/prisma'
 export const dynamic = 'force-dynamic'
 
 export async function GET(request: Request) {
-  const sessionData = await getUserId()
+  const userId = await getUserId()
 
-  if (!sessionData)
+  if (!userId)
     return NextResponse.json({ error: 'Not logged in' }, { status: 401 })
 
   const { searchParams } = new URL(request.url)
@@ -36,7 +36,7 @@ export async function GET(request: Request) {
         tags: displayMap?.tags,
       },
       where: {
-        ownerId: sessionData?.session?.user.id,
+        ownerId: userId,
       },
     })
   )

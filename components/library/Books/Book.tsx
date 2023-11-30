@@ -13,6 +13,8 @@ type BookProps = {
 }
 
 const Book = ({ book, isModal }: BookProps) => {
+  if (!book) return <></>
+
   return (
     <>
       <div

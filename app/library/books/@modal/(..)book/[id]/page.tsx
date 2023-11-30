@@ -7,7 +7,7 @@ import prisma from '@/services/prisma'
 type BookModalProps = { params: { id: string } }
 
 const BookModalPage = async ({ params: { id: bookId } }: BookModalProps) => {
-  const sessionData = await getUserId()
+  const userId = await getUserId()
   const book = await prisma.book.findUnique({
     include: {
       authors: true,
@@ -17,7 +17,7 @@ const BookModalPage = async ({ params: { id: bookId } }: BookModalProps) => {
     },
     where: {
       id: bookId,
-      ownerId: sessionData?.session?.user.id,
+      ownerId: userId,
     },
   })
 

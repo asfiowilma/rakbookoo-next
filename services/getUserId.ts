@@ -6,9 +6,9 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 export const getUserId = async () => {
   const supabase = createServerComponentClient({ cookies })
   try {
-    const { data: session } = await supabase.auth.getSession()
-    return session
+    const { data } = await supabase.auth.getSession()
+    return data?.session?.user?.id
   } catch {
-    return null
+    return undefined
   }
 }

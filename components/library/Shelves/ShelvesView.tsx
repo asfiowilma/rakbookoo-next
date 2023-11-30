@@ -6,10 +6,17 @@ import React from 'react'
 import ShelfComponent from './Shelf'
 import { getUserId } from '@/services/getUserId'
 import prisma from '@/services/prisma'
+import { redirect } from 'next/navigation'
 import { routes } from '@/lib/routes'
+import toast from 'react-hot-toast'
 
 const ShelvesView = async () => {
-  const sessionData = await getUserId()
+  const userId = await getUserId()
+  if (!userId) {
+    toast.error('Kamu perlu login untuk mengakses halaman tersebut')
+    redirect(routes.login)
+  }
+
   const shelves = await prisma.shelf.findMany({
     select: {
       id: true,
@@ -23,7 +30,7 @@ const ShelvesView = async () => {
         },
       },
     },
-    where: { userUid: sessionData?.session?.user.id },
+    where: { userUid: userId },
   })
 
   if (shelves.length === 0)

@@ -17,7 +17,7 @@ type BookWithAuthorAndTag = Prisma.BookGetPayload<typeof bookWithAuthorAndTag>
 type BookDetails = Prisma.BookGetPayload<typeof bookDetails>
 
 type BookViewProps = {
-  book: BookWithAuthor
+  book: BookWithAuthorAndTag
 }
 
 type BooksViewProps = {

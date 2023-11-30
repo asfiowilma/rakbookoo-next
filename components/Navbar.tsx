@@ -8,15 +8,17 @@ import { getUserId } from '@/services/getUserId'
 import prisma from '@/services/prisma'
 import { redirect } from 'next/navigation'
 import { routes } from '@/lib/routes'
+import toast from 'react-hot-toast'
 
 const Navbar = async () => {
-  const sessionData = await getUserId()
-  if (!sessionData) {
-    redirect('/auth/login')
+  const userId = await getUserId()
+  if (!userId) {
+    toast.error('Kamu perlu login untuk mengakses halaman tersebut')
+    redirect(routes.login)
   }
 
   const user = await prisma.user.findUnique({
-    where: { uid: sessionData.session?.user.id },
+    where: { uid: userId },
   })
 
   return (

@@ -11,6 +11,10 @@ export const isShowCoverImage = signal<boolean>(true)
 export const isShowRating = signal<boolean>(false)
 export const isShowTags = signal<boolean>(false)
 
+effect(() => {
+  if (libraryView.value == LibraryView.thumbnail) isShowCoverImage.value = true
+})
+
 export const booksParams = computed(() => {
   const parameterMap: Record<string, boolean> = {
     author: isShowAuthor.value,

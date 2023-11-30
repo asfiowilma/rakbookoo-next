@@ -6,11 +6,19 @@ import LibraryViewSelect from '@/components/library/LibraryViewSelect'
 import React from 'react'
 import { getUserId } from '@/services/getUserId'
 import prisma from '@/services/prisma'
+import { redirect } from 'next/navigation'
+import { routes } from '@/lib/routes'
+import toast from 'react-hot-toast'
 
 export const dynamic = 'force-dynamic'
 
 const BooksPage = async ({ searchParams }: PageProps) => {
-  const sessionData = await getUserId()
+  const userId = await getUserId()
+  if (!userId) {
+    toast.error('Kamu perlu login untuk mengakses halaman tersebut')
+    redirect(routes.login)
+  }
+
   const view = searchParams?.['view'] as LibraryView
 
   const books = await prisma.book.findMany({
@@ -23,7 +31,7 @@ const BooksPage = async ({ searchParams }: PageProps) => {
       },
     },
     where: {
-      ownerId: sessionData?.session?.user.id,
+      ownerId: userId,
     },
   })
 

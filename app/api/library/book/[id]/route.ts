@@ -1,4 +1,3 @@
-import { LibraryView } from '@/lib/enums'
 import { NextResponse } from 'next/server'
 import { getUserId } from '@/services/getUserId'
 import prisma from '@/services/prisma'
@@ -12,9 +11,9 @@ export async function GET(
   if (!params.id)
     return NextResponse.json({ error: 'Book id not found' }, { status: 400 })
 
-  const sessionData = await getUserId()
+  const userId = await getUserId()
 
-  if (!sessionData)
+  if (!userId)
     return NextResponse.json({ error: 'Not logged in' }, { status: 401 })
 
   return NextResponse.json(
@@ -27,7 +26,7 @@ export async function GET(
       },
       where: {
         id: params.id,
-        ownerId: sessionData?.session?.user.id,
+        ownerId: userId,
       },
     })
   )

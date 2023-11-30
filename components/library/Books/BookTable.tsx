@@ -10,24 +10,27 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import {
-  createColumnHelper,
-  flexRender,
-  getCoreRowModel,
-  useReactTable,
-} from '@tanstack/react-table'
-import {
+  booksParams,
   isShowAuthor,
   isShowCoverImage,
   isShowRating,
   isShowTags,
 } from '@/lib/signals/view'
+import {
+  createColumnHelper,
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+} from '@tanstack/react-table'
 import { useComputedValue, useSignalEffect } from 'signals-react-safe'
 
 import { BiBookHeart } from 'react-icons/bi'
 import { FaStar } from 'react-icons/fa'
 import Image from 'next/image'
+import Rating from './Rating'
 import React from 'react'
 import { routes } from '@/lib/routes'
+import useGetBooksQuery from '@/context/queries/book/useGetBooksQuery'
 import { useRouter } from 'next/navigation'
 
 const columnHelper = createColumnHelper<BookWithAuthorAndTag>()
@@ -80,22 +83,14 @@ const columns = {
   rating: columnHelper.accessor('rating', {
     header: () => 'Rating',
     cell: (props) => (
-      <div className="flex">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <FaStar
-            key={i}
-            className={`text-lg ${
-              i < props.getValue() ? 'text-neutral-content' : 'text-neutral'
-            }`}
-          />
-        ))}
-      </div>
+      <Rating rating={props.getValue()} bookId={props.row.id} readonly />
     ),
   }),
 }
 
-const BookTable = ({ books }: BooksViewProps) => {
-  console.log('🚀 ~ file: BookTable.tsx:98 ~ BookTable ~ books:', books)
+const BookTable = ({ books: initBooks }: BooksViewProps) => {
+  const { data: books } = useGetBooksQuery(initBooks)
+
   const router = useRouter()
   const filteredColumns = useComputedValue(() => {
     const columns_ = []

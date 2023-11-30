@@ -44,7 +44,6 @@ const BooksViewOptions = () => {
   }, [])
 
   useEffect(() => {
-    console.log('bits', (options >>> 0).toString(2))
     batch(() => {
       isShowAuthor.value = (options & OPTIONS[0].id) == OPTIONS[0].id
       isShowCoverImage.value = (options & OPTIONS[1].id) == OPTIONS[1].id

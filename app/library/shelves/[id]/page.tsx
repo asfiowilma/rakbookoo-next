@@ -12,19 +12,25 @@ import Breadcrumbs from '@/components/library/Breadcrumbs'
 import { type Shelf } from '@prisma/client'
 import { redirect } from 'next/navigation'
 import BooksViewOptions from '@/components/library/Books/BooksViewOptions'
-import type { BookWithAuthor } from '@/types/books'
+import type { BookWithAuthorAndTag } from '@/types/books'
 import prisma from '@/services/prisma'
+import toast from 'react-hot-toast'
 
 export const dynamic = 'force-dynamic'
 
 const ShelfPage = async ({ params, searchParams }: PageProps) => {
-  const sessionData = await getUserId()
+  const userId = await getUserId()
+  if (!userId) {
+    toast.error('Kamu perlu login untuk mengakses halaman tersebut')
+    redirect(routes.login)
+  }
+
   const id = Number(params?.['id'] as string)
   const view = searchParams?.['view'] as LibraryView
 
   const shelf = await prisma.shelf.findFirst({
     where: {
-      userUid: sessionData?.session?.user.id,
+      userUid: userId,
       id: id,
     },
     include: {
@@ -62,7 +68,7 @@ const ShelfPage = async ({ params, searchParams }: PageProps) => {
         <LibraryViewSelect />
         <BooksViewOptions />
       </div>
-      <BooksView view={view} books={shelf?.books as BookWithAuthor[]} />
+      <BooksView view={view} books={shelf?.books as BookWithAuthorAndTag[]} />
     </>
   )
 }
