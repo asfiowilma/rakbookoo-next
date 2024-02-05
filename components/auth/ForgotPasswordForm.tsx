@@ -20,16 +20,18 @@ const forgotPasswordSchema = z.object({
   email: z.string().email({ message: 'Harap masukkan email yang valid' }),
 })
 
+type forgotPasswordSchema = z.infer<typeof forgotPasswordSchema>
+
 const ForgotPasswordForm = () => {
   const supabase = createClientComponentClient<Database>()
   const [isSuccess, setIsSuccess] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  const form = useForm<z.infer<typeof forgotPasswordSchema>>({
+  const form = useForm<forgotPasswordSchema>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: { email: '' },
   })
 
-  const onSubmit = async (data: z.infer<typeof forgotPasswordSchema>) => {
+  const onSubmit = async (data: forgotPasswordSchema) => {
     setIsLoading(true)
     const { error } = await supabase.auth.resetPasswordForEmail(data.email, {
       redirectTo: `${location.origin}/auth/reset-password`,
@@ -61,7 +63,6 @@ const ForgotPasswordForm = () => {
         className="form-control w-full max-w-md gap-3"
       >
         <TextInput
-          form={form}
           name="email"
           placeholder="Masukkan email"
           leftAdornment={

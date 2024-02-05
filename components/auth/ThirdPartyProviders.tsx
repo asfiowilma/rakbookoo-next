@@ -2,11 +2,10 @@
 
 import { Button } from '../ui/button'
 import { FcGoogle } from 'react-icons/fc'
-import React, { useState } from 'react'
+import React from 'react'
 import { SiDiscord } from 'react-icons/si'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { toast } from 'react-hot-toast'
-import { useRouter } from 'next/navigation'
 import { type Database } from '@/types/database'
 import { type Provider } from '@supabase/supabase-js'
 

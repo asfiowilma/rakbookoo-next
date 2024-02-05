@@ -1,8 +1,6 @@
 import React from 'react'
 
-type Props = {}
-
-const NewShelfPage = (props: Props) => {
+const NewShelfPage = () => {
   return <div>NewShelfPage</div>
 }
 

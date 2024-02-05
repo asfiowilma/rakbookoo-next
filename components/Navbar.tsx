@@ -6,20 +6,21 @@ import React from 'react'
 import SignOutButton from './auth/SignOutButton'
 import { getUserId } from '@/services/getUserId'
 import prisma from '@/services/prisma'
-import { redirect } from 'next/navigation'
 import { routes } from '@/lib/routes'
-import toast from 'react-hot-toast'
 
-const Navbar = async () => {
+const getUser = async () => {
   const userId = await getUserId()
-  if (!userId) {
-    toast.error('Kamu perlu login untuk mengakses halaman tersebut')
-    redirect(routes.login)
-  }
+  if (!userId) return null
 
-  const user = await prisma.user.findUnique({
+  return await prisma.user.findUnique({
     where: { uid: userId },
   })
+}
+
+const Navbar = async () => {
+  const user = await getUser()
+
+  if (user == null) return <></>
 
   return (
     <div className="navbar navbar-end w-full px-6">

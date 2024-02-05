@@ -6,16 +6,12 @@ import prisma from '@/services/prisma'
 import Breadcrumbs from '@/components/library/Breadcrumbs'
 import { redirect } from 'next/navigation'
 import { routes } from '@/lib/routes'
-import { toast } from 'react-hot-toast'
 
 type BookPageProps = { params: { id: string } }
 
 async function BookPage({ params: { id } }: BookPageProps) {
   const userId = await getUserId()
-  if (!userId) {
-    toast.error('Kamu perlu login untuk mengakses halaman tersebut')
-    redirect(routes.login)
-  }
+  if (!userId) redirect(routes.login)
 
   const book = await prisma.book.findUnique({
     include: {

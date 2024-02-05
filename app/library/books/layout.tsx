@@ -2,15 +2,12 @@ import React, { PropsWithChildren, ReactNode } from 'react'
 
 import { BiPlus } from 'react-icons/bi'
 import Breadcrumbs from '@/components/library/Breadcrumbs'
-import { LibraryView } from '@/lib/enums'
 import LibraryViewToggle from '@/components/library/LibraryViewToggle'
 import Link from 'next/link'
-import { libraryView } from '@/lib/signals/view'
 import { routes } from '@/lib/routes'
 
 type BooksLayoutProps = {
   modal: ReactNode
-  // thumbnail: ReactNode
 } & PropsWithChildren
 
 const BooksLayout = ({ modal, children }: BooksLayoutProps) => {

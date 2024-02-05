@@ -10,22 +10,20 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import {
-  booksParams,
-  isShowAuthor,
-  isShowCoverImage,
-  isShowRating,
-  isShowTags,
-} from '@/lib/signals/view'
-import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table'
+import {
+  isShowAuthor,
+  isShowCoverImage,
+  isShowRating,
+  isShowTags,
+} from '@/lib/signals/view'
 import { useComputedValue, useSignalEffect } from 'signals-react-safe'
 
 import { BiBookHeart } from 'react-icons/bi'
-import { FaStar } from 'react-icons/fa'
 import Image from 'next/image'
 import Rating from './Rating'
 import React from 'react'

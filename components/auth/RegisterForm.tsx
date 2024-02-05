@@ -8,7 +8,6 @@ import { Button } from '../ui/button'
 import type { Database } from '@/types/database'
 import { FaUserCircle } from 'react-icons/fa'
 import { Form } from '../ui/form'
-import Link from 'next/link'
 import { MdEmail } from 'react-icons/md'
 import { PasswordInput } from '../ui/password-input'
 import { TextInput } from '../ui/text-input'
@@ -79,7 +78,6 @@ const RegisterForm = () => {
           className="form-control mt-3 w-full max-w-md gap-3"
         >
           <TextInput
-            form={form}
             name="email"
             placeholder="Masukkan email"
             leftAdornment={
@@ -89,7 +87,6 @@ const RegisterForm = () => {
             }
           />
           <TextInput
-            form={form}
             name="username"
             placeholder="Masukkan username"
             leftAdornment={
@@ -98,11 +95,7 @@ const RegisterForm = () => {
               </span>
             }
           />
-          <PasswordInput
-            form={form}
-            name="password"
-            placeholder="Masukkan password"
-          />
+          <PasswordInput name="password" placeholder="Masukkan password" />
 
           <Button type="submit" disabled={isLoading}>
             {isLoading ? (

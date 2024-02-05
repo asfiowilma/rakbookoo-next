@@ -7,7 +7,6 @@ import Link from 'next/link'
 import React from 'react'
 import { routes } from '@/lib/routes'
 import { truncate } from '@/lib/utils'
-import { useBook } from '@/lib/hooks/useBook'
 
 const MAX_STRING_LENGTH = 32
 

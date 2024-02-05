@@ -1,14 +1,16 @@
-'use server'
-
 import { cookies } from 'next/headers'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 
-export const getUserId = async () => {
+export const dynamic = 'force-dynamic'
+
+export const getUserId = (): Promise<string | undefined> => {
   const supabase = createServerComponentClient({ cookies })
-  try {
-    const { data } = await supabase.auth.getSession()
-    return data?.session?.user?.id
-  } catch {
-    return undefined
-  }
+  return new Promise(async (resolve) => {
+    try {
+      const { data } = await supabase.auth.getSession()
+      resolve(data?.session?.user?.id)
+    } catch {
+      resolve(undefined)
+    }
+  })
 }

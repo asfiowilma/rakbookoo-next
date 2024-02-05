@@ -1,5 +1,4 @@
 import { type ClassValue, clsx } from 'clsx'
-import { ReadonlyURLSearchParams } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 
 export function cn(...inputs: ClassValue[]) {
@@ -10,9 +9,10 @@ export const mod = (a: number, b: number): number => ((a % b) + b) % b
 
 export function urlBuilder(
   path: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   params: { [key: string]: any } | URLSearchParams
 ) {
-  const searchParams = new URLSearchParams(params)
+  const searchParams = new URLSearchParams(params as URLSearchParams)
   return `${path}?${searchParams.toString()}`
 }
 

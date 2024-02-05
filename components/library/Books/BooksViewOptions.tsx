@@ -51,6 +51,7 @@ const BooksViewOptions = () => {
       isShowTags.value = (options & OPTIONS[3].id) == OPTIONS[3].id
     })
     queryClient.refetchQueries(['books'])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedOptions])
 
   return (

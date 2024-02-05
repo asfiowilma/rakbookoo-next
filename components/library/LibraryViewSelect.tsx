@@ -2,11 +2,11 @@
 
 import React, { useEffect } from 'react'
 import { cn, urlBuilder } from '@/lib/utils'
-import { isShowTags, libraryView } from '@/lib/signals/view'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 import { Button } from '../ui/button'
 import { LibraryView } from '@/lib/enums'
+import { libraryView } from '@/lib/signals/view'
 import { useSignalEffect } from 'signals-react-safe'
 import { views as viewButtons } from '@/lib/constants/libraryViews'
 
@@ -22,6 +22,7 @@ const LibraryViewSelect = () => {
     if (view !== libraryView.value) {
       libraryView.value = view
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useSignalEffect(() => {
