@@ -5,19 +5,14 @@ import { LibraryView } from '@/lib/enums'
 import LibraryViewSelect from '@/components/library/LibraryViewSelect'
 import React from 'react'
 import { getUserId } from '@/services/getUserId'
+import { notFound } from 'next/navigation'
 import prisma from '@/services/prisma'
-import { redirect } from 'next/navigation'
-import { routes } from '@/lib/routes'
-import toast from 'react-hot-toast'
 
 export const dynamic = 'force-dynamic'
 
 const BooksPage = async ({ searchParams }: PageProps) => {
   const userId = await getUserId()
-  if (!userId) {
-    toast.error('Kamu perlu login untuk mengakses halaman tersebut')
-    redirect(routes.login)
-  }
+  if (!userId) return <></>
 
   const view = searchParams?.['view'] as LibraryView
 
@@ -35,25 +30,16 @@ const BooksPage = async ({ searchParams }: PageProps) => {
     },
   })
 
+  if (!books) return notFound()
+
   return (
     <>
-      {/* <div className="flex w-full justify-between">
-        <Breadcrumbs /> <LibraryViewToggle />
-      </div>
-      <div className="flex w-full justify-between">
-        <h1 className="text-h1">Buku Saya</h1>
-        <Link href={routes.newShelf} className="btn mt-4 gap-2 pl-2">
-          <BiPlus className="h-6 w-6" />
-          Buku Baru
-        </Link>
-      </div> */}
       <div className="w-full flex justify-end my-4 gap-1">
         <LibraryViewSelect />
         {view !== LibraryView.thumbnail && <BooksViewOptions />}
       </div>
 
       <BooksView view={view} books={books as BookWithAuthorAndTag[]} />
-      {/* <BookModal /> */}
     </>
   )
 }

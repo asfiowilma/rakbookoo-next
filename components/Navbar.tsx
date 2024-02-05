@@ -10,7 +10,6 @@ import { routes } from '@/lib/routes'
 
 const getUser = async () => {
   const userId = await getUserId()
-  if (!userId) return null
 
   return await prisma.user.findUnique({
     where: { uid: userId },
@@ -19,8 +18,6 @@ const getUser = async () => {
 
 const Navbar = async () => {
   const user = await getUser()
-
-  if (user == null) return <></>
 
   return (
     <div className="navbar navbar-end w-full px-6">
