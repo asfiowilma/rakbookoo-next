@@ -3,24 +3,26 @@
 import { BiBookHeart } from 'react-icons/bi'
 import type { BookViewProps } from '@/types/books'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
+import { routes } from '@/lib/routes'
 import { truncate } from '@/lib/utils'
-import { useBook } from '@/lib/hooks/useBook'
 
 const MAX_STRING_LENGTH = 32
 
 const BookThumbnail = ({ book }: BookViewProps) => {
-  const { setBookId, setBookModalOpen } = useBook()
+  // const { setBookId, setBookModalOpen } = useBook()
 
-  const openBookInfo = () => {
-    setBookId(book.id)
-    setBookModalOpen(true)
-  }
+  // const openBookInfo = () => {
+  //   setBookId(book.id)
+  //   setBookModalOpen(true)
+  // }
 
   return (
-    <button
-      aria-hidden
-      onClick={openBookInfo}
+    <Link
+      // aria-hidden
+      // onClick={openBookInfo}
+      href={routes.book(book.id)}
       className="flex flex-col text-left"
     >
       {book.coverImage ? (
@@ -39,7 +41,7 @@ const BookThumbnail = ({ book }: BookViewProps) => {
       )}
       <div className="mt-2 font-bold line-clamp-2">{book.title}</div>
       <div>{book.authors?.[0]?.name}</div>
-    </button>
+    </Link>
   )
 }
 

@@ -4,9 +4,9 @@ export const routes = {
 
   library: '/library',
   books: '/library/books',
-  newBook: '/library/books/new',
-  book: (bookId?: string) => `/library/books/${bookId}`,
-  editBook: (bookId: string) => `/library/books/${bookId}/edit`,
+  newBook: '/library/book/new',
+  book: (bookId?: string) => `/library/book/${bookId}`,
+  editBook: (bookId: string) => `/library/book/${bookId}/edit`,
   newShelf: '/library/shelves/new',
   shelves: '/library/shelves',
   shelf: (shelfId?: number) => `/library/shelves/${shelfId}`,

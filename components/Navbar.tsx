@@ -6,18 +6,18 @@ import React from 'react'
 import SignOutButton from './auth/SignOutButton'
 import { getUserId } from '@/services/getUserId'
 import prisma from '@/services/prisma'
-import { redirect } from 'next/navigation'
 import { routes } from '@/lib/routes'
 
-const Navbar = async () => {
-  const sessionData = await getUserId()
-  if (!sessionData) {
-    redirect('/auth/login')
-  }
+const getUser = async () => {
+  const userId = await getUserId()
 
-  const user = await prisma.user.findUnique({
-    where: { uid: sessionData.session?.user.id },
+  return await prisma.user.findUnique({
+    where: { uid: userId },
   })
+}
+
+const Navbar = async () => {
+  const user = await getUser()
 
   return (
     <div className="navbar navbar-end w-full px-6">

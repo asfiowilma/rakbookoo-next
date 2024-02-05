@@ -4,12 +4,11 @@ import React, { useState } from 'react'
 import { Button } from './button'
 import TextInput, { type TextInputProps } from './text-input'
 
-export const PasswordInput = ({ form, name, placeholder }: TextInputProps) => {
+export const PasswordInput = ({ name, placeholder }: TextInputProps) => {
   const [showPassword, setShowPassword] = useState(false)
 
   return (
     <TextInput
-      form={form}
       placeholder={placeholder}
       name={name}
       type={showPassword ? 'text' : 'password'}

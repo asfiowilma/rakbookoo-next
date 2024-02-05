@@ -7,8 +7,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { Button } from '../ui/button'
 import { LibraryView } from '@/lib/enums'
 import { libraryView } from '@/lib/signals/view'
-import { queryClient } from '@/context/providers/RakQueryClientProvider'
-import { useSignalEffect } from '@preact/signals-react'
+import { useSignalEffect } from 'signals-react-safe'
 import { views as viewButtons } from '@/lib/constants/libraryViews'
 
 const LibraryViewSelect = () => {
@@ -23,22 +22,18 @@ const LibraryViewSelect = () => {
     if (view !== libraryView.value) {
       libraryView.value = view
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useSignalEffect(() => {
     if ((params.get('view') as LibraryView) !== libraryView.value) {
-      // refetch books
-      queryClient.invalidateQueries({ queryKey: ['books'] })
-
       // update query params
       const searchParams = new URLSearchParams(params.toString())
       searchParams.set('view', libraryView.value)
       router.replace(urlBuilder(pathname, searchParams))
 
-      // persist in localstorage
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('library-view', libraryView.value)
-      }
+      // persist to localstorage
+      localStorage.setItem('library-view', libraryView.value)
     }
   })
 

@@ -8,11 +8,9 @@ import {
 import React, { ReactNode } from 'react'
 
 import { Input } from './input'
-import type { UseFormReturn } from 'react-hook-form'
 import { cn } from '@/lib/utils'
 
 export interface TextInputProps {
-  form: UseFormReturn<any>
   name: string
   type?: string
   label?: string
@@ -23,7 +21,6 @@ export interface TextInputProps {
 }
 
 export const TextInput = ({
-  form,
   name,
   label,
   type,
@@ -34,7 +31,6 @@ export const TextInput = ({
 }: TextInputProps) => {
   return (
     <FormField
-      control={form.control}
       name={name}
       render={({ field }) => (
         <FormItem>

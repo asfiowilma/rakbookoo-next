@@ -52,7 +52,6 @@ const LoginForm = () => {
           className="form-control w-full max-w-md gap-3"
         >
           <TextInput
-            form={form}
             name="email"
             placeholder="Masukkan email"
             leftAdornment={
@@ -61,11 +60,7 @@ const LoginForm = () => {
               </span>
             }
           />
-          <PasswordInput
-            form={form}
-            name="password"
-            placeholder="Masukkan password"
-          />
+          <PasswordInput name="password" placeholder="Masukkan password" />
 
           <Button type="submit" disabled={isLoading}>
             {isLoading ? (

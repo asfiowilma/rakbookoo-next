@@ -1,16 +1,22 @@
 'use client'
 import { routes } from '@/lib/routes'
-import { Shelf, type Book } from '@prisma/client'
+import { cn } from '@/lib/utils'
+import { type BookDetails } from '@/types/books'
+import { Shelf } from '@prisma/client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
 
-const Breadcrumbs = ({ book, shelf }: { book?: Book; shelf?: Shelf }) => {
-  // TODO: add book store
+interface BreadcrumbsProps extends PropsWithClassName {
+  book?: BookDetails
+  shelf?: Shelf
+}
+
+const Breadcrumbs = ({ book, shelf, className }: BreadcrumbsProps) => {
   const pathname = usePathname()
 
   return (
-    <div className="breadcrumbs text-sm">
+    <div className={cn('breadcrumbs text-sm', className)}>
       <ul>
         <li>
           <Link href={routes.books} className="link link-hover">

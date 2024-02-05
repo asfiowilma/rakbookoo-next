@@ -2,14 +2,12 @@
 
 import * as z from 'zod'
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { Button } from '../ui/button'
 import type { Database } from '@/types/database'
 import { Form } from '../ui/form'
-import { MdEmail } from 'react-icons/md'
 import { PasswordInput } from '../ui/password-input'
-import { TextInput } from '../ui/text-input'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { toast } from 'react-hot-toast'
 import { useForm } from 'react-hook-form'
@@ -53,11 +51,7 @@ const ResetPasswordForm = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="form-control w-full max-w-md gap-3"
       >
-        <PasswordInput
-          form={form}
-          name="password"
-          placeholder="Masukkan password baru"
-        />
+        <PasswordInput name="password" placeholder="Masukkan password baru" />
         <Button type="submit" disabled={isLoading}>
           {isLoading ? (
             <>

@@ -1,5 +1,4 @@
 import { routes } from '@/lib/routes'
-import { isBookModalOpen } from '@/lib/signals/book'
 import { cn, truncate } from '@/lib/utils'
 import { type BookDetails } from '@/types/books'
 import Image from 'next/image'
@@ -9,22 +8,25 @@ import { BiBookHeart } from 'react-icons/bi'
 import { FaStar } from 'react-icons/fa'
 
 type BookProps = {
+  isModal?: boolean
   book: BookDetails
 }
 
-const Book = ({ book }: BookProps) => {
+const Book = ({ book, isModal }: BookProps) => {
+  if (!book) return <></>
+
   return (
     <>
       <div
         className={cn(
           'absolute inset-0 -z-10 overflow-hidden opacity-40',
-          isBookModalOpen.value ? 'h-32' : 'h-52'
+          isModal ? 'h-32' : 'h-[17rem]'
         )}
       >
         <Image
           src={book.coverImage!}
           alt={book.title}
-          layout="fill"
+          fill
           className="h-full w-full scale-110 bg-base-300 object-cover object-center blur"
         />
       </div>
@@ -45,7 +47,7 @@ const Book = ({ book }: BookProps) => {
             </div>
           )}
           <header className="my-4 flex flex-1 flex-col">
-            <nav className="mt-4 flex flex-1 gap-4 self-end">
+            <nav className="flex flex-1 gap-4 self-end">
               {/* <button
                 type="button"
                 className="btn btn-outline"
@@ -63,7 +65,7 @@ const Book = ({ book }: BookProps) => {
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
               {book.tags?.map((tag) => (
-                <div key={tag.name} className="badge">
+                <div key={tag.name} className="badge badge-neutral">
                   {tag.name}
                 </div>
               ))}

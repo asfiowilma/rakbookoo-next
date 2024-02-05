@@ -1,22 +1,19 @@
-import { BiPlus } from 'react-icons/bi'
-import BookModal from '@/components/library/Books/BookModal'
-import type { BookWithAuthor } from '@/types/books'
+import type { BookWithAuthorAndTag } from '@/types/books'
 import BooksView from '@/components/library/Books/BooksView'
 import BooksViewOptions from '@/components/library/Books/BooksViewOptions'
-import Breadcrumbs from '@/components/library/Breadcrumbs'
 import { LibraryView } from '@/lib/enums'
 import LibraryViewSelect from '@/components/library/LibraryViewSelect'
-import LibraryViewToggle from '@/components/library/LibraryViewToggle'
-import Link from 'next/link'
 import React from 'react'
 import { getUserId } from '@/services/getUserId'
+import { notFound } from 'next/navigation'
 import prisma from '@/services/prisma'
-import { routes } from '@/lib/routes'
 
 export const dynamic = 'force-dynamic'
 
 const BooksPage = async ({ searchParams }: PageProps) => {
-  const sessionData = await getUserId()
+  const userId = await getUserId()
+  if (!userId) return <></>
+
   const view = searchParams?.['view'] as LibraryView
 
   const books = await prisma.book.findMany({
@@ -29,28 +26,20 @@ const BooksPage = async ({ searchParams }: PageProps) => {
       },
     },
     where: {
-      ownerId: sessionData?.session?.user.id,
+      ownerId: userId,
     },
   })
 
+  if (!books) return notFound()
+
   return (
     <>
-      <div className="flex w-full justify-between">
-        <Breadcrumbs /> <LibraryViewToggle />
-      </div>
-      <div className="flex w-full justify-between">
-        <h1 className="text-h1">Buku Saya</h1>
-        <Link href={routes.newShelf} className="btn mt-4 gap-2 pl-2">
-          <BiPlus className="h-6 w-6" />
-          Buku Baru
-        </Link>
-      </div>
       <div className="w-full flex justify-end my-4 gap-1">
         <LibraryViewSelect />
         {view !== LibraryView.thumbnail && <BooksViewOptions />}
       </div>
-      <BooksView view={view} books={books as BookWithAuthor[]} />
-      <BookModal />
+
+      <BooksView view={view} books={books as BookWithAuthorAndTag[]} />
     </>
   )
 }

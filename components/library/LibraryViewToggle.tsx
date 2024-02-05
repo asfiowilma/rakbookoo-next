@@ -1,39 +1,38 @@
 'use client'
 
-import { usePathname, useRouter } from 'next/navigation'
-
+import Link from 'next/link'
 import React from 'react'
 import { cn } from '@/lib/utils'
 import { routes } from '@/lib/routes'
-
-export const dynamic = 'force-dynamic'
+import { usePathname } from 'next/navigation'
 
 const LibraryViewToggle = () => {
-  const router = useRouter()
   const pathname = usePathname()
 
   return (
     <div className="flex items-center gap-2">
       <span>Tampilkan</span>
       <div className="tabs tabs-boxed">
-        <div
+        <Link
           key="SHELVES-TAB"
-          onClick={() => router.replace(routes.shelves)}
+          href={routes.shelves}
+          replace
           className={cn('tab transition', {
             'tab-active': pathname === routes.shelves,
           })}
         >
           Rak
-        </div>
-        <div
+        </Link>
+        <Link
           key="BOOKS-TAB"
-          onClick={() => router.replace(routes.books)}
+          href={routes.books}
+          replace
           className={cn('tab transition', {
             'tab-active': pathname === routes.books,
           })}
         >
           Buku
-        </div>
+        </Link>
       </div>
     </div>
   )
